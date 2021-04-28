@@ -4,9 +4,9 @@ import { SuspensionUtilisateurComponent } from './suspension-utilisateur/suspens
 import { SuppressionUtilisateurComponent } from './suppression-utilisateur/suppression-utilisateur.component';
 import { ReactivationUtilisateurComponent } from './reactivation-utilisateur/reactivation-utilisateur.component';
 import { ListeUtilisateurComponent } from './liste-utilisateur/liste-utilisateur.component';
-import { FormulaireUtilisateurComponent } from './formulaire-utilisateur/formulaire-utilisateur.component';
 import { AuthentificationUtilisateurComponent } from './authentification-utilisateur/authentification-utilisateur.component';
 import { InscriptionUtilisateurComponent } from './inscription-utilisateur/inscription-utilisateur.component';
+import { EditionUtilisateurComponent } from './edition-utilisateur/edition-utilisateur.component';
 
 
 
@@ -16,9 +16,9 @@ import { InscriptionUtilisateurComponent } from './inscription-utilisateur/inscr
     SuppressionUtilisateurComponent,
     ReactivationUtilisateurComponent,
     ListeUtilisateurComponent,
-    FormulaireUtilisateurComponent,
     AuthentificationUtilisateurComponent,
-    InscriptionUtilisateurComponent
+    InscriptionUtilisateurComponent,
+    EditionUtilisateurComponent
   ],
   imports: [
     CommonModule

@@ -8,7 +8,6 @@ import { FormulaireNotificationComponent } from './notifications/formulaire-noti
 import { CreationFavoriComponent } from './page-accueil/creation-favori/creation-favori.component';
 import { ExtractionDataComponent } from './page-accueil/extraction-data/extraction-data.component';
 import { BarreRechercheComponent } from './page-accueil/barre-recherche/barre-recherche.component';
-import { PageAccueilComponent } from './page-accueil/page-accueil/page-accueil.component';
 import { AccueilDataComponent } from './page-accueil/accueil-data/accueil-data.component';
 
 
@@ -23,11 +22,13 @@ import { AccueilDataComponent } from './page-accueil/accueil-data/accueil-data.c
     CreationFavoriComponent,
     ExtractionDataComponent,
     BarreRechercheComponent,
-    PageAccueilComponent,
     AccueilDataComponent
   ],
   imports: [
     CommonModule
+  ],
+  exports :[
+    NavbarComponent
   ]
 })
 export class FrameModule { }

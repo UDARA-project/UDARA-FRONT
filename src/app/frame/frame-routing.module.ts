@@ -12,17 +12,17 @@ const routes: Routes = [
     { path: '**', redirectTo: 'udara/page404' },
 
     // Frame :
-    { path: 'udara/formNotif', component: FormulaireNotificationComponent},
-    { path: 'udara/accueil', component: AccueilDataComponent},
-    { path: 'udara/ajoutFavori', component: CreationFavoriComponent},
-    { path: 'udara/extractionData', component: ExtractionDataComponent},
-    { path: 'udara/page404', component: Page404Component},
+    { path: 'formNotif', component: FormulaireNotificationComponent},
+    { path: 'accueil', component: AccueilDataComponent},
+    { path: 'ajoutFavori', component: CreationFavoriComponent},
+    { path: 'extractionData', component: ExtractionDataComponent},
+    { path: 'page404', component: Page404Component},
 
 ];// sets up routes constant where you define your routes
 
 // configures NgModule imports and exports
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class FrameRoutingModule { }

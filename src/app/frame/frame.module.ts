@@ -9,6 +9,7 @@ import { CreationFavoriComponent } from './page-accueil/creation-favori/creation
 import { ExtractionDataComponent } from './page-accueil/extraction-data/extraction-data.component';
 import { BarreRechercheComponent } from './page-accueil/barre-recherche/barre-recherche.component';
 import { AccueilDataComponent } from './page-accueil/accueil-data/accueil-data.component';
+import { FrameRoutingModule } from './frame-routing.module';
 
 
 
@@ -25,7 +26,8 @@ import { AccueilDataComponent } from './page-accueil/accueil-data/accueil-data.c
     AccueilDataComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FrameRoutingModule
   ],
   exports :[
     NavbarComponent

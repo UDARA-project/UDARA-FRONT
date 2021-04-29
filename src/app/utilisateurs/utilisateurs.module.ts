@@ -7,6 +7,7 @@ import { ListeUtilisateurComponent } from './liste-utilisateur/liste-utilisateur
 import { FormulaireUtilisateurComponent } from './formulaire-utilisateur/formulaire-utilisateur.component';
 import { AuthentificationUtilisateurComponent } from './authentification-utilisateur/authentification-utilisateur.component';
 import { InscriptionUtilisateurComponent } from './inscription-utilisateur/inscription-utilisateur.component';
+import { UtilisateursRoutingModule } from './utilisateurs-routing.module';
 
 
 
@@ -21,7 +22,8 @@ import { InscriptionUtilisateurComponent } from './inscription-utilisateur/inscr
     InscriptionUtilisateurComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    UtilisateursRoutingModule
   ]
 })
 export class UtilisateursModule { }

@@ -19,14 +19,11 @@ import { NavbarComponent } from './frame/navbar/navbar.component';
   imports: [
     BrowserModule,
     NgbModule,
-    ForumModule,
-    UtilisateursModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    FrameModule
   ],
   providers: [],
   bootstrap: [AppComponent]

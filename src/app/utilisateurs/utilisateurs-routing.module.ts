@@ -13,19 +13,19 @@ const routes: Routes = [
     { path: '**', redirectTo: 'udara/page404' },
 
     //Utilisateurs
-    { path: 'udara/authentification', component: AuthentificationUtilisateurComponent},
-    { path: 'udara/editionUtilisateur', component: EditionUtilisateurComponent},
-    { path: 'udara/inscriptionUtilisateur', component: InscriptionUtilisateurComponent},
-    { path: 'udara/listeUtilisateur', component: ListeUtilisateurComponent},
-    { path: 'udara/reactivationUtilisateur', component: ReactivationUtilisateurComponent},
-    { path: 'udara/suppressionUtilisateur', component: SuppressionUtilisateurComponent},
-    { path: 'udara/suspensionUtilisateur', component: SuspensionUtilisateurComponent},
+    { path: 'authentification', component: AuthentificationUtilisateurComponent},
+    { path: 'editionUtilisateur', component: EditionUtilisateurComponent},
+    { path: 'inscriptionUtilisateur', component: InscriptionUtilisateurComponent},
+    { path: 'listeUtilisateur', component: ListeUtilisateurComponent},
+    { path: 'reactivationUtilisateur', component: ReactivationUtilisateurComponent},
+    { path: 'suppressionUtilisateur', component: SuppressionUtilisateurComponent},
+    { path: 'suspensionUtilisateur', component: SuspensionUtilisateurComponent},
 
 ];// sets up routes constant where you define your routes
 
 // configures NgModule imports and exports
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class UtilisateursRoutingModule { }

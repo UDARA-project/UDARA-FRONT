@@ -19,7 +19,7 @@
     "@angular/localize": "~11.2.10",
     "@angular/platform-browser": "~11.2.10",
     "@angular/platform-browser-dynamic": "~11.2.10",
-    "@angular/router": "~11.2.10",
+    "@angular/router": "^11.2.12",
     "@ng-bootstrap/ng-bootstrap": "^9.1.0",
     "bootstrap": "^4.6.0",
     "font-awesome": "^4.7.0",

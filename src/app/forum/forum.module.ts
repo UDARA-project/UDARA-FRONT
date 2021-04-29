@@ -5,6 +5,7 @@ import { AjoutRubriqueComponent } from './ajout-rubrique/ajout-rubrique.componen
 import { ListeFilsConversationsComponent } from './liste-fils-conversations/liste-fils-conversations.component';
 import { ContenuFilConversationComponent } from './contenu-fil-conversation/contenu-fil-conversation.component';
 import { AjoutFilConversationComponent } from './ajout-fil-conversation/ajout-fil-conversation.component';
+import { ForumRoutingModule } from './forum-routing.module';
 
 
 
@@ -17,7 +18,8 @@ import { AjoutFilConversationComponent } from './ajout-fil-conversation/ajout-fi
     AjoutFilConversationComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ForumRoutingModule
   ]
 })
 export class ForumModule { }

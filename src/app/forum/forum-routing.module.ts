@@ -9,22 +9,21 @@ import { ListeRubriqueComponent } from './liste-rubrique/liste-rubrique.componen
 
 
 const routes: Routes = [
-    { path: '**', redirectTo: 'udara/page404' },
+    // { path: '**', redirectTo: 'udara/page404' },
 
     // Forum 
-    { path: 'udara/ajoutFilsDConversation', component: AjoutFilConversationComponent},
-    { path: 'udara/ajoutRubrique', component: AjoutRubriqueComponent},
-    { path: 'udara/contenuFilDConversation', component: ContenuFilConversationComponent},
-    { path: 'udara/listeFilsConversations', component: ListeFilsConversationsComponent},
-    { path: 'udara/listeRubrique', component: ListeRubriqueComponent},
-
+    { path: 'ajoutFilsDConversation', component: AjoutFilConversationComponent},
+    { path: 'ajoutRubrique', component: AjoutRubriqueComponent},
+    { path: 'contenuFilDConversation', component: ContenuFilConversationComponent},
+    { path: 'listeFilsConversations', component: ListeFilsConversationsComponent},
+    { path: 'listeRubrique', component: ListeRubriqueComponent},
  
 
 ];// sets up routes constant where you define your routes
 
 // configures NgModule imports and exports
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class ForumRoutingModule { }

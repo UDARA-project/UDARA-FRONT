@@ -21,7 +21,7 @@ export class CommuneService {
   }
 
   findByName(commune: Commune) {
-    return this.http.get<Commune[]>(this.url + "search?" + commune.nom);
+    return this.http.get<Commune[]>(this.url + "search?terme=" + commune.name);
   }
 
 }

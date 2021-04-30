@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-suspension-utilisateur',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuspensionUtilisateurComponent implements OnInit {
 
-  constructor() { }
+  constructor(protected modalService: NgbActiveModal) { }
 
   ngOnInit(): void {
+  }
+
+  // Méthode du modal
+  close(){
+    this.modalService.dismiss()
+  }
+
+  confirm(){
+    this.modalService.close()
   }
 
 }

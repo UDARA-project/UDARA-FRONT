@@ -1,10 +1,39 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
-    <div class="container-fluid">
-        <a id="logo_et_titre">
-            <img id="logo" src="" alt="Logo Udara" title="UDARA" />
-        </a>
-        <p>Infos météos et qualité de l'air</p>
-        <button class="btn alert-secondary ml-3">Inscription</button>
-        <button class="btn alert-secondary ml-3">Connexion</button>
+    <div class="container-fluid d-flex">
+        <ul class="container-fluid d-flex list-unstyled my-0">
+            <li>
+                <a id="logo_et_titre">
+                    <img id="logo" [src]="logo_path" alt="Logo Udara" title="UDARA" />
+                </a>
+            </li>
+            <li>
+                <p>Infos météos et qualité de l'air</p>
+            </li>
+            <li>
+                <button class="btn alert-secondary">Créer une notification</button>
+            </li>
+            <li>
+                <button class="btn alert-secondary">Inscription</button>
+            </li>
+            <li>
+                <button class="btn alert-secondary">Connexion</button>
+            </li>
+            <li class="m-0">
+                <a style="font-size:1.5em">
+                    <i class="fa fa-bell"></i>
+                </a>
+            </li>
+            <li>
+                <div class="d-flex-column m-0">
+                    <h4 class="m-0">Nom Prénom</h4>
+                    <h5 class="m-0">Déconnexion</h5>
+                </div>
+            </li>
+            <li class="m-0">
+                <a style="font-size:2.4em">
+                    <i class="fa fa-user-circle"></i>
+                </a>
+            </li>
+        </ul>
     </div>
 </nav>

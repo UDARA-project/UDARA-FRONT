@@ -16,12 +16,8 @@ export class NiveauMeteoService {
     return this.http.get<NiveauMeteo[]>(this.url);
   }
 
-  getByName(nomCommune: string, nomNiveau: string) {
-    return this.http.get<NiveauMeteo[]>(this.url + nomCommune + "/" + nomNiveau);
-  }
-
-  getAllByName(nomCommune: string) {
-    return this.http.get<NiveauMeteo[]>(this.url + "search?nomCommune=" + nomCommune);
+  getAllByName(nomCommune: string, nomNiveaux: string[], echelleTemps: string) {
+    return this.http.get<NiveauMeteo[]>(`${this.url}search?nomCommune=${nomCommune}&listNiveaux=${nomNiveaux}&echelleTemps=${echelleTemps}`);
   }
 
   findById(id : number) {

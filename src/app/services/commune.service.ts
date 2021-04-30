@@ -16,6 +16,10 @@ export class CommuneService {
     return this.http.get<Commune[]>(this.url + "liste-commune-dto");
   }
 
+  getEveryName() {
+    return this.http.get<string[]>(this.url + "liste-commune");
+  }
+
   findById(id : number) {
     return this.http.get<Commune>(this.url + id);
   }

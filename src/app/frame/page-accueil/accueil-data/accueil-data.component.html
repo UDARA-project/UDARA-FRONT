@@ -1,36 +1,28 @@
-
-<app-barre-recherche [loading]="'false'"></app-barre-recherche>
+<app-barre-recherche [loading]="'false'" (searchChild)="renderSearchParent($event)"></app-barre-recherche>
 
 <div class="container">
-
     <div class="row">
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  </table>
+        <div class="col"></div>
+        <table class="table col-10">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let indicateurAir of indicateurAirs">
+                    <th scope="row">{{indicateurAir.nom}}</th>
+                    <td *ngFor="let valeur of indicateurAir.valeurs">{{valeur}}</td>
+                </tr>
+                <tr *ngFor="let niveauMeteo of niveauMeteos">
+                    <th scope="row">{{niveauMeteo.nom}}</th>
+                    <td *ngFor="let valeur of niveauMeteo.valeurs">{{valeur}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="col"></div>
+    </div>
+</div>

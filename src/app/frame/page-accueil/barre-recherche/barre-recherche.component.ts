@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { CommuneService } from 'src/app/services/commune.service';
 import { CompteUtilisateurService } from 'src/app/services/compte-utilisateur.service';
 import { FavoriService } from 'src/app/services/favori.service';
@@ -9,6 +9,8 @@ import { NiveauMeteoService } from 'src/app/services/niveau-meteo.service';
 import { NotifService } from 'src/app/services/notif.service';
 import { RubriqueService } from 'src/app/services/rubrique.service';
 import { NavigationExtras, Router } from '@angular/router';
+import { IndicateurAir } from 'src/app/models/indicateurAir.interface';
+import { NiveauMeteo } from 'src/app/models/niveauMeteo.interface';
 
 @Component({
   selector: 'app-barre-recherche',
@@ -18,8 +20,14 @@ import { NavigationExtras, Router } from '@angular/router';
 export class BarreRechercheComponent implements OnInit {
 
   nomCommunes: string[];
+  indicateurAirs: IndicateurAir[];
+  niveauMeteos: NiveauMeteo[];
+  nomIndicateurs: string[] = ["co","no","no2","o3","so2","pm2_5","pm10","nh3"];
+  nomNiveaux: string[] = ["Température", "Nuage", "Vent", "Pluie"]
+  echelleTemps: string[] = ["JOURNALIERE", "HEBDOMADAIRE", "MENSUEL"];
   @ViewChild('input') inputElement: ElementRef;
   @Input() loading: boolean;
+  @Output() searchChild = new EventEmitter();
 
   constructor(
     private communeService: CommuneService,
@@ -40,8 +48,8 @@ export class BarreRechercheComponent implements OnInit {
 
   initializeCommunes() {
     this.loading = true;
-    this.communeService.get().subscribe(array => {
-      this.nomCommunes = array.map(item => item.name)
+    this.communeService.getEveryName().subscribe(array => {
+      this.nomCommunes = array;
       this.loading = false;
     });
   }
@@ -51,20 +59,13 @@ export class BarreRechercheComponent implements OnInit {
   }
 
   onEnter(nomCommune: string) {
-    console.log(nomCommune);
-
-    this.indicateurAirService.getByName(nomCommune, "no2").subscribe(res => console.log(res))
-
-    /* let extras: NavigationExtras = {
-      skipLocationChange: false,
-      replaceUrl: true,
-      queryParams: { q: value },
-      state: null
-    };
-    this.router.navigateByUrl('/').then(() =>
-      this.router.navigate(['list'], extras)); */
-          //this.indicateurAirService.get().subscribe(r => console.log(r));
-    //this.niveauMeteoService.get().subscribe(r => console.log(r));
+    this.indicateurAirService.getAllByName(nomCommune, this.nomIndicateurs, this.echelleTemps[0]).subscribe(res => {
+      this.indicateurAirs = res;
+      this.niveauMeteoService.getAllByName(nomCommune, this.nomNiveaux, this.echelleTemps[0]).subscribe(res => {
+        this.niveauMeteos = res;
+        this.searchChild.emit({nomCommune:nomCommune, indicateurAirs:this.indicateurAirs, niveauMeteos:this.niveauMeteos });
+      })
+    })
   }
 
 

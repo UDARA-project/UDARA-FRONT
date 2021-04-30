@@ -1,7 +1,6 @@
 <div class="container">
-
     <div *ngIf="!loading" class="row">
-        <div class="col"></div>
+        <div class="col-1"></div>
         <div class="col-10">
             <div class="input-group mb-3">
                 <input #input type="text" class="form-control" placeholder="Nom d'une commune, Ex. Montpellier"
@@ -10,22 +9,21 @@
                     <option *ngFor="let nomCommune of nomCommunes" [value]="nomCommune"></option>
                 </datalist>
                 <div class="input-group-append">
-                    <button class="btn btn-secondary" type="button" id="button-addon2"
+                    <button class="btn btn-dark" type="button" id="button-addon2"
                         (click)="search()">Recherche</button>
                 </div>
             </div>
         </div>
-        <div class="col"></div>
+        <div class="col-1"></div>
     </div>
 
     <div *ngIf="loading" class="row">
         <div class="col-5"></div>
         <div class="col-2">
-            <div class="spinner-border mb-3" role="status">
+            <div class="spinner-border" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
         <div class="col-5"></div>
     </div>
-
 </div>

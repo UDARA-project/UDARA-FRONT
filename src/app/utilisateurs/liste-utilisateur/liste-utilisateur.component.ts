@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ReactivationUtilisateurComponent } from '../reactivation-utilisateur/reactivation-utilisateur.component';
+import { SuppressionUtilisateurComponent } from '../suppression-utilisateur/suppression-utilisateur.component';
+import { SuspensionUtilisateurComponent } from '../suspension-utilisateur/suspension-utilisateur.component';
 
 @Component({
   selector: 'app-liste-utilisateur',
@@ -7,9 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListeUtilisateurComponent implements OnInit {
 
-  constructor() { }
+  constructor(protected modalService: NgbModal) { }
 
   ngOnInit(): void {
   }
+
+  ajoutSuspendre(){
+    this.modalService.open(
+      SuspensionUtilisateurComponent
+    )
+  }
+
+  ajoutSupprimer(){
+    this.modalService.open(
+      SuppressionUtilisateurComponent
+    )
+  }
+
+    activation(){
+      this.modalService.open(
+        ReactivationUtilisateurComponent
+      )
+  }
+
+  condition = false;
 
 }

@@ -1,1 +1,86 @@
-<p>inscription-utilisateur works!</p>
+<!DOCTYPE html>
+ <html>
+    <head>
+        <title>Page d'inscription</title>
+        <meta charset='utf-8'>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     </head>
+     <body>
+        <h1 class="d-flex justify-content-center">INSCRIPTION</h1>
+         <div class="container d-flex justify-content-center">
+             <form class="col-md-6">
+               <fieldset>
+                 <legend class="d-flex justify-content-center">Informations d'utilisateur</legend>
+                 
+                 <div class="form-group">
+                   <label for="nom"><i class="fa fa-user"></i> Entrez votre nom</label>
+                   <input type="text" class="form-control" name="nom" placeholder="Nom">
+                 </div>
+
+                 <div class="form-group">
+                    <label for="nom"><i class="fa fa-user"></i> Entrez votre prénom</label>
+                    <input type="text" class="form-control" name="prenom" placeholder="Prénom">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="nom"><i class="fa fa-user"></i> Entrez votre nom d'utilisateur</label>
+                    <input type="text" class="form-control" name="pseudonyme" placeholder="Nom d'utilisateur (pseudonyme)">
+                  </div>
+
+                 
+                 <div class="form-group">
+                   <label for="password"><i class="fa fa-envelope"></i> Entrez votre email</label>
+                   <input type="email" class="form-control" name="email" placeholder="Email">
+                 </div>
+
+                 <div class="form-group">
+                    <label for="email"><i class="fa fa-lock"></i> Saisissez votre mot de passe</label>
+                    <input type="password" name="mot de passe" class="form-control" aria-describedby="passwordHelpBlock" placeholder="Mot de passe">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email"><i class="fa fa-lock"></i> Confirmez votre mot de passe</label>
+                    <input type="password" name="confirmer mot de passe" class="form-control" aria-describedby="passwordHelpBlock" placeholder="Mot de passe">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="text"><i class="fa fa-address-card"></i> Entrez une adresse</label>
+                    <input type="text" class="form-control" name="adresse" placeholder="Adresse">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="text"> <i class="fa fa-map-marker"></i> Entrez une ville</label>
+                    <input type="text" class="form-control" name="ville" placeholder="Ville">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="text"><i class="fa fa-flag"></i> Entrez Code postal</label>
+                    <input type="number" class="form-control" name="code postal" placeholder="Code postal">
+                  </div>
+                 
+                 <div class="form-group">
+                   <label for="selection"><i class="fa fa-globe"></i> Selectionnez un pays</label>
+                   <select class="form-control">
+                     <option value="">Pays</option>
+                     <optgroup label="Groupe d'options 1">
+                       <option value="">Option 1</option>
+                       <option value="">Option 2</option>
+                       <option value="">Option 3</option>
+                     </optgroup>
+                     <optgroup label="Groupe d'options 2">
+                       <option value="">Option 4</option>
+                       <option value="">Option 5</option>
+                     </optgroup>
+                   </select>
+                 </div>
+               </fieldset>
+         
+                <button type="button" class="btn btn-success d-flex col-md-12 mb-1 justify-content-center">Créer mon compte</button>
+                <div class="text-center">
+                    <button type="button" class="btn btn-success col-md-4 justify-content-center align-item">Se connecter</button>
+               </div>
+    
+             </form>
+         </div>
+    </body>
+</html>

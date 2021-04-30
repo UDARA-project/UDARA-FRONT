@@ -1,1 +1,57 @@
-<p>liste-utilisateur works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liste utilisateur</title>
+</head>
+
+<body>
+  <div class="container">
+
+    <table class="table table-bordered">
+      <thead>
+        <tr class="bg-info ">
+          <th scope="col">id</th>
+          <th scope="col">Nom Prénom</th>
+          <th scope="col">Nom d'utilisateur</th>
+          <th scope="col">Email</th>
+          <th scope="col">Ville</th>
+          <th scope="col">Suspendu/Actif</th>
+          <th scope="col">Supprimer</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th>23</th>
+          <td>BOUVIER Nathalie</td>
+          <td>Nathalis</td>
+          <td>n.bouvier@gmail.com</td>
+          <td>Lattes</td>
+          <td class="text-center">
+            <p>
+              The condition is currently
+              <span [ngClass]="{ 'a': !condition, 'b': condition, 'unless': true }">{{condition}}</span>.
+              <button
+                (click)="condition = !condition"
+                [ngClass] = "{ 'a': condition, 'b': !condition }" >
+                Toggle condition to {{condition ? 'false' : 'true'}}
+              </button>
+            </p>
+          </td>
+          <td class="text-center" >
+              <button class="bg-danger btn-outline-danger rounded justify-content-center" (click)="ajoutSupprimer()"> 
+                <i class="fa fa-trash danger text-white" ></i>
+              </button>
+           
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

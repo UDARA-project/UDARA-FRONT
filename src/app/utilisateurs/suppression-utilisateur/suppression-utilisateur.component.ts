@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-suppression-utilisateur',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuppressionUtilisateurComponent implements OnInit {
 
-  constructor() { }
+  constructor(protected modalService: NgbActiveModal) { }
 
   ngOnInit(): void {
+  }
+
+  close(){
+    this.modalService.dismiss()
+  }
+
+  confirm(){
+    this.modalService.close()
   }
 
 }

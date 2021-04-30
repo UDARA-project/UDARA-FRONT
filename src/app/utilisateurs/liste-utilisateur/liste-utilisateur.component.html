@@ -14,11 +14,12 @@
     <table class="table table-bordered">
       <thead>
         <tr class="bg-info ">
-          <th scope="col">id</th>
-          <th scope="col">Nom Prénom</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Prénom</th>
           <th scope="col">Nom d'utilisateur</th>
           <th scope="col">Email</th>
           <th scope="col">Ville</th>
+          <th scope="col">Code Postal</th>
           <th scope="col">Suspendu/Actif</th>
           <th scope="col">Supprimer</th>
         </tr>
@@ -26,11 +27,12 @@
 
       <tbody>
         <tr>
-          <th>23</th>
-          <td>BOUVIER Nathalie</td>
-          <td>Nathalis</td>
-          <td>n.bouvier@gmail.com</td>
-          <td>Lattes</td>
+          <th>{{ formInscription.nom }}</th>
+          <th>{{ formInscription.prenom }}</th>
+          <td>{{ formInscription.nomUtilisateur }}</td>
+          <td>{{ formInscription.email }}</td>
+          <td>{{ formInscription.ville }}</td>
+          <td>{{ formInscription.codePostal }}</td>
           <td class="text-center">
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"

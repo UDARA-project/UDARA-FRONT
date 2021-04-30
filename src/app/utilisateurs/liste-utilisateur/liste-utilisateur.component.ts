@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ReactivationUtilisateurComponent } from '../reactivation-utilisateur/reactivation-utilisateur.component';
 import { SuppressionUtilisateurComponent } from '../suppression-utilisateur/suppression-utilisateur.component';
 import { SuspensionUtilisateurComponent } from '../suspension-utilisateur/suspension-utilisateur.component';
+import { FormInscriptionDTO } from '../../models/formInscriptionDTO.interface';
 
 @Component({
   selector: 'app-liste-utilisateur',
@@ -10,6 +11,8 @@ import { SuspensionUtilisateurComponent } from '../suspension-utilisateur/suspen
   styleUrls: ['./liste-utilisateur.component.css']
 })
 export class ListeUtilisateurComponent implements OnInit {
+
+  formInscription : FormInscriptionDTO
 
   constructor(protected modalService: NgbModal) { }
 

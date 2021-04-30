@@ -4,6 +4,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Before starting - initialization
 1°) Run `npm install` to generate node_modules folder
+2°) Run `npm i bootstrap` to install bootstrap, and :
+    - right click on bootstrap.min.css file (folder node_modules/bootstrap/dist/css) -> copy relative path
+    - paste this path in "styles" properties of file angular.json
+3°) Run `npm i font-awesome` to install font-awesom (icons)
+4°) Run `ng add @angular/material` to install Material
+5°) Run `npm i ngx-toastr` to install toastr library (message popup), and :
+    - right click on toastr.css file (folder node_modules/ngx-toastr) -> copy relative path
+    - paste this path in "styles" properties of file angular.json
+6°) Run `npm i @ng-bootstrap/ng-bootstrap` and `ng add @ng-bootstrap/ng-bootstrap` to use ng modal
 
 ## Development server
 

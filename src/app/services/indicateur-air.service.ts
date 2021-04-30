@@ -16,6 +16,14 @@ export class IndicateurAirService {
     return this.http.get<IndicateurAir[]>(this.url);
   }
 
+  getByName(nomCommune: string, nomIndicateur: string) {
+    return this.http.get<IndicateurAir[]>(this.url + nomCommune + "/" + nomIndicateur);
+  }
+
+  getAllByName(nomCommune: string) {
+    return this.http.get<IndicateurAir[]>(this.url + "search?nomCommune=" + nomCommune);
+  }
+
   findById(id : number) {
     return this.http.get<IndicateurAir>(this.url + id);
   }

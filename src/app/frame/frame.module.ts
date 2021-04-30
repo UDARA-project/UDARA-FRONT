@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './header/navbar/navbar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { Page404Component } from './page404/page404.component';
 import { FooterComponent } from './footer/footer.component';
 import { ListeNotificationsComponent } from './notifications/liste-notifications/liste-notifications.component';
@@ -10,6 +10,7 @@ import { ExtractionDataComponent } from './page-accueil/extraction-data/extracti
 import { BarreRechercheComponent } from './page-accueil/barre-recherche/barre-recherche.component';
 import { AccueilDataComponent } from './page-accueil/accueil-data/accueil-data.component';
 import { FrameRoutingModule } from './frame-routing.module';
+import { MenuComponent } from './menu/menu.component';
 
 
 
@@ -23,14 +24,17 @@ import { FrameRoutingModule } from './frame-routing.module';
     CreationFavoriComponent,
     ExtractionDataComponent,
     BarreRechercheComponent,
-    AccueilDataComponent
+    AccueilDataComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,
     FrameRoutingModule
   ],
   exports :[
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent,
+    MenuComponent
   ]
 })
 export class FrameModule { }

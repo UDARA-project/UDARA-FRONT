@@ -1,6 +1,6 @@
 export interface Commune {
 	id: number;
-	nom: string;
+	name: string;
 	xlatitude: string;
 	ylongitude: string;
 	departement: string;

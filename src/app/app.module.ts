@@ -16,7 +16,6 @@ import { NavbarComponent } from './frame/navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -26,7 +25,8 @@ import { NavbarComponent } from './frame/navbar/navbar.component';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    FrameModule
+    FrameModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

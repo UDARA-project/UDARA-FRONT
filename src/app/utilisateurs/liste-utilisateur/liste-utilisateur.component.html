@@ -32,21 +32,22 @@
           <td>n.bouvier@gmail.com</td>
           <td>Lattes</td>
           <td class="text-center">
-            <p>
-              The condition is currently
-              <span [ngClass]="{ 'a': !condition, 'b': condition, 'unless': true }">{{condition}}</span>.
-              <button
-                (click)="condition = !condition"
-                [ngClass] = "{ 'a': condition, 'b': !condition }" >
-                Toggle condition to {{condition ? 'false' : 'true'}}
-              </button>
-            </p>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"
+                (click)="activation()">
+              <label class="form-check-label" for="inlineRadio1">Activer</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"
+                (click)="ajoutSuspendre()">
+              <label class="form-check-label" for="inlineRadio2">Suspendre</label>
+            </div>
           </td>
-          <td class="text-center" >
-              <button class="bg-danger btn-outline-danger rounded justify-content-center" (click)="ajoutSupprimer()"> 
-                <i class="fa fa-trash danger text-white" ></i>
-              </button>
-           
+          <td class="text-center">
+            <button class="bg-danger btn-outline-danger rounded justify-content-center" (click)="ajoutSupprimer()">
+              <i class="fa fa-trash danger text-white"></i>
+            </button>
+
           </td>
         </tr>
       </tbody>

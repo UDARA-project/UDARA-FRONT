@@ -2,7 +2,7 @@
     <div class="container-fluid d-flex">
         <ul class="container-fluid d-flex list-unstyled my-0">
             <li>
-                <a id="logo_et_titre">
+                <a id="logo_et_titre" [routerLink]="['/accueil']">
                     <img id="logo" [src]="logo_path" alt="Logo Udara" title="UDARA" />
                 </a>
             </li>
@@ -10,13 +10,13 @@
                 <p>Infos météos et qualité de l'air</p>
             </li>
             <li>
-                <button class="btn alert-secondary">Créer une notification</button>
+                <button class="btn alert-secondary" [routerLink]="['/formNotif']">Créer une notification</button>
             </li>
             <li>
-                <button class="btn alert-secondary">Inscription</button>
+                <button class="btn alert-secondary" [routerLink]="['/utilisateurs/inscriptionUtilisateur']">Inscription</button>
             </li>
             <li>
-                <button class="btn alert-secondary">Connexion</button>
+                <button class="btn alert-secondary" [routerLink]="['/utilisateurs/authentification']">Connexion</button>
             </li>
             <li class="m-0">
                 <a style="font-size:1.5em">
@@ -26,10 +26,10 @@
             <li>
                 <div class="d-flex-column m-0">
                     <h4 class="m-0">Nom Prénom</h4>
-                    <h5 class="m-0">Déconnexion</h5>
+                    <a class="m-0" [routerLink]="['/accueil']">Déconnexion</a>
                 </div>
             </li>
-            <li class="m-0">
+            <li class="m-0" [routerLink]="['/utilisateurs/editionUtilisateur']">
                 <a style="font-size:2.4em">
                     <i class="fa fa-user-circle"></i>
                 </a>

@@ -14,7 +14,7 @@ const routes: Routes = [
     // Frame :
     { path: 'formNotif', component: FormulaireNotificationComponent},
     { path: 'accueil', component: AccueilDataComponent},
-    { path: 'ajoutFavori', component: CreationFavoriComponent},
+    { path: 'creationFavori', component: CreationFavoriComponent},
     { path: 'extractionData', component: ExtractionDataComponent},
     { path: 'page404', component: Page404Component},
 

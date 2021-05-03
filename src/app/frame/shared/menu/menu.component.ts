@@ -17,27 +17,27 @@ export class MenuComponent implements OnInit {
     {
       titre: 'Accueil',
       iconName: ['fa', 'fa-home'],
-      route: ['/accueil']
+      route: ['/accueil'],
     },
     {
       titre: 'Favoris',
       iconName: ['fa', 'fa-star'],
-      route: ['/favoris']
+      route: ['/favoris'],
     },
     {
       titre: 'Extraire les données',
       iconName: ['fa', 'fa-sign-out'],
-      route: ['/extractionData']
+      route: ['/extractionData'],
     },
     {
       titre: 'Forum',
       iconName: ['fa', 'fa-comments'],
-      route: ['/forum/listeFilsConversations']
+      route: ['/forum/listeFilsConversations'],
     },
     {
       titre: 'Gestion utilisateurs',
       iconName: ['fa', 'fa-users'],
-      route: ['/utilisateurs/listeUtilisateur']
+      route: ['/utilisateurs/listeUtilisateur'],
     }
   ]
 

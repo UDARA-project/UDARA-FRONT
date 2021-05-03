@@ -3,10 +3,28 @@
         <div class="nav flex-column" role="tablist" aria-orientation="vertical">
             <ul class="list-unstyled">
                 <li *ngFor="let menu of menus">
-                    <a class="nav-link ml-4 my-0" [routerLink]="menu.route" data-toggle="pill">
-                        <i class="menu.iconName"></i>
-                        <h4>{{ menu.titre }}</h4>
-                    </a>
+                    <div *ngIf="menu.titre === 'Favoris'; else elseBlock" class="ml-4 my-0">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle text-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                                {{ menu.titre }}
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <a class="dropdown-item" routerLink="/creationFavori">Ajouter un favori</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Gérer mes favoris</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ng-template #elseBlock>
+                        <a class="nav-link ml-4 my-0" [routerLink]="menu.route" data-toggle="pill">
+                            <i class="menu.iconName"></i>
+                            <h4>{{ menu.titre }}</h4>
+                        </a>
+                    </ng-template>
                 </li>
             </ul>
         </div>

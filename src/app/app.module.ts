@@ -10,7 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { NavbarComponent } from './frame/navbar/navbar.component';
+import { SharedModule } from './frame/shared/shared.module';
 
 
 @NgModule({
@@ -26,7 +26,9 @@ import { NavbarComponent } from './frame/navbar/navbar.component';
     AppRoutingModule,
     FormsModule,
     FrameModule,
-
+    SharedModule,
+    UtilisateursModule,
+    ForumModule
   ],
   providers: [],
   bootstrap: [AppComponent]

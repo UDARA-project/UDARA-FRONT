@@ -20,8 +20,8 @@ export class InscriptionUtilisateurComponent implements OnInit {
     prenom: new FormControl(''),
     nomUtilisateur: new FormControl(''),
     email: new FormControl(''),
-    passeword: new FormControl(''),
-    passewordConfirm: new FormControl(''),
+    motDePasse: new FormControl(''),
+    confirmermotDePasse: new FormControl(''),
     adresse: new FormControl(''),
     ville: new FormControl(''),
     codePostal: new FormControl('')

@@ -1,77 +1,67 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-  <title>Page d'inscription</title>
-  <meta charset='utf-8'>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-</head>
-
-<body>
   <h1 class="d-flex justify-content-center">INSCRIPTION</h1>
   <div class="container d-flex justify-content-center">
-    <form class="col-md-12" (ngSubmit)='saveUser(form)' #form="ngForm">
+    <form class="col-md-12" (ngSubmit)='saveUser()' [formGroup]="form">
       <fieldset>
         <legend class="d-flex justify-content-center">Informations d'utilisateur</legend>
 
         <div class="form-group">
           <label for="nom"><i class="fa fa-user"></i> Entrez votre nom</label>
-          <input ngModel type="text" class="form-control" name="nom" placeholder="Nom">
-        </div>
+          <input formControlName="nom" type="text" class="form-control" placeholder="Nom">
+       </div>
 
         <div class="form-group">
           <label for="nom"><i class="fa fa-user"></i> Entrez votre prénom</label>
-          <input ngModel type="text" class="form-control" name="prenom" placeholder="Prénom">
+          <input formControlName="prenom" type="text" class="form-control" placeholder="Prénom">
         </div>
 
         <div class="form-group">
           <label for="nom"><i class="fa fa-user"></i> Entrez votre nom d'utilisateur</label>
-          <input ngModel type="text" class="form-control" name="pseudonyme"
+          <input type="text" class="form-control" formControlName="pseudonyme"
             placeholder="Nom d'utilisateur (pseudonyme)">
         </div>
 
 
         <div class="form-group">
           <label for="email"><i class="fa fa-envelope"></i> Entrez votre email</label>
-          <input ngModel type="email" class="form-control" name="email" placeholder="Email">
+          <input formControlName="email" type="email" class="form-control"  placeholder="Email">
         </div>
 
         <div class="form-group">
           <label for="password"><i class="fa fa-lock"></i> Saisissez votre mot de passe</label>
-          <input ngModel type="password" name="mot de passe" class="form-control" aria-describedby="passwordHelpBlock"
+          <input formControlName="passeword" name="mot de passe" type="password" class="form-control" aria-describedby="passwordHelpBlock"
             placeholder="Mot de passe">
         </div>
 
         <div class="form-group">
           <label for="password"><i class="fa fa-lock"></i> Confirmez votre mot de passe</label>
-          <input ngModel type="password" name="confirmer mot de passe" class="form-control"
+          <input formControlName="passewordConfirm" type="password" class="form-control"
             aria-describedby="passwordHelpBlock" placeholder="Mot de passe">
         </div>
 
         <div class="form-group">
           <label for="text"><i class="fa fa-address-card"></i> Entrez une adresse</label>
-          <input ngModel type="text" class="form-control" name="adresse" placeholder="Adresse">
+          <input formControlName="adresse" type="text" class="form-control" placeholder="Adresse">
         </div>
 
         <div class="form-group">
           <label for="text"> <i class="fa fa-map-marker"></i> Entrez une ville</label>
-          <input ngModel type="text" class="form-control" name="ville" placeholder="Ville">
+          <input formControlName="ville" type="text" class="form-control" placeholder="Ville">
         </div>
 
         <div class="form-group">
           <label for="text"><i class="fa fa-flag"></i> Entrez Code postal</label>
-          <input ngModel type="number" class="form-control" name="code postal" placeholder="Code postal">
+          <input formControlName="codePostal" type="number" class="form-control" placeholder="Code postal">
         </div>
       </fieldset>
 
       <button type="submit" class="btn btn-success d-flex col-md-12 mb-1 justify-content-center">Créer mon
         compte</button>
       <div class="text-center">
-        <button type="button"  routerLink='utilisateurs/authentification' class="btn btn-success col-md-6 justify-content-center align-item">Se connecter</button>
+        <button type="button"  [routerLink]="['utilisateurs/authentification']" class="btn btn-success col-md-6 justify-content-center align-item">Se connecter</button>
       </div>
 
     </form>
   </div>
-</body>
 
-</html>
+

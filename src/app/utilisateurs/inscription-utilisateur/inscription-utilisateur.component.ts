@@ -3,6 +3,9 @@ import { ToastrService } from 'ngx-toastr';
 import { CompteUtilisateurService } from 'src/app/services/compte-utilisateur.service'
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-inscription-utilisateur',
@@ -11,24 +14,39 @@ import { NgForm } from '@angular/forms';
 })
 export class InscriptionUtilisateurComponent implements OnInit {
 
-  constructor(private CompteUtilisateurService: CompteUtilisateurService, private router : Router, private toastr: ToastrService) { }
+
+  form = new FormGroup({
+    nom: new FormControl(''),
+    prenom: new FormControl(''),
+    pseudonyme: new FormControl(''),
+    email: new FormControl(''),
+    passeword: new FormControl(''),
+    passewordConfirm: new FormControl(''),
+    adresse: new FormControl(''),
+    ville: new FormControl(''),
+    codePostal: new FormControl('')
+  })
+  constructor(private formBuilder: FormBuilder,private CompteUtilisateurService: CompteUtilisateurService, private router : Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
 
-  saveUser(form : NgForm){
-    if(form.valid){
+  saveUser() {
+    console.log(this.form);
+  /*   if(form.valid){
       if (!form.value.isActive) {
         form.value.isActive = false;
       }
       this.CompteUtilisateurService.create(form.value).subscribe(res =>{
+        console.log(res);
+        
         this.toastr.success('Please fix the form errors and continue', 'Form Errors!')
         setTimeout(() => {this.router.navigate(['utilisateurs/listeUtilisateur']);
       }, 2000)
       }) 
       } else {
         this.toastr.error('Please fix the form errors and continue', "Form Errors")
-      }
+      } */
    }
 
 }

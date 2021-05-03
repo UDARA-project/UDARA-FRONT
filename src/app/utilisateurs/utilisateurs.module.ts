@@ -8,7 +8,7 @@ import { FormulaireUtilisateurComponent } from './formulaire-utilisateur/formula
 import { AuthentificationUtilisateurComponent } from './authentification-utilisateur/authentification-utilisateur.component';
 import { InscriptionUtilisateurComponent } from './inscription-utilisateur/inscription-utilisateur.component';
 import { UtilisateursRoutingModule } from './utilisateurs-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     UtilisateursRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class UtilisateursModule { }

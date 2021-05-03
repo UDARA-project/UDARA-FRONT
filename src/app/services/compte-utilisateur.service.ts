@@ -1,24 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.prod';
 import { CompteUtilisateur } from '../models/compteUtilisateur.interface';
 import { FormInscriptionDTO } from '../models/formInscriptionDTO.interface';
+import { AbstractHttpService } from './abstractHttp.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CompteUtilisateurService {
+export class CompteUtilisateurService extends AbstractHttpService {
 
-  private url: string = environment.urlBack + '/api/compteutilisateurs/';
-
-  constructor(private http: HttpClient) { }
+  constructor(http: HttpClient) {
+    super(http, 'api/compteutilisateurs')
+   }
 
   get() {
     return this.http.get<CompteUtilisateur[]>(this.url);
   }
 
   findById(id : number) {
-    return this.http.get<CompteUtilisateur>(this.url + id);
+    return this.http.get<CompteUtilisateur>(`${this.url}/${id}`);
   }
 
   create(formInscriptionDTO : FormInscriptionDTO) {
@@ -26,11 +26,11 @@ export class CompteUtilisateurService {
   }
 
   update(compteUtilisateur: CompteUtilisateur, formInscriptionDTO : FormInscriptionDTO) {
-    return this.http.put(this.url + compteUtilisateur.id, formInscriptionDTO);
+    return this.http.put(`${this.url}/${compteUtilisateur.id}`, formInscriptionDTO);
   }
 
   delete(id : number) {
-    return this.http.delete(this.url + id)
+    return this.http.delete(`${this.url}/${id}`)
   }
   
 }

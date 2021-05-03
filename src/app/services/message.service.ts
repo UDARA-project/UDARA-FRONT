@@ -1,23 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.prod';
 import { Message } from '../models/message.interface';
+import { AbstractHttpService } from './abstractHttp.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MessageService {
+export class MessageService extends AbstractHttpService {
 
-  private url: string = environment.urlBack + '/api/messages/';
-
-  constructor(private http: HttpClient) { }
+  constructor(http: HttpClient) {
+    super(http, 'api/messages')
+   }
 
   get() {
     return this.http.get<Message[]>(this.url);
   }
 
   findById(id : number) {
-    return this.http.get<Message>(this.url + id);
+    return this.http.get<Message>(`${this.url}/${id}`);
   }
 
   create(message : Message) {
@@ -25,11 +25,11 @@ export class MessageService {
   }
 
   update(message : Message) {
-    return this.http.put(this.url + message.id, message);
+    return this.http.put(`${this.url}/${message.id}`, message);
   }
 
   delete(id : number) {
-    return this.http.delete(this.url + id)
+    return this.http.delete(`${this.url}/${id}`)
   }
 
 }

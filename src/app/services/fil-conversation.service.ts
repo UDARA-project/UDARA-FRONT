@@ -1,23 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.prod';
 import { FilConversation } from '../models/filConversation.interface';
+import { AbstractHttpService } from './abstractHttp.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FilConversationService {
+export class FilConversationService extends AbstractHttpService {
 
-  private url: string = environment.urlBack + '/api/filconversations/';
-
-  constructor(private http: HttpClient) { }
+  constructor(http: HttpClient) {
+    super(http, 'api/filconversations')
+   }
 
   get() {
     return this.http.get<FilConversation[]>(this.url);
   }
 
   findById(id : number) {
-    return this.http.get<FilConversation>(this.url + id);
+    return this.http.get<FilConversation>(`${this.url}/${id}`);
   }
 
   create(filConversation : FilConversation) {
@@ -25,11 +25,11 @@ export class FilConversationService {
   }
 
   update(filConversation : FilConversation) {
-    return this.http.put(this.url + filConversation.id, filConversation);
+    return this.http.put(`${this.url}/${filConversation.id}`, filConversation);
   }
 
   delete(id : number) {
-    return this.http.delete(this.url + id)
+    return this.http.delete(`${this.url}/${id}`)
   }
 
 }

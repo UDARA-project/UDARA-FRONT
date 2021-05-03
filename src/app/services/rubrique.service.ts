@@ -1,23 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.prod';
 import { Rubrique } from '../models/rubrique.interface';
+import { AbstractHttpService } from './abstractHttp.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RubriqueService {
+export class RubriqueService extends AbstractHttpService {
 
-  private url: string = environment.urlBack + '/api/rubriques/';
-
-  constructor(private http: HttpClient) { }
+  constructor(http: HttpClient) {
+    super(http, 'api/rubriques')
+   }
 
   get() {
     return this.http.get<Rubrique[]>(this.url);
   }
 
   findById(id : number) {
-    return this.http.get<Rubrique>(this.url + id);
+    return this.http.get<Rubrique>(`${this.url}/${id}`);
   }
 
   create(rubrique : Rubrique) {
@@ -25,11 +25,11 @@ export class RubriqueService {
   }
 
   update(rubrique : Rubrique) {
-    return this.http.put(this.url + rubrique.nom, rubrique);
+    return this.http.put(`${this.url}/${rubrique.nom}`, rubrique);
   }
 
   delete(id : number) {
-    return this.http.delete(this.url + id)
+    return this.http.delete(`${this.url}/${id}`)
   }
 
 }

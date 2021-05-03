@@ -1,27 +1,40 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.prod';
 import { NiveauMeteo } from '../models/niveauMeteo.interface';
+import { AbstractHttpService } from './abstractHttp.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NiveauMeteoService {
+export class NiveauMeteoService extends AbstractHttpService {
 
-  private url: string = environment.urlBack + '/api/niveaumeteos/';
-
-  constructor(private http: HttpClient) { }
+  constructor(http: HttpClient) {
+    super(http, 'api/niveaumeteos')
+   }
 
   get() {
     return this.http.get<NiveauMeteo[]>(this.url);
   }
 
-  getAllByName(nomCommune: string, nomNiveaux: string[], echelleTemps: string) {
-    return this.http.get<NiveauMeteo[]>(`${this.url}search?nomCommune=${nomCommune}&listNiveaux=${nomNiveaux}&echelleTemps=${echelleTemps}`);
+  search(nomNiveaux: string[], echelleTemps: string) {
+    const params = {
+      listNiveau: nomNiveaux,
+      echelleTemps: echelleTemps
+    };
+    return this.http.get<NiveauMeteo[]>(`${this.url}/search`, { params });
+  }
+
+  searchByCommune(nomCommune: string, nomNiveaux: string[], echelleTemps: string) {
+    const params = {
+      nomCommune: nomCommune,
+      listNiveau: nomNiveaux,
+      echelleTemps: echelleTemps
+    };
+    return this.http.get<NiveauMeteo[]>(`${this.url}/searchByCommune`, { params });
   }
 
   findById(id : number) {
-    return this.http.get<NiveauMeteo>(this.url + id);
+    return this.http.get<NiveauMeteo>(`${this.url}/${id}`);
   }
 
 }

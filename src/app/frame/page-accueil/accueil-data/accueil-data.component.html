@@ -1,28 +1,74 @@
-<app-barre-recherche [loading]="'false'" (searchChild)="renderSearchParent($event)"></app-barre-recherche>
-
 <div class="container">
-    <div class="row">
-        <div class="col"></div>
-        <table class="table col-10">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let indicateurAir of indicateurAirs">
-                    <th scope="row">{{indicateurAir.nom}}</th>
-                    <td *ngFor="let valeur of indicateurAir.valeurs">{{valeur}}</td>
-                </tr>
-                <tr *ngFor="let niveauMeteo of niveauMeteos">
-                    <th scope="row">{{niveauMeteo.nom}}</th>
-                    <td *ngFor="let valeur of niveauMeteo.valeurs">{{valeur}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="col"></div>
+
+    <app-barre-recherche class="row" (searchChild)="renderSearchInsideParent($event)"></app-barre-recherche>
+
+    <div *ngIf="loadingSearch" class="row">
+        <div class="col-5"></div>
+        <div class="col-2">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div class="col-5"></div>
     </div>
+
+
+    <div class="row accueil rounded m-3 p-3" *ngIf="indicateurAirs && !loadingSearch">
+
+        <div class="col-sm-4">
+            <h1><small class="text-muted">Commune : </small>{{commune.name}}</h1>
+            <div class="card border border-dark" style="width: 100%;">
+                <div class="card-body">
+                    <div class="d-flex justify-content-center">
+                        <div class="col d-flex flex-column align-items-center">
+                            <img [src]="meteoGlobale" alt="sentiment météo globale" width="100px">
+                            <h2>{{temperatureActuelle}}°C</h2>
+                        </div>
+                        <div class="col d-flex flex-column align-items-center">
+                            <img [src]="indicateurGlobale" alt="sentiment polluant global" width="100px">
+                            <h2>{{evolutionPolluant}}%</h2>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Nombre d'habitants : {{commune.population}}</h3>
+                    <p>Département : {{commune.departement}}</p>
+                    <p>Region : {{commune.region}}.</p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm"></div>
+
+        <div class="col-sm-6">
+            <p class="mb-1">Coordonnées GPS de la station : Latitude : {{commune.lat}} - Longitude :
+                {{commune.lon}}
+            </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="item-table-header">#</th>
+                        <th scope="col" class="item-table-header">First</th>
+                        <th scope="col" class="item-table-header">Last</th>
+                        <th scope="col" class="item-table-header">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let indicateurAir of indicateurAirs">
+                        <th scope="row">{{indicateurAir.nom}}</th>
+                        <td *ngFor="let valeur of indicateurAir.valeurs">{{valeur}}</td>
+                    </tr>
+                    <tr *ngFor="let niveauMeteo of niveauMeteos">
+                        <th scope="row">{{niveauMeteo.nom}}</th>
+                        <td *ngFor="let valeur of niveauMeteo.valeurs">{{valeur}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-sm"></div>
+
+    </div>
+
+
+
 </div>

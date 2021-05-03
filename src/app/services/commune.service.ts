@@ -1,31 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.prod';
 import { Commune } from '../models/commune.interface';
+import { AbstractHttpService } from './abstractHttp.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CommuneService {
+export class CommuneService extends AbstractHttpService {
 
-  private url: string = environment.urlBack + '/api/communes/';
-
-  constructor(private http: HttpClient) { }
+  constructor(http: HttpClient) {
+    super(http, 'api/communes')
+   }
 
   get() {
-    return this.http.get<Commune[]>(this.url + "liste-commune-dto");
+    return this.http.get<Commune[]>(`${this.url}/liste-commune-dto`);
   }
 
   getEveryName() {
-    return this.http.get<string[]>(this.url + "liste-commune");
+    return this.http.get<string[]>(`${this.url}/liste-commune`);
   }
 
   findById(id : number) {
-    return this.http.get<Commune>(this.url + id);
+    return this.http.get<Commune>(`${this.url}/${id}`);
   }
 
-  findByName(commune: Commune) {
-    return this.http.get<Commune[]>(this.url + "search?terme=" + commune.name);
+  findByName(nomCommune: string) {
+    const params = { terme: nomCommune};
+    return this.http.get<Commune>(`${this.url}/search`, { params });
   }
 
 }

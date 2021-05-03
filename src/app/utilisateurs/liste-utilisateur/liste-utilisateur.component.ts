@@ -4,6 +4,8 @@ import { ReactivationUtilisateurComponent } from '../reactivation-utilisateur/re
 import { SuppressionUtilisateurComponent } from '../suppression-utilisateur/suppression-utilisateur.component';
 import { SuspensionUtilisateurComponent } from '../suspension-utilisateur/suspension-utilisateur.component';
 import { FormInscriptionDTO } from '../../models/formInscriptionDTO.interface';
+import { CompteUtilisateur } from 'src/app/models/compteUtilisateur.interface';
+import { CompteUtilisateurService } from 'src/app/services/compte-utilisateur.service';
 
 @Component({
   selector: 'app-liste-utilisateur',
@@ -12,11 +14,19 @@ import { FormInscriptionDTO } from '../../models/formInscriptionDTO.interface';
 })
 export class ListeUtilisateurComponent implements OnInit {
 
+  utilisateurs :CompteUtilisateur[] = []
+
   formInscription : FormInscriptionDTO
 
-  constructor(protected modalService: NgbModal) { }
+  constructor(protected modalService: NgbModal, private compteUtilisateurService: CompteUtilisateurService) { }
 
   ngOnInit(): void {
+  }
+
+  listeUtilisateurs(){
+    this.compteUtilisateurService.get().subscribe(res => {
+      this.utilisateurs = res;
+    })
   }
 
   ajoutSuspendre(){

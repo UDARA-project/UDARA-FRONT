@@ -21,6 +21,7 @@ export class ListeUtilisateurComponent implements OnInit {
   constructor(protected modalService: NgbModal, private compteUtilisateurService: CompteUtilisateurService) { }
 
   ngOnInit(): void {
+    this.listeUtilisateurs();
   }
 
   listeUtilisateurs(){

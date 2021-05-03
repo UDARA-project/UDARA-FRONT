@@ -18,7 +18,7 @@ export class InscriptionUtilisateurComponent implements OnInit {
   form = new FormGroup({
     nom: new FormControl(''),
     prenom: new FormControl(''),
-    pseudonyme: new FormControl(''),
+    nomUtilisateur: new FormControl(''),
     email: new FormControl(''),
     passeword: new FormControl(''),
     passewordConfirm: new FormControl(''),
@@ -33,12 +33,11 @@ export class InscriptionUtilisateurComponent implements OnInit {
 
   saveUser() {
     console.log(this.form);
-  /*   if(form.valid){
-      if (!form.value.isActive) {
-        form.value.isActive = false;
+    if(this.form.valid){
+      if (!this.form.value.isActive) {
+        this.form.value.isActive = false;
       }
-      this.CompteUtilisateurService.create(form.value).subscribe(res =>{
-        console.log(res);
+      this.CompteUtilisateurService.create(this.form.value).subscribe(res =>{
         
         this.toastr.success('Please fix the form errors and continue', 'Form Errors!')
         setTimeout(() => {this.router.navigate(['utilisateurs/listeUtilisateur']);
@@ -46,7 +45,7 @@ export class InscriptionUtilisateurComponent implements OnInit {
       }) 
       } else {
         this.toastr.error('Please fix the form errors and continue', "Form Errors")
-      } */
+      } 
    }
 
 }

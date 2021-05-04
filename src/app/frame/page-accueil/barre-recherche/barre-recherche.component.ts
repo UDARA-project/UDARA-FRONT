@@ -31,12 +31,6 @@ export class BarreRechercheComponent implements OnInit {
     });
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    let keyword = filterValue.trim().toLowerCase();
-    return this.nomCommunes.filter(value => value.startsWith(keyword));
-  }
-
   onEnter(nomCommune: string) {
     this.nomCommuneSelected = nomCommune;
     this.search();

@@ -27,6 +27,7 @@ export class ListeUtilisateurComponent implements OnInit {
   listeUtilisateurs(){
     this.compteUtilisateurService.get().subscribe(res => {
       this.utilisateurs = res;
+      console.log(this.utilisateurs)
     })
   }
 

@@ -28,7 +28,7 @@ export class RubriqueService extends AbstractHttpService {
     return this.http.put(`${this.url}/${rubrique.nom}`, rubrique);
   }
 
-  delete(id : number) {
+  delete(id: number) {
     return this.http.delete(`${this.url}/${id}`)
   }
 

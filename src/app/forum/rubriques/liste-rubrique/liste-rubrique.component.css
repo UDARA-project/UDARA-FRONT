@@ -1,0 +1,32 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.button-container-add {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.pad-After {
+    padding-right: 14px;
+    width: 30%;
+}
+.example-spacer {
+    flex: 1 1 auto;
+}
+.mat-list-item {
+    margin-top: 10px;
+}
+.example-full-width {
+    width: 30%;
+    height: max-content;
+}
+.card-add {
+    height: 50px;
+}
+.mat-card {
+    display: flex;
+    align-self: center;
+}
+  
+
+

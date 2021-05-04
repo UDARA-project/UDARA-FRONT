@@ -1,0 +1,66 @@
+<div class="container">
+    <h1 class="fw-bold"><u>Liste des Rubriques</u></h1>
+
+    <div class="button-container-add">
+        <button mat-mini-fab class="btn-add" (click)="addRubrique()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+
+    <!-- Liste Rubriques -->
+    <mat-list role="list">
+
+        <!-- formulaire d'ajout rubrique -->
+        <!-- <form  *ngIf="addOrEditBool">
+            <mat-list-item class="mat-card card-add">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Titre</mat-label>
+                    <input matInput [(ngModel)]="user.name" required>
+                </mat-form-field>
+                <span class="example-spacer"></span>
+                <mat-icon matBadge="0" matBadgeSize="small" matBadgeColor="accent">forum</mat-icon>
+                <span class="example-spacer"></span>
+                <button mat-icon-button class="example-icon favorite-icon" color="primary" type="submit">
+                    <mat-icon>done_outline</mat-icon>
+                </button>
+                <button mat-icon-button class="example-icon" color="warn" (click)="annuler()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-list-item>
+        </form> -->
+
+        <!-- affichage liste normal -->
+            <mat-list-item class="mat-card" *ngFor="let rubrique of rubriques">
+
+                <span class="pad-After" *ngIf="!rubrique.edit">{{ rubrique.nom}}</span>
+                <mat-form-field class="example-full-width small" *ngIf="rubrique.edit">
+                    <mat-label>Titre</mat-label>
+                    <input matInput [(ngModel)]="rubrique.nom" required>
+                </mat-form-field>
+
+                <span class="example-spacer"></span>
+                <mat-icon matBadge="15" matBadgeSize="small" matBadgeColor="accent">forum</mat-icon>
+                <span class="example-spacer"></span>
+
+                <button mat-icon-button class="example-icon favorite-icon" color="primary" (click)="editRubrique(rubrique)" *ngIf="!rubrique.edit">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button class="example-icon" color="warn" (click)="suprimerRubrique(rubrique)" *ngIf="!rubrique.edit">
+                    <mat-icon>delete</mat-icon>
+                </button>
+
+                <button mat-icon-button class="example-icon favorite-icon" color="primary" type="submit" *ngIf="rubrique.edit">
+                    <mat-icon>done_outline</mat-icon>
+                </button>
+                <button mat-icon-button class="example-icon" color="warn" (click)="annuler(rubrique)" *ngIf="rubrique.edit">
+                    <mat-icon>close</mat-icon>
+                </button>
+
+            </mat-list-item>
+
+            
+    
+        
+    </mat-list>
+
+</div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AjoutFilConversationComponent } from '../ajout-fil-conversation/ajout-fil-conversation.component';
-import { RubriqueService } from 'src/app/services/rubrique.service';
+import { RubriqueService } from '../../services';
 import { Rubrique } from 'src/app/models/rubrique.interface';
 
 @Component({
@@ -17,14 +17,14 @@ export class ListeFilsConversationsComponent implements OnInit {
     private rubriqueService : RubriqueService) { }
 
   ngOnInit(): void {
-    this.rubriquesList()
+    this.getRubriquesList()
   }
 
   OpenAjoutFilConversion(){
     this.dialog.open(AjoutFilConversationComponent);
   }
 
-  rubriquesList(){
+  getRubriquesList(){
    this.rubriqueService.get().subscribe(res => {
      this.rubriques = res
      console.log('rubriques', this.rubriques);

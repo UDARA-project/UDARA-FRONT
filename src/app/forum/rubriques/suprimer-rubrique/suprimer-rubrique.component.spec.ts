@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AjoutRubriqueComponent } from './ajout-rubrique.component';
+import { SuprimerRubriqueComponent } from './suprimer-rubrique.component';
 
-describe('AjoutRubriqueComponent', () => {
-  let component: AjoutRubriqueComponent;
-  let fixture: ComponentFixture<AjoutRubriqueComponent>;
+describe('SuprimerRubriqueComponent', () => {
+  let component: SuprimerRubriqueComponent;
+  let fixture: ComponentFixture<SuprimerRubriqueComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AjoutRubriqueComponent ]
+      declarations: [ SuprimerRubriqueComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AjoutRubriqueComponent);
+    fixture = TestBed.createComponent(SuprimerRubriqueComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

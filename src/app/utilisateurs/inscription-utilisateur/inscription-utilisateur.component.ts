@@ -75,6 +75,6 @@ export class InscriptionUtilisateurComponent implements OnInit, AfterViewInit {
       } else {
         this.toastr.error('Please fix the form errors and continue', "Form Errors")
       } 
-   }
+  }
 
 }

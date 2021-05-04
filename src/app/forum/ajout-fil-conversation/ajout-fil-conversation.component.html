@@ -1,1 +1,29 @@
-<p>ajout-fil-conversation works!</p>
+<form class="form" (ngSubmit)='AjoutFilConversation(form)' #form="ngForm">
+    <div>
+        <h1 mat-dialog-title>Commencer un nouveau fils de conversation</h1>
+    </div>
+    <hr>
+    <div mat-dialog-content>
+        <mat-form-field>
+          <mat-label>Titre</mat-label>
+          <input matInput required ngModel name="titre" #titre="ngModel">
+        </mat-form-field>
+    </div>
+
+    <!-- <mat-selection-list #rubrique [multiple]="false">
+        <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
+          {{shoe}}
+        </mat-list-option>
+    </mat-selection-list> -->
+
+    <mat-chip-list class="button-container-rubrique">
+        <mat-chip color="accent" selected>Rubriques</mat-chip>
+    </mat-chip-list>
+
+    <div class="button-container-actions">
+        <button mat-raised-button color="primary" type="submit" >Primary</button>
+    </div>
+
+</form>
+
+

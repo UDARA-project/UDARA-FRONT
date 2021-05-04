@@ -1,0 +1,7 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.button-container-actions {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}

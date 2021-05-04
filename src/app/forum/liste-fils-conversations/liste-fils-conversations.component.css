@@ -1,0 +1,14 @@
+
+/* Button */
+
+.button-container-rubrique {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.button-container-add {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+ 

@@ -1,1 +1,25 @@
-<p>liste-fils-conversations works!</p>
+<div class="container">
+    <!-- Liste Rubriques -->
+    <mat-chip-list class="button-container-rubrique">
+        <div *ngFor="let rubrique of rubriques">
+            <mat-chip color="primary" selected>{{ rubrique.nom }}</mat-chip>
+        </div>
+    
+        <mat-chip color="primary" selected [routerLink]="['/forum/listeRubrique']">
+            <mat-icon>add</mat-icon>
+        </mat-chip>
+    </mat-chip-list>
+    <!-- Liste des cartes + Bouton (+) -->
+    <div>
+        <!-- Bouton (+) -->
+        <div class="button-container-add">
+            <button mat-mini-fab class="btn-add" (click)="OpenAjoutFilConversion()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <!-- Cards : fils de conversations / boucle for -->
+        <app-carte-fil-conversation></app-carte-fil-conversation>
+       
+
+    </div>
+</div>

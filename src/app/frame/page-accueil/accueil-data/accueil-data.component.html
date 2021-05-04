@@ -1,22 +1,21 @@
 <div class="container">
 
-    <app-barre-recherche class="row" (searchChild)="renderSearchInsideParent($event)"></app-barre-recherche>
+    <app-barre-recherche (searchChild)="renderSearchInsideParent($event)"></app-barre-recherche>
 
-    <div *ngIf="loadingSearch" class="row">
-        <div class="col-5"></div>
-        <div class="col-2">
-            <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
+
+    <div *ngIf="loadingSearch" class="d-flex justify-content-center mt-5">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
         </div>
-        <div class="col-5"></div>
     </div>
 
 
-    <div class="row accueil rounded m-3 p-3" *ngIf="indicateurAirs && !loadingSearch">
+    <div class="row accueil rounded m-3 p-3" *ngIf="indicateurWithUnit && !loadingSearch">
 
-        <div class="col-sm-4">
-            <h1><small class="text-muted">Commune : </small>{{commune.name}}</h1>
+        <div class="col-sm-4 m-5">
+
+            <h1>{{infoRecensement}}</h1>
+
             <div class="card border border-dark" style="width: 100%;">
                 <div class="card-body">
                     <div class="d-flex justify-content-center">
@@ -29,35 +28,34 @@
                             <h2>{{evolutionPolluant}}%</h2>
                         </div>
                     </div>
-                    <h3 class="card-title">Nombre d'habitants : {{commune.population}}</h3>
-                    <p>Département : {{commune.departement}}</p>
-                    <p>Region : {{commune.region}}.</p>
-
                 </div>
             </div>
         </div>
 
-        <div class="col-sm"></div>
 
-        <div class="col-sm-6">
-            <p class="mb-1">Coordonnées GPS de la station : Latitude : {{commune.lat}} - Longitude :
-                {{commune.lon}}
-            </p>
+        <div class="col-sm-8 m-5">
+
+
+            <div class="btn-group mr-5" role="group" aria-label="Basic mixed styles example">
+                <button type="button" class="btn btn-secondary" [ngClass]="{'btn btn-info': echelleTemps === 'JOURNALIERE'}" (click)="setEchelleTemps('JOURNALIERE')">Journalier</button>
+                <button type="button" class="btn btn-secondary" [ngClass]="{'btn btn-info': echelleTemps === 'HEBDOMADAIRE'}" (click)="setEchelleTemps('HEBDOMADAIRE')">Hebdomadaire</button>
+                <button type="button" class="btn btn-secondary" [ngClass]="{'btn btn-info': echelleTemps === 'MENSUEL'}" (click)="setEchelleTemps('MENSUEL')">Mensuel</button>
+              </div>
+
+            <p class="mb-1">{{infoGPS}}</p>
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col" class="item-table-header">#</th>
-                        <th scope="col" class="item-table-header">First</th>
-                        <th scope="col" class="item-table-header">Last</th>
-                        <th scope="col" class="item-table-header">Handle</th>
+                        <th scope="col" class="item-table-header"></th>
+                        <th scope="col" class="item-table-header" *ngFor="let elt of enteteColonne">{{elt}}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let indicateurAir of indicateurAirs">
+                    <tr *ngFor="let indicateurAir of indicateurWithUnit">
                         <th scope="row">{{indicateurAir.nom}}</th>
                         <td *ngFor="let valeur of indicateurAir.valeurs">{{valeur}}</td>
                     </tr>
-                    <tr *ngFor="let niveauMeteo of niveauMeteos">
+                    <tr *ngFor="let niveauMeteo of meteoWithUnit">
                         <th scope="row">{{niveauMeteo.nom}}</th>
                         <td *ngFor="let valeur of niveauMeteo.valeurs">{{valeur}}</td>
                     </tr>
@@ -65,7 +63,6 @@
             </table>
         </div>
 
-        <div class="col-sm"></div>
 
     </div>
 

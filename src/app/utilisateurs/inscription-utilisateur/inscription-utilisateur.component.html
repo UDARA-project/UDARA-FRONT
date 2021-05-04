@@ -1,6 +1,6 @@
 
   <h1 class="d-flex justify-content-center">INSCRIPTION</h1>
-  <div class="container d-flex justify-content-center">
+  <div *ngIf="!loading" class="container d-flex justify-content-center">
     <form class="col-md-12" (ngSubmit)='saveUser()' [formGroup]="form">
       <fieldset>
         <legend class="d-flex justify-content-center">Informations utilisateur</legend>
@@ -40,14 +40,21 @@
         </div>
 
         <div class="form-group">
-          <label for="text"> <i class="fa fa-map-marker"></i> Entrez une ville</label>
-          <input formControlName="ville" type="text" class="form-control" placeholder="Ville">
+          <label for="text"><i class="fa fa-flag"></i> Entrez Code postal</label>
+          <input #input formControlName="codePostal" type="number" class="form-control" placeholder="Code postal" list="departements" (change)="keyupDepartement(input.value)">
+          <datalist id="departements">
+            <option *ngFor="let nomDepartement of nomDepartements" [value]="nomDepartement"></option>
+        </datalist>
         </div>
 
         <div class="form-group">
-          <label for="text"><i class="fa fa-flag"></i> Entrez Code postal</label>
-          <input formControlName="codePostal" type="number" class="form-control" placeholder="Code postal">
+          <label for="text"> <i class="fa fa-map-marker"></i> Entrez une ville</label>
+          <input formControlName="ville" type="text" class="form-control" placeholder="Ville" list="nomCommunes">
+          <datalist id="nomCommunes">
+            <option *ngFor="let nomCommune of nomCommunes" [value]="nomCommune"></option>
+        </datalist>
         </div>
+
       </fieldset>
 
       <button type="submit" class="btn btn-success d-flex col-md-12 mb-1 justify-content-center">Créer mon
@@ -60,4 +67,10 @@
   </div>
   
 
+
+  <div *ngIf="loading" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
 

@@ -20,6 +20,15 @@ export class CommuneService extends AbstractHttpService {
     return this.http.get<string[]>(`${this.url}/liste-commune`);
   }
 
+  getEveryNameOfDepartement() {
+    return this.http.get<string[]>(`${this.url}/liste-departement`);
+  }
+
+  getNameCommuneByDepartement(codeDepartement: string) {
+    const params = { departement: codeDepartement};
+    return this.http.get<string[]>(`${this.url}/searchByDepartement`, { params });
+  }
+
   findById(id : number) {
     return this.http.get<Commune>(`${this.url}/${id}`);
   }

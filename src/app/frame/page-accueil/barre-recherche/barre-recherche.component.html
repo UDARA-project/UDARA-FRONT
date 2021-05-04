@@ -6,7 +6,7 @@
 
             <div class="input-group mb-3">
                 <input #input type="text" class="form-control" placeholder="Nom d'une commune, Ex. Montpellier"
-                    list="nomCommunes" (keyup.enter)="onEnter(input.value)" (keyup)="applyFilter($event)">
+                    list="nomCommunes" (keyup.enter)="onEnter(input.value)">
                 <datalist id="nomCommunes">
                     <option *ngFor="let nomCommune of nomCommunes" [value]="nomCommune"></option>
                 </datalist>

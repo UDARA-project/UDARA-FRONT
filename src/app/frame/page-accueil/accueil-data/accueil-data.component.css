@@ -1,12 +1,6 @@
-.accueil {
+.card {
     background: url("../../../../assets/images/fond_nuage_accueil.svg");
     background-size: cover;
     background-position: initial;
 }
 
-.item-table-header {
-    text-align:center;
-    white-space:nowrap;
-    transform-origin:50% 50%;
-    transform: rotate(-90deg);
-}

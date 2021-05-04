@@ -3,9 +3,10 @@
     <div *ngIf="!loadingCommune" class="row">
         <div class="col-1"></div>
         <div class="col-10">
+
             <div class="input-group mb-3">
                 <input #input type="text" class="form-control" placeholder="Nom d'une commune, Ex. Montpellier"
-                    list="nomCommunes" (keyup.enter)="onEnter(input.value)">
+                    list="nomCommunes" (keyup.enter)="onEnter(input.value)" (keyup)="applyFilter($event)">
                 <datalist id="nomCommunes">
                     <option *ngFor="let nomCommune of nomCommunes" [value]="nomCommune"></option>
                 </datalist>
@@ -14,6 +15,8 @@
                         (click)="search()">Recherche</button>
                 </div>
             </div>
+
+
         </div>
         <div class="col-1"></div>
     </div>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommuneService } from 'src/app/services';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-creation-favori',
@@ -23,6 +25,10 @@ export class CreationFavoriComponent implements OnInit {
       this.nomCommunes = array.reverse();
       this.loadingCommune = false;
     });
+  }
+
+  saveFavori(form: NgForm) {
+
   }
 
 }

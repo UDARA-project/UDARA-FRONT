@@ -46,7 +46,6 @@ export class AccueilDataComponent implements OnInit {
     private niveauMeteoService: NiveauMeteoService) { }
 
   ngOnInit(): void {
-
     this.echelleTemps = 'JOURNALIERE';
     this.search();
   }
@@ -89,7 +88,7 @@ export class AccueilDataComponent implements OnInit {
     this.indicateurWithUnit = [];
     this.indicateurAirs = res;
     res.forEach(elt => {
-      let newValue = elt.valeurs.map(r => r + "%");
+      let newValue = elt.valeurs.map(r => r + "μg/m3");
       this.indicateurWithUnit.push({ nom: elt.nom, valeurs: newValue });
     });
     this.generateIndicateurGlobale();
@@ -117,10 +116,10 @@ export class AccueilDataComponent implements OnInit {
 
   renderRecensement() {
     if (this.nomCommune == undefined) {
-      this.infoRecensement = "Données Globales Française"
+      this.infoRecensement = "Données Globales Françaises"
     } else {
       this.communeService.findByName(this.nomCommune).subscribe(r => {
-        this.infoRecensement = `Commune : ${r.name}, ${r.population} Habitants (Région:${r.region})`;
+        this.infoRecensement = `Commune : ${r.name}, ${r.population} Habitants - Région:${r.region}, Code département${r.departement}`;
         this.infoGPS = `Coordonnées GPS de la station (latitude, longitude): ${r.lat}, ${r.lon}`;
       })
     }

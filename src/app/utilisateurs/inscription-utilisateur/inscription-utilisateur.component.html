@@ -1,59 +1,28 @@
-<h1 class="d-flex justify-content-center">INSCRIPTION</h1>
-<div *ngIf="!loading" class="container d-flex justify-content-center">
-  <form class="col-md-12" (ngSubmit)='saveUser(form)' #form=ngForm>
-    <fieldset>
-      <legend class="d-flex justify-content-center">Saisir vos informations utilisateur</legend>
 
-      <div class="form-group">
-        <label for="nom"><i class="fa fa-user"></i> Entrez votre nom</label>
-        <input name="nom" ngModel #nom='ngModel' required  type="text" class="form-control" placeholder="Nom"
-        [ngClass]="{'is-invalid': form.submitted && nom.errors?.required}">
-        <small *ngIf="form.submitted && nom.errors?.required" class="text-danger">
-          Votre nom doit être renseigné
-        </small>
-      </div>
+  <h1 class="d-flex justify-content-center">INSCRIPTION</h1>
+  <div *ngIf="!loading" class="container d-flex justify-content-center">
+    <form class="col-md-12" (ngSubmit)='saveUser()' [formGroup]="form">
+      <fieldset>
+        <legend class="d-flex justify-content-center">Informations d'utilisateur</legend>
 
-      <div class="form-group">
-        <label for="nom"><i class="fa fa-user"></i> Entrez votre prénom</label>
-        <input name="prenom" ngModel #prenom='ngModel' required  type="text" class="form-control" placeholder="Prénom">
-        <small *ngIf="form.submitted && prenom.errors?.required" class="text-danger">
-          Votre prénom doit être renseigné
-        </small>
-      </div>
+        <div class="form-group">
+          <label for="nom"><i class="fa fa-user"></i> Entrez votre nom</label>
+          <input formControlName="nom" type="text" class="form-control" placeholder="Nom">
+       </div>
 
-      <div class="form-group">
-        <label for="nom"><i class="fa fa-user"></i> Entrez votre nom d'utilisateur</label>
-        <input name="nomUtilisateur" ngModel #nomUtilisateur='ngModel' required  type="text" class="form-control" placeholder="Nom d'utilisateur (pseudonyme)">
-        <small *ngIf="form.submitted && nomUtilisateur.errors?.required" class="text-danger">
-          Votre nom d'utilisateur doit être renseigné
-        </small>
-      </div>
+        <div class="form-group">
+          <label for="nom"><i class="fa fa-user"></i> Entrez votre prénom</label>
+          <input formControlName="prenom" type="text" class="form-control" placeholder="Prénom">
+        </div>
 
-      <div class="form-group">
-        <label for="email"><i class="fa fa-envelope"></i> Entrez votre email</label>
-        <input name="email" ngModel #email='ngModel' required  type="email" class="form-control"  placeholder="Email">
-        <small *ngIf="form.submitted && email.errors?.required" class="text-danger">
-          Votre e-mail doit être renseigné
-        </small>
-      </div>
+        <div class="form-group">
+          <label for="nom"><i class="fa fa-user"></i> Entrez votre nom d'utilisateur</label>
+          <input type="text" class="form-control" formControlName="nomUtilisateur"
+            placeholder="Nom d'utilisateur (pseudonyme)">
+        </div>
 
-      <div class="form-group">
-        <label for="password"><i class="fa fa-lock"></i> Saisissez votre mot de passe</label>
-        <input name="motDePasse" ngModel #motDePasse='ngModel' required type="password" class="form-control" aria-describedby="passwordHelpBlock" placeholder="Mot de passe">
-        <small *ngIf="form.submitted && motDePasse.errors?.required" class="text-danger">
-          Votre mot de passe doit être renseigné
-        </small>
-      </div>
 
-      <div class="form-group">
-        <label for="password"><i class="fa fa-lock"></i> Confirmez votre mot de passe</label>
-        <input name="confirmationMdp" ngModel #confirmationMdp='ngModel' required  type="password" class="form-control"
-          aria-describedby="passwordHelpBlock" placeholder="Mot de passe">
-          <small *ngIf="form.submitted && confirmationMdp.errors?.required" class="text-danger">
-            La confirmation de votre mot de passe est nécessaire
-          </small>
-      </div>
-
+<<<<<<< HEAD
       <div class="form-group">
         <label for="text"><i class="fa fa-flag"></i> Entrez Code postal</label>
         <input #input name="codePostal" ngModel #codePostal='ngModel' required  type="number" class="form-control" placeholder="Par ex. 69007" list="departements" (change)="keyupDepartement(input.value)">
@@ -64,31 +33,57 @@
           Votre code postal doit être renseigné au format numérique. Par ex. '69007'
         </small>
       </div>
+=======
+        <div class="form-group">
+          <label for="email"><i class="fa fa-envelope"></i> Entrez votre email</label>
+          <input formControlName="email" type="email" class="form-control"  placeholder="Email">
+        </div>
 
-      <div class="form-group">
-        <label for="text"> <i class="fa fa-map-marker"></i> Entrez une commune</label>
-        <input name="commune" ngModel #commune='ngModel' required  type="text" class="form-control" placeholder="Ville" list="nomCommunes">
-        <datalist id="nomCommunes">
-          <option *ngFor="let nomCommune of nomCommunes" [value]="nomCommune"></option>
+        <div class="form-group">
+          <label for="password"><i class="fa fa-lock"></i> Saisissez votre mot de passe</label>
+          <input formControlName="motDePasse" name="mot de passe" type="password" class="form-control" aria-describedby="passwordHelpBlock"
+            placeholder="Mot de passe">
+        </div>
+>>>>>>> 9878c77cee5f16637c41fad48ca4e53a8102c872
+
+        <div class="form-group">
+          <label for="password"><i class="fa fa-lock"></i> Confirmez votre mot de passe</label>
+          <input formControlName="confirmermotDePasse" type="password" class="form-control"
+            aria-describedby="passwordHelpBlock" placeholder="Mot de passe">
+        </div>
+
+        <div class="form-group">
+          <label for="text"><i class="fa fa-flag"></i> Entrez Code postal</label>
+          <input #input formControlName="codePostal" type="number" class="form-control" placeholder="Code postal" list="departements" (change)="keyupDepartement(input.value)">
+          <datalist id="departements">
+            <option *ngFor="let nomDepartement of nomDepartements" [value]="nomDepartement"></option>
         </datalist>
-        <small *ngIf="form.submitted && commune.errors?.required" class="text-danger">
-          Votre commune doit être renseignée
-        </small>
+        </div>
+
+        <div class="form-group">
+          <label for="text"> <i class="fa fa-map-marker"></i> Entrez une ville</label>
+          <input formControlName="ville" type="text" class="form-control" placeholder="Ville" list="nomCommunes">
+          <datalist id="nomCommunes">
+            <option *ngFor="let nomCommune of nomCommunes" [value]="nomCommune"></option>
+        </datalist>
+        </div>
+
+      </fieldset>
+
+      <button type="submit" class="btn btn-success d-flex col-md-12 mb-1 justify-content-center">Créer mon
+        compte</button>
+      <div class="text-center mb-5">
+        <button type="button"  routerLink="/utilisateurs/authentification" class="btn btn-success col-md-6 justify-content-center align-item">Se connecter</button>
       </div>
 
-    </fieldset>
-
-    <button type="submit" class="btn btn-success d-flex col-md-12 mb-1 justify-content-center">Créer mon compte</button>
-    <div class="text-center mb-5">
-      <button type="button"  routerLink="/utilisateurs/authentification" class="btn btn-success col-md-6 justify-content-center align-item">Se connecter</button>
-    </div>
-
-  </form>
-</div>
-
-<div *ngIf="loading" class="d-flex justify-content-center">
-  <div class="spinner-border" role="status">
-    <span class="sr-only">Loading...</span>
+    </form>
   </div>
+  
+
+
+  <div *ngIf="loading" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
 </div>
 

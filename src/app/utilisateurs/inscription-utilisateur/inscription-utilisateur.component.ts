@@ -1,10 +1,12 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CompteUtilisateurService } from 'src/app/services/compte-utilisateur.service'
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { CommuneService } from 'src/app/services';
+import { AfterViewInit } from '@angular/core';
 
 
 @Component({
@@ -14,6 +16,18 @@ import { CommuneService } from 'src/app/services';
 })
 export class InscriptionUtilisateurComponent implements OnInit, AfterViewInit {
 
+
+  form = new FormGroup({
+    nom: new FormControl(''),
+    prenom: new FormControl(''),
+    nomUtilisateur: new FormControl(''),
+    email: new FormControl(''),
+    motDePasse: new FormControl(''),
+    confirmermotDePasse: new FormControl(''),
+    adresse: new FormControl(''),
+    ville: new FormControl(''),
+    codePostal: new FormControl('')
+  })
   nomCommunes: string[];
   nomDepartements: string[];
   loading: boolean;
@@ -26,8 +40,8 @@ export class InscriptionUtilisateurComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loading = true;
-    // this.initializeCommunes();
-    // this.initializeDepartements();
+    this.initializeCommunes();
+    this.initializeDepartements();
   }
 
   ngAfterViewInit() {
@@ -46,12 +60,13 @@ export class InscriptionUtilisateurComponent implements OnInit, AfterViewInit {
     this.communeService.getNameCommuneByDepartement(nomDepartement).subscribe(array => this.nomCommunes = array);
   }
 
-  saveUser(form: NgForm) {    
-    console.log('form', form.value);
-    if (form.valid) {
-      if (!form.value.isActive) {
-        form.value.isActive = false;
+  saveUser() {
+    console.log(this.form);
+    if(this.form.valid){
+      if (!this.form.value.isActive) {
+        this.form.value.isActive = false;
       }
+<<<<<<< HEAD
       console.log('mdp', form.value.motDePasse);
       console.log('confirmation mdp', form.value.confirmationMdp);
 
@@ -61,10 +76,17 @@ export class InscriptionUtilisateurComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
           this.router.navigate(['/accueil']);
         }, 2000)
+=======
+      this.CompteUtilisateurService.create(this.form.value).subscribe(res =>{
+        
+        this.toastr.success('Please fix the form errors and continue', 'Form Errors!')
+        setTimeout(() => {this.router.navigate(['utilisateurs/listeUtilisateur']);
+      }, 2000)
+>>>>>>> 9878c77cee5f16637c41fad48ca4e53a8102c872
       }) 
-    } else {
-      this.toastr.error('recommencer en saisissant toutes les informations nécessaires', "Echec d'inscription")
-    } 
+      } else {
+        this.toastr.error('Please fix the form errors and continue', "Form Errors")
+      } 
   }
 
 }

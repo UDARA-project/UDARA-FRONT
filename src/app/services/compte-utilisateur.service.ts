@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CompteUtilisateur } from '../models/compteUtilisateur.interface';
 import { FormInscriptionDTO } from '../models/formInscriptionDTO.interface';
+import { FormModifInfoPersoDTO } from '../models/formModifInfoPersoDTO.interface';
 import { AbstractHttpService } from './abstractHttp.service';
 
 @Injectable({
@@ -25,8 +26,8 @@ export class CompteUtilisateurService extends AbstractHttpService {
     return this.http.post(this.url, formInscriptionDTO );
   }
 
-  update(compteUtilisateur: CompteUtilisateur, formInscriptionDTO : FormInscriptionDTO) {
-    return this.http.put(`${this.url}/${compteUtilisateur.id}`, formInscriptionDTO);
+  update(compteUtilisateur: CompteUtilisateur, formModifInfoPersoDTO : FormModifInfoPersoDTO) {
+    return this.http.put(`${this.url}/${compteUtilisateur.id}`, formModifInfoPersoDTO);
   }
 
   delete(utilisateur : CompteUtilisateur) {

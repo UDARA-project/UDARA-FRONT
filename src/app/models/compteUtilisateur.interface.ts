@@ -4,4 +4,8 @@ export interface CompteUtilisateur {
     prenom: string;
     nomUtilisateur: string;
     commune: string;
+    email: string;
+    motDePasse: string;
+    codePostal: string;
+    statutActif: boolean;
 }

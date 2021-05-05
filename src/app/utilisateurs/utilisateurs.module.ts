@@ -9,6 +9,7 @@ import { AuthentificationUtilisateurComponent } from './authentification-utilisa
 import { InscriptionUtilisateurComponent } from './inscription-utilisateur/inscription-utilisateur.component';
 import { UtilisateursRoutingModule } from './utilisateurs-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UtilisateursRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSlideToggleModule
   ]
 })
 export class UtilisateursModule { }

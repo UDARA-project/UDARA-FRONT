@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommuneService } from 'src/app/services';
 
 @Component({
   selector: 'app-creation-favori',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreationFavoriComponent implements OnInit {
 
-  constructor() { }
+  nomCommunes: string[];
+  loadingCommune: boolean;
+
+  constructor(private communeService: CommuneService) { }
 
   ngOnInit(): void {
+    this.initializeCommunes();
+  }
+
+  initializeCommunes() {
+    this.loadingCommune = true;
+    this.communeService.getEveryName().subscribe(array => {
+      this.nomCommunes = array.reverse();
+      this.loadingCommune = false;
+    });
   }
 
 }

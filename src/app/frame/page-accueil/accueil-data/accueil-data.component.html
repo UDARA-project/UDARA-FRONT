@@ -10,59 +10,68 @@
     </div>
 
 
-    <div class="row accueil rounded m-3 p-3" *ngIf="indicateurWithUnit && !loadingSearch">
+    <div class="cover-bg rounded" *ngIf="indicateurWithUnit && !loadingSearch">
 
-        <div class="col-sm-4 m-5">
+        <div class="row d-flex justify-content-between">
 
-            <h1>{{infoRecensement}}</h1>
+            <div class="col-sm m-3">
+                <h1>{{infoRecensement.split('-')[0]}}</h1>
+                <p>{{infoRecensement.split('-')[1]}}</p>
+            </div>
 
-            <div class="card border border-dark" style="width: 100%;">
-                <div class="card-body">
-                    <div class="d-flex justify-content-center">
-                        <div class="col d-flex flex-column align-items-center">
-                            <img [src]="meteoGlobale" alt="sentiment météo globale" width="100px">
-                            <h2>{{temperatureActuelle}}°C</h2>
-                        </div>
-                        <div class="col d-flex flex-column align-items-center">
-                            <img [src]="indicateurGlobale" alt="sentiment polluant global" width="100px">
-                            <h2>{{evolutionPolluant}}%</h2>
-                        </div>
-                    </div>
+            <div class="col-sm m-3 d-flex justify-content-end align-items-start">
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <button type="button" class="btn btn-secondary"
+                        [ngClass]="{'btn btn-info': echelleTemps === 'JOURNALIERE'}"
+                        (click)="setEchelleTemps('JOURNALIERE')">Journalier</button>
+                    <button type="button" class="btn btn-secondary"
+                        [ngClass]="{'btn btn-info': echelleTemps === 'HEBDOMADAIRE'}"
+                        (click)="setEchelleTemps('HEBDOMADAIRE')">Hebdomadaire</button>
+                    <button type="button" class="btn btn-secondary"
+                        [ngClass]="{'btn btn-info': echelleTemps === 'MENSUEL'}"
+                        (click)="setEchelleTemps('MENSUEL')">Mensuel</button>
                 </div>
             </div>
+
         </div>
 
-
-        <div class="col-sm-8 m-5">
-
-
-            <div class="btn-group mr-5" role="group" aria-label="Basic mixed styles example">
-                <button type="button" class="btn btn-secondary" [ngClass]="{'btn btn-info': echelleTemps === 'JOURNALIERE'}" (click)="setEchelleTemps('JOURNALIERE')">Journalier</button>
-                <button type="button" class="btn btn-secondary" [ngClass]="{'btn btn-info': echelleTemps === 'HEBDOMADAIRE'}" (click)="setEchelleTemps('HEBDOMADAIRE')">Hebdomadaire</button>
-                <button type="button" class="btn btn-secondary" [ngClass]="{'btn btn-info': echelleTemps === 'MENSUEL'}" (click)="setEchelleTemps('MENSUEL')">Mensuel</button>
-              </div>
-
-            <p class="mb-1">{{infoGPS}}</p>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col" class="item-table-header"></th>
-                        <th scope="col" class="item-table-header" *ngFor="let elt of enteteColonne">{{elt}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let indicateurAir of indicateurWithUnit">
-                        <th scope="row">{{indicateurAir.nom}}</th>
-                        <td *ngFor="let valeur of indicateurAir.valeurs">{{valeur}}</td>
-                    </tr>
-                    <tr *ngFor="let niveauMeteo of meteoWithUnit">
-                        <th scope="row">{{niveauMeteo.nom}}</th>
-                        <td *ngFor="let valeur of niveauMeteo.valeurs">{{valeur}}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="row d-flex justify-content-center">    
+                        <div class="d-flex justify-content-center">
+                            <div class="col d-flex flex-column align-items-center">
+                                <img [src]="meteoGlobale" alt="sentiment météo globale" width="100px">
+                                <h2>{{temperatureActuelle}}°C</h2>
+                            </div>
+                            <div class="col d-flex flex-column align-items-center">
+                                <img [src]="indicateurGlobale" alt="sentiment polluant global" width="100px">
+                                <h2>{{evolutionPolluant}}%</h2>
+                            </div>
+                        </div>
         </div>
+            <div class="row d-flex justify-content-between">
 
+            <div class="col-sm m-3">
+                <p class="mb-1">{{infoGPS}}</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="item-table-header"></th>
+                            <th scope="col" class="item-table-header" *ngFor="let elt of enteteColonne">{{elt}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let indicateurAir of indicateurWithUnit">
+                            <th scope="row">{{indicateurAir.nom}}</th>
+                            <td *ngFor="let valeur of indicateurAir.valeurs">{{valeur}}</td>
+                        </tr>
+                        <tr *ngFor="let niveauMeteo of meteoWithUnit">
+                            <th scope="row">{{niveauMeteo.nom}}</th>
+                            <td *ngFor="let valeur of niveauMeteo.valeurs">{{valeur}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
 
     </div>
 

@@ -50,7 +50,10 @@
         <input name="confirmationMdp" ngModel #confirmationMdp='ngModel' required  type="password" class="form-control"
           aria-describedby="passwordHelpBlock" placeholder="Mot de passe">
           <small *ngIf="form.submitted && confirmationMdp.errors?.required" class="text-danger">
-            La confirmation de votre mot de passe est nécessaire
+            La confirmation de votre mot de passe est nécessaire.
+          </small>
+          <small *ngIf="form.submitted && !validPassword" class="text-danger">
+            Le mot de passe de confirmation ne coïncide pas avec le premier saisi !
           </small>
       </div>
 

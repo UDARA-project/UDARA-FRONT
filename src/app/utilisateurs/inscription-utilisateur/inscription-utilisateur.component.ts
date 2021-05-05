@@ -17,6 +17,7 @@ export class InscriptionUtilisateurComponent implements OnInit, AfterViewInit {
   nomCommunes: string[];
   nomDepartements: string[];
   loading: boolean;
+  validPassword: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
     private CompteUtilisateurService: CompteUtilisateurService,
@@ -52,16 +53,17 @@ export class InscriptionUtilisateurComponent implements OnInit, AfterViewInit {
       if (!form.value.isActive) {
         form.value.isActive = false;
       }
-      console.log('mdp', form.value.motDePasse);
-      console.log('confirmation mdp', form.value.confirmationMdp);
-
-      
-      this.CompteUtilisateurService.create(form.value).subscribe(res => {
-        this.toastr.success(form.value.nom, 'Incription réussie')
-        setTimeout(() => {
-          this.router.navigate(['/accueil']);
-        }, 2000)
-      }) 
+      this.validPassword = form.value.motDePasse === form.value.confirmationMdp;
+      if (this.validPassword) {
+        this.CompteUtilisateurService.create(form.value).subscribe(res => {
+          this.toastr.success(form.value.nom, 'Incription réussie')
+          setTimeout(() => {
+            this.router.navigate(['/accueil']);
+          }, 2000)
+        }) 
+      } else {
+        this.toastr.error('recommencer en saisissant 2 fois le même mot de passe', "Erreur mot de passe ! ")        
+      }
     } else {
       this.toastr.error('recommencer en saisissant toutes les informations nécessaires', "Echec d'inscription")
     } 

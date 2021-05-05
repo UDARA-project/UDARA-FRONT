@@ -1,5 +1,5 @@
 export interface CompteUtilisateur {
-    id: string;
+    id: number;
     nom: string;
     prenom: string;
     nomUtilisateur: string;

@@ -29,8 +29,8 @@ export class CompteUtilisateurService extends AbstractHttpService {
     return this.http.put(`${this.url}/${compteUtilisateur.id}`, formInscriptionDTO);
   }
 
-  delete(id : number) {
-    return this.http.delete(`${this.url}/${id}`)
+  delete(utilisateur : CompteUtilisateur) {
+    return this.http.delete(`${this.url}/${utilisateur.id}`)
   }
   
 }

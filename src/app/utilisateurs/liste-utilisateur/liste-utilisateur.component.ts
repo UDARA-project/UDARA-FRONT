@@ -37,17 +37,23 @@ export class ListeUtilisateurComponent implements OnInit {
     )
   }
 
-  ajoutSupprimer(){
-    this.modalService.open(
-      SuppressionUtilisateurComponent
-    )
-  }
-
     activation(){
       this.modalService.open(
         ReactivationUtilisateurComponent
       )
   }
+
+  openModal(utilisateur : CompteUtilisateur){
+    console.log('utilisateur', utilisateur);
+    
+    let modal =  this.modalService.open(SuppressionUtilisateurComponent);
+    modal.componentInstance.utilisateurs = utilisateur;
+     modal.result.then((confirm) => {
+       console.log('display');
+       
+       this.listeUtilisateurs()
+     })
+   }
 
   condition = false;
 

@@ -56,12 +56,12 @@
 
       <div class="form-group">
         <label for="text"><i class="fa fa-flag"></i> Entrez Code postal</label>
-        <input #input name="codePostal" ngModel #codePostal='ngModel' required  type="number" class="form-control" placeholder="Code postal" list="departements" (change)="keyupDepartement(input.value)">
+        <input #input name="codePostal" ngModel #codePostal='ngModel' required  type="number" class="form-control" placeholder="Par ex. 69007" list="departements" (change)="keyupDepartement(input.value)">
         <datalist id="departements">
           <option *ngFor="let nomDepartement of nomDepartements" [value]="nomDepartement"></option>
         </datalist>
         <small *ngIf="form.submitted && codePostal.errors?.required" class="text-danger">
-          Votre code postal doit être renseigné
+          Votre code postal doit être renseigné au format numérique. Par ex. '69007'
         </small>
       </div>
 

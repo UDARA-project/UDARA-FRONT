@@ -52,6 +52,10 @@ export class InscriptionUtilisateurComponent implements OnInit, AfterViewInit {
       if (!form.value.isActive) {
         form.value.isActive = false;
       }
+      console.log('mdp', form.value.motDePasse);
+      console.log('confirmation mdp', form.value.confirmationMdp);
+
+      
       this.CompteUtilisateurService.create(form.value).subscribe(res => {
         this.toastr.success(form.value.nom, 'Incription réussie')
         setTimeout(() => {

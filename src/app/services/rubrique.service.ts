@@ -20,6 +20,10 @@ export class RubriqueService extends AbstractHttpService {
     return this.http.get<Rubrique>(`${this.url}/${id}`);
   }
 
+  findByNom(nom: string){
+    return this.http.get<Rubrique>(`${this.url}/${nom}`)
+  }
+
   create(rubrique : Rubrique) {
     return this.http.post(this.url, rubrique);
   }

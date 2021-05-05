@@ -14,6 +14,7 @@ import { SuprimerRubriqueComponent } from '../suprimer-rubrique/suprimer-rubriqu
 })
 export class ListeRubriqueComponent implements OnInit {
   rubriques : Rubrique[] = []
+  nom : string
 
   constructor(
     private rubriqueService : RubriqueService,
@@ -32,32 +33,47 @@ export class ListeRubriqueComponent implements OnInit {
     })    
   }
 
-  // Carte Affichage normal
-  editRubrique(rubrique: Rubrique){
-    rubrique.edit = !rubrique.edit
-  }
-
   addRubrique(){
     this.rubriques.push({ id : null , nom: null , edit: true});
   }
 
-  annuler(rubrique: Rubrique){
-    console.log(rubrique);
-    if(!rubrique.id){
-      console.log("on doit supprimer la carte");
-    } else {
-      rubrique.edit = !rubrique.edit
-    }
-    
+  // Carte Affichage normal
+  editRubrique(rubrique: Rubrique){
+    rubrique.edit = !rubrique.edit
+    this.nom = rubrique.nom
   }
-
- 
-
-  // Bouton supprimer
   suprimerRubrique(rubrique : Rubrique){
     let dialogue = this.dialog.open(SuprimerRubriqueComponent);
     dialogue.componentInstance.rubrique = rubrique;
   }
+
+  // Affichage edition 
+  valider(rubrique: Rubrique){
+    console.log(rubrique)
+
+    if(rubrique.id == null){
+      this.rubriqueService.create(rubrique).subscribe(res => {
+        console.log("res create",res)
+        rubrique.edit = !rubrique.edit
+      })
+    }else {
+      this.rubriqueService.update(rubrique).subscribe(res => {
+        console.log("res update",res);
+        rubrique.edit = !rubrique.edit
+      })
+    }
+  }
+  annuler(rubrique: Rubrique){
+    if(!rubrique.id){
+      console.log("on doit supprimer la carte");
+    } else {
+      rubrique.nom = this.nom
+      rubrique.edit = !rubrique.edit
+    }
+  }
+
+ 
+
 
   // toater
   showSuccess() {

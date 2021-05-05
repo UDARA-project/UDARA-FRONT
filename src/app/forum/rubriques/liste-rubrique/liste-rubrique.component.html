@@ -49,7 +49,7 @@
                     <mat-icon>delete</mat-icon>
                 </button>
 
-                <button mat-icon-button class="example-icon favorite-icon" color="primary" type="submit" *ngIf="rubrique.edit">
+                <button mat-icon-button class="example-icon favorite-icon" color="primary" (click)="valider(rubrique)" *ngIf="rubrique.edit">
                     <mat-icon>done_outline</mat-icon>
                 </button>
                 <button mat-icon-button class="example-icon" color="warn" (click)="annuler(rubrique)" *ngIf="rubrique.edit">

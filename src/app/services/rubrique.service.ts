@@ -21,10 +21,12 @@ export class RubriqueService extends AbstractHttpService {
   }
 
   create(rubrique : Rubrique) {
+    console.log("serviceRubrique", rubrique)
     return this.http.post(this.url, rubrique);
   }
 
   update(rubrique : Rubrique) {
+    console.log("serviceRubrique", rubrique)
     return this.http.put(`${this.url}/${rubrique.nom}`, rubrique);
   }
 

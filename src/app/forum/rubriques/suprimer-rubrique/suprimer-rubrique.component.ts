@@ -28,8 +28,8 @@ export class SuprimerRubriqueComponent implements OnInit {
     console.log("appuie valider")
     this.rubriqueService.delete(this.rubrique.id).subscribe(res => {
       if (res) {
-        this.dialogRef.close
         console.log("c'est good !")
+        this.dialogRef.close
       }
     })
 

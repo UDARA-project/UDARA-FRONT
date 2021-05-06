@@ -1,12 +1,5 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open
-  modal for @mdo</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open
-  modal for @fat</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-  data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title" id="exampleModalLabel">Enregistrer un favori</h1>
@@ -15,21 +8,20 @@
         </button>
       </div>
       <div class="modal-body">
-        <form (ngSubmit)='saveFavori(form)' #form=ngForm>
+        <form (ngSubmit)='saveFavori(form)' #form=ngForm ngNativeValidate>
 
           <div class="form-group">
             <label for="nom" class="col-form-label">Saisir un intitulé :</label>
-            <input  id="nom" [(ngModel)]="favori.nom" name="nom" type="text" class="form-control" placeholder="Ex.: montpellier.meteo.journalier">
+            <input id="nom" required [(ngModel)]="favori.nom" name="nom" type="text" class="form-control" placeholder="Ex.: montpellier.meteo.journalier">
           </div>
+
 
           <div class="form-group">
             <label for="commune">Choisir une commune :</label>
-            <select id="commune" class="form-control">
+            <select id="commune" ngModel name="commune" class="form-control">
               <option *ngFor="let nomCommune of nomCommunes" [value]="nomCommune">{{nomCommune}}</option>
             </select>
           </div>
-
-
 
           <div class="form-group">
             <label for="message-text" class="col-form-label">Echelle de temps :</label>
@@ -51,19 +43,12 @@
           <div class="form-group">
             <label for="message-text" class="col-form-label">Polluant :</label>
             <div class="d-flex justify-content-start">
-
               <div class="form-check form-check-inline" *ngFor="let indicateur of tousLesIndicateurs;index as i">
                 <input class="form-check-input" type="checkbox" [(ngModel)]="indicateurBoolean[i]" name="indicateurBoolean" [ngModelOptions]="{standalone: true}">
                 <label class="form-check-label" for="gridCheck">{{indicateur}}</label>
-
-<!--                 [(ngModel)]="favori.indicateurAir[i]===indicateur" [value]="indicateur"
- -->              </div>
+           </div>
             </div>
           </div>
-
-
-
-          
 
           <div class="form-group">
             <label for="message-text" class="col-form-label">Météo :</label>
@@ -75,16 +60,15 @@
 
             </div>
           </div>
-
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" routerLink="/accueil" data-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-success">Valider</button>
+          </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" routerLink="/accueil" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-success">Valider</button>
-      </div>
+    
     </div>
-  </div>
-</div>
+
 
 
 

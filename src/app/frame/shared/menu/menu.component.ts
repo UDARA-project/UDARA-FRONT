@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CreationFavoriComponent } from '../../page-accueil/creation-favori/creation-favori.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 interface MenuItem {
   titre: string,
@@ -41,9 +43,12 @@ export class MenuComponent implements OnInit {
     }
   ]
 
-  constructor () { }
+  constructor (protected modalService: NgbModal) { }
 
   ngOnInit(): void {
   }
 
+  openModal() {
+    this.modalService.open(CreationFavoriComponent);
+  }
 }

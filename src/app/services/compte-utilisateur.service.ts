@@ -20,6 +20,11 @@ export class CompteUtilisateurService extends AbstractHttpService {
     return this.http.get<CompteUtilisateur>(`${this.url}/${id}`);
   }
 
+  getByEmail(email : string | null){
+    const params = { userEmail: email};
+    return this.http.get<CompteUtilisateur>(`${this.url}/searchByEmail`, { params })
+  }
+
   create(compteUtilisateur: CompteUtilisateur) {
     return this.http.post(this.url, compteUtilisateur);
   }

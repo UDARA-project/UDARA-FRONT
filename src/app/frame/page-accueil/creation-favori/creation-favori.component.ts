@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommuneService } from 'src/app/services';
 import { NgForm } from '@angular/forms';
 import { Favori } from 'src/app/models/favori.interface';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -18,15 +19,18 @@ export class CreationFavoriComponent implements OnInit {
   indicateurBoolean: boolean[];
   niveauBoolean: boolean[];
 
-  favori: Favori = {
+  favori: any = {
     id: null,
     nom: null,
     niveauMeteo: ["Température", "Nuage", "Vent", "Pluie"],
     indicateurAir: ["co"],
-    echelleTemps: "JOURNALIERE"
+    echelleTemps: "JOURNALIERE",
+    commune: null,
   }
 
-  constructor(private communeService: CommuneService) { }
+  constructor(
+    private communeService: CommuneService,
+    private activateRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initializeCommunes();
@@ -43,11 +47,21 @@ export class CreationFavoriComponent implements OnInit {
   }
 
   setEchelleTemps(echelleTemps: string) {
-    this.echelleTemps = echelleTemps;
+    console.log(echelleTemps);
+    this.favori.echelleTemps = echelleTemps;
   }
 
   saveFavori(form: NgForm) {
+this.favori = {
+  nom: form.value.nom,
+  niveauMeteo: this.niveauBoolean,
+  indicateurAir: this.indicateurBoolean.map(item => this.favori.indicateurAir.indexOf(item)!= -1 ? true : false ),
+  echelleTemps: this.echelleTemps,
+  commune: form.value.commune
+}
+console.log(this.favori);
 
+//this.activateRoute.params.subscribe(res => console.log(res));
   }
 
 }

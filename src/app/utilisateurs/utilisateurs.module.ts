@@ -10,6 +10,8 @@ import { InscriptionUtilisateurComponent } from './inscription-utilisateur/inscr
 import { UtilisateursRoutingModule } from './utilisateurs-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     UtilisateursRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    NgSelectModule
   ]
 })
 export class UtilisateursModule { }

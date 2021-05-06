@@ -12,16 +12,17 @@ import { Favori } from 'src/app/models/favori.interface';
 export class CreationFavoriComponent implements OnInit {
 
   nomCommunes: string[];
-  loadingCommune: boolean;
   echelleTemps: string = 'JOURNALIERE';
-  nomIndicateurs: string[] = ["co", "no", "no2", "o3", "so2", "pm2_5", "pm10", "nh3"];
-  nomNiveaux: string[] = ["Température", "Nuage", "Vent", "Pluie"]
-  indicateurBoolean:boolean[] = [true, true, true, true, true, true, true, true]
+  tousLesIndicateurs: string[] = ["co", "no", "no2", "o3", "so2", "pm2_5", "pm10", "nh3"];
+  touslesNiveaux: string[] = ["Température", "Nuage", "Vent", "Pluie"]
+  indicateurBoolean: boolean[];
+  niveauBoolean: boolean[];
+
   favori: Favori = {
     id: null,
     nom: null,
     niveauMeteo: ["Température", "Nuage", "Vent", "Pluie"],
-    indicateurAir: ["co", "no", "no2", "o3", "so2", "pm2_5", "pm10", "nh3"],
+    indicateurAir: ["co"],
     echelleTemps: "JOURNALIERE"
   }
 
@@ -33,15 +34,12 @@ export class CreationFavoriComponent implements OnInit {
   }
 
   initializeCommunes() {
-    this.loadingCommune = true;
-    this.communeService.getEveryName().subscribe(array => {
-      this.nomCommunes = array.reverse();
-      this.loadingCommune = false;
-    });
+    this.communeService.getEveryName().subscribe(array => this.nomCommunes = array.reverse());
   }
 
   initializeBoolean() {
-    //this.indicateurBoolean = this.nomIndicateurs.map(item => item);
+    this.indicateurBoolean = this.tousLesIndicateurs.map(item => this.favori.indicateurAir.indexOf(item)!= -1 ? true : false );
+    this.niveauBoolean = this.touslesNiveaux.map(item => this.favori.niveauMeteo.indexOf(item)!= -1 ? true : false );
   }
 
   setEchelleTemps(echelleTemps: string) {

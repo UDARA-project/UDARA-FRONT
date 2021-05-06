@@ -39,7 +39,7 @@ export class InscriptionUtilisateurComponent implements OnInit, AfterViewInit {
   initializeVilles() {
     this.communeService.getEveryName().subscribe(array => { 
       this.nomVilles = array; 
-      console.log('nomVilles', this.nomVilles);     
+      //console.log('nomVilles', this.nomVilles);     
     });
   }
 

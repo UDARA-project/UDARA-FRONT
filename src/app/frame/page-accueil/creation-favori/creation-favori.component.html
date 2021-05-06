@@ -52,8 +52,8 @@
             <label for="message-text" class="col-form-label">Polluant :</label>
             <div class="d-flex justify-content-start">
 
-              <div class="form-check form-check-inline" *ngFor="let indicateur of nomIndicateurs;index as i">
-                <input class="form-check-input" type="checkbox" [(ngModel)]="indicateurBoolean[i]" name="indicateurBoolean">
+              <div class="form-check form-check-inline" *ngFor="let indicateur of tousLesIndicateurs;index as i">
+                <input class="form-check-input" type="checkbox" [(ngModel)]="indicateurBoolean[i]" name="indicateurBoolean" [ngModelOptions]="{standalone: true}">
                 <label class="form-check-label" for="gridCheck">{{indicateur}}</label>
 
 <!--                 [(ngModel)]="favori.indicateurAir[i]===indicateur" [value]="indicateur"
@@ -68,8 +68,8 @@
           <div class="form-group">
             <label for="message-text" class="col-form-label">Météo :</label>
             <div class="d-flex justify-content-start">
-              <div class="form-check form-check-inline" *ngFor="let niveau of nomNiveaux">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" [value]="niveau">
+              <div class="form-check form-check-inline" *ngFor="let niveau of touslesNiveaux;index as i">
+                <input class="form-check-input" type="checkbox" [(ngModel)]="niveauBoolean[i]" name="indicateurBoolean" [ngModelOptions]="{standalone: true}">
                 <label class="form-check-label" for="inlineCheckbox1">{{niveau}}</label>
               </div>
 

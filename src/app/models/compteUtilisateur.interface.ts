@@ -9,3 +9,4 @@ export interface CompteUtilisateur {
     codePostal: string;
     statutActif: boolean;
 }
+

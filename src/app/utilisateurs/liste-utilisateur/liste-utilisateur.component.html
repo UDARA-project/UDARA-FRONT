@@ -23,16 +23,6 @@
         <td>{{ compteUtilisateur.commune }}</td>
         <td>{{ compteUtilisateur.codePostal }}</td>
         <td class="text-center">
-          <!-- <div class="form-check form-check-inline custom-control custom-radio">
-            <input class=" custom-control-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"
-              (click)="activation()">
-            <label class="form-check-label" for="inlineRadio1">Activer</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class=" custom-control-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"
-              (click)="ajoutSuspendre()">
-            <label class="form-check-label" for="inlineRadio2">Suspendre</label>
-          </div> -->
           <mat-slide-toggle [(ngModel)]="compteUtilisateur.statutActif" (toggleChange)="switchActivation(compteUtilisateur)">{{compteUtilisateur.statutActif ? "Actif" :"Inactif"}}
           </mat-slide-toggle>
         </td>

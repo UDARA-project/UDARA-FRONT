@@ -29,6 +29,7 @@ export class CreationFavoriComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeCommunes();
+    this.initializeBoolean();
   }
 
   initializeCommunes() {
@@ -37,6 +38,10 @@ export class CreationFavoriComponent implements OnInit {
       this.nomCommunes = array.reverse();
       this.loadingCommune = false;
     });
+  }
+
+  initializeBoolean() {
+    //this.indicateurBoolean = this.nomIndicateurs.map(item => item);
   }
 
   setEchelleTemps(echelleTemps: string) {

@@ -23,7 +23,8 @@ export class ListeRubriqueComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   this.rubriquesList()
+   this.rubriquesList();
+
   }
 
   rubriquesList(){
@@ -43,11 +44,14 @@ export class ListeRubriqueComponent implements OnInit {
     rubrique.edit = !rubrique.edit
   }
   
-  suprimerRubrique(rubrique : Rubrique){
+  suprimerRubrique(rubrique : Rubrique, i : number){
     let dialogue = this.dialog.open(SuprimerRubriqueComponent);
     dialogue.componentInstance.rubrique = rubrique;
+    dialogue.beforeClosed().subscribe(result => {
+      this.toastr.success('Supression réussi !');
+      this.rubriques.splice(i, 1)
+    });
   }
-
 
   // Carte Affichage edit
   annuler(rubrique: Rubrique){
@@ -60,24 +64,18 @@ export class ListeRubriqueComponent implements OnInit {
     if (rubrique.id == null) {
       this.rubriqueService.create(rubrique).subscribe(res => {
         rubrique.edit = !rubrique.edit;
+        this.toastr.success('Creation réussi !');
+         this.rubriquesList()
       })
     }else {
       this.rubriqueService.update(rubrique).subscribe(res => {
         console.log("res update", res)
         rubrique.edit = !rubrique.edit;
+        this.toastr.success('Modification réussi !');
+        this.rubriquesList()
       })
     }
-  }
- 
-
- 
-
-  // toater
-  showSuccess() {
-    this.toastr.success('Successful creation !');
-  }
-  shocFail() {
-    this.toastr.error('Error creation !');
+   
   }
 
 }

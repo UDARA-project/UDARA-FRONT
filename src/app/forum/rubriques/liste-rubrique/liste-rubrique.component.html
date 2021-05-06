@@ -11,7 +11,7 @@
     <mat-list role="list">
 
         <!-- affichage liste normal -->
-            <mat-list-item class="mat-card" *ngFor="let rubrique of rubriques">
+            <mat-list-item class="mat-card" *ngFor="let rubrique of rubriques; let i = index">
 
                 <span class="pad-After" *ngIf="!rubrique.edit">{{ rubrique.nom}}</span>
                 <mat-form-field class="example-full-width small" *ngIf="rubrique.edit">
@@ -19,14 +19,14 @@
                     <input matInput [(ngModel)]="rubrique.nom" required>
                 </mat-form-field>
 
-                <span class="example-spacer"></span>
-                <mat-icon matBadge="15" matBadgeSize="small" matBadgeColor="accent">forum</mat-icon>
+                <!-- <span class="example-spacer"></span>
+                <mat-icon matBadge="15" matBadgeSize="small" matBadgeColor="accent">forum</mat-icon> -->
                 <span class="example-spacer"></span>
 
                 <button mat-icon-button class="example-icon favorite-icon" color="primary" (click)="editRubrique(rubrique)" *ngIf="!rubrique.edit">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button class="example-icon" color="warn" (click)="suprimerRubrique(rubrique)" *ngIf="!rubrique.edit">
+                <button mat-icon-button class="example-icon" color="warn" (click)="suprimerRubrique(rubrique, i)" *ngIf="!rubrique.edit">
                     <mat-icon>delete</mat-icon>
                 </button>
 

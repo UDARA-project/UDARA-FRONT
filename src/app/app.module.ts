@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './frame/shared/shared.module';
-
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { SharedModule } from './frame/shared/shared.module';
     FrameModule,
     SharedModule,
     UtilisateursModule,
-    ForumModule
+    ForumModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

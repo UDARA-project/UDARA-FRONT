@@ -24,6 +24,7 @@
     "@angular/router": "^11.2.12",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@ng-bootstrap/ng-bootstrap": "^9.1.0",
+    "@ng-select/ng-select": "^6.1.0",
     "bootstrap": "^4.6.0",
     "bootstrap-modal": "^2.2.4",
     "font-awesome": "^4.7.0",

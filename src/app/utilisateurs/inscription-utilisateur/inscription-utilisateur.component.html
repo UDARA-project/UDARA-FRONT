@@ -69,14 +69,19 @@
       </div>
 
       <div class="form-group">
-        <label for="text"> <i class="fa fa-map-marker"></i> Entrez une commune</label>
-        <input name="commune" ngModel #commune='ngModel' required  type="text" class="form-control" placeholder="Ville" list="nomCommunes">
-        <datalist id="nomCommunes">
-          <option *ngFor="let nomCommune of nomCommunes" [value]="nomCommune"></option>
-        </datalist>
-        <small *ngIf="form.submitted && commune.errors?.required" class="text-danger">
-          Votre commune doit être renseignée
-        </small>
+        <label for="villeSelection"> <i class="fa fa-map-marker"></i> Selectionnez une ville </label>
+        <!-- <ng-select [items]="nomVilles | async"
+          bindLabel="name"
+          autofocus
+          bindValue="lat"
+          [(ngModel)]="villeSelectionnee">
+        </ng-select> -->
+        <ng-select [(ngModel)]="villeSelectionnee" name="villeSelectionnee">
+          <ng-option *ngFor="let ville of nomVilles" [value]="ville">{{ville}}</ng-option>
+        </ng-select>
+        <!-- <small *ngIf="form.submitted && villeSelection.errors?.required" class="text-danger">
+          Votre ville doit être renseignée
+        </small> -->
       </div>
 
     </fieldset>

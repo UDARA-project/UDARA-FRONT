@@ -14,7 +14,8 @@ import { CommuneService } from 'src/app/services';
 })
 export class InscriptionUtilisateurComponent implements OnInit, AfterViewInit {
 
-  nomCommunes: string[];
+  villeSelectionnee: string;
+  nomVilles: string[];
   nomDepartements: string[];
   loading: boolean;
   validPassword: boolean = false;
@@ -27,16 +28,19 @@ export class InscriptionUtilisateurComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loading = true;
-    // this.initializeCommunes();
-    // this.initializeDepartements();
+    this.initializeVilles();
+    this.initializeDepartements();
   }
 
   ngAfterViewInit() {
     setTimeout(() => { this.loading = false }, 1000);
   }
 
-  initializeCommunes() {
-    this.communeService.getEveryName().subscribe(array => this.nomCommunes = array );
+  initializeVilles() {
+    this.communeService.getEveryName().subscribe(array => { 
+      this.nomVilles = array; 
+      console.log('nomVilles', this.nomVilles);     
+    });
   }
 
   initializeDepartements() {
@@ -44,7 +48,7 @@ export class InscriptionUtilisateurComponent implements OnInit, AfterViewInit {
   }
 
   keyupDepartement(nomDepartement: string) {
-    this.communeService.getNameCommuneByDepartement(nomDepartement).subscribe(array => this.nomCommunes = array);
+    this.communeService.getNameCommuneByDepartement(nomDepartement).subscribe(array => this.nomVilles = array);
   }
 
   saveUser(form: NgForm) {    

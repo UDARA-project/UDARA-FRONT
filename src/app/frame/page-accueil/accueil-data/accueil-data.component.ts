@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Commune } from 'src/app/models/commune.interface';
 import { IndicateurAir } from 'src/app/models/indicateurAir.interface';
 import { NiveauMeteo } from 'src/app/models/niveauMeteo.interface';
@@ -43,11 +44,26 @@ export class AccueilDataComponent implements OnInit {
 
   constructor(private communeService: CommuneService,
     private indicateurAirService: IndicateurAirService,
+    private activateRoute: ActivatedRoute,
     private niveauMeteoService: NiveauMeteoService) { }
 
   ngOnInit(): void {
-    this.echelleTemps = 'JOURNALIERE';
-    this.search();
+    this.checkNavigation();
+  }
+
+  checkNavigation() {
+    if (history.state.id) {
+      this.nomCommune = history.state.commune;
+      this.nomIndicateurs = history.state.indicateurAir;
+      this.nomNiveaux = history.state.niveauMeteo;
+      this.echelleTemps = history.state.echelleTemps;
+      this.infoRecensement = `Données sur Favori : ${history.state.nom}`;
+      this.searchByCommune();
+    } else {
+      this.infoRecensement = "";
+      this.echelleTemps = 'JOURNALIERE';
+      this.search();
+    }
   }
 
   setEchelleTemps(echelleTemps: string) {
@@ -68,6 +84,7 @@ export class AccueilDataComponent implements OnInit {
   }
 
   renderSearchInsideParent(nomCommune: string) {
+    this.infoRecensement = "";
     this.nomCommune = nomCommune;
     this.searchByCommune();
   }
@@ -119,7 +136,7 @@ export class AccueilDataComponent implements OnInit {
       this.infoRecensement = "Données Globales Françaises"
     } else {
       this.communeService.findByName(this.nomCommune).subscribe(r => {
-        this.infoRecensement = `Commune : ${r.name}, ${r.population} Habitants - Région:${r.region}, Code département${r.departement}`;
+        this.infoRecensement += `Commune : ${r.name}, ${r.population} Habitants -- Région:${r.region}, Code département${r.departement}`;
         this.infoGPS = `Coordonnées GPS de la station (latitude, longitude): ${r.lat}, ${r.lon}`;
       })
     }
@@ -128,9 +145,9 @@ export class AccueilDataComponent implements OnInit {
   generateMeteoGlobale() {
     let nombreValeur = this.niveauMeteos[0].valeurs.length;
     this.temperatureActuelle = Math.round(this.niveauMeteos[0].valeurs[nombreValeur - 1]);
-    let nuageValeur = this.niveauMeteos[1].valeurs[nombreValeur - 1];
-    let ventValeur = this.niveauMeteos[2].valeurs[nombreValeur - 1];
-    let pluieValeur = this.niveauMeteos[3].valeurs[nombreValeur - 1];
+    let nuageValeur = this.niveauMeteos[1] ? this.niveauMeteos[1].valeurs[nombreValeur - 1] : 0;
+    let ventValeur = this.niveauMeteos[2] ? this.niveauMeteos[2].valeurs[nombreValeur - 1] : 0;
+    let pluieValeur = this.niveauMeteos[3] ? this.niveauMeteos[3].valeurs[nombreValeur - 1] : 0;
     if (nuageValeur > 33 && nuageValeur <= 66) {
       this.meteoGlobale = "../../../../assets/images/nuage+soleil.svg"
     } else if (nuageValeur > 66 && ventValeur <= 10 && pluieValeur <= 66) {
@@ -172,8 +189,8 @@ export class AccueilDataComponent implements OnInit {
       let nbDuJour = date.getDay();
       let nomDuJour;
       for (let i = 0; i < nombreValeur; i++) {
-        nbDuJour-i<=0 ? nbDuJour = 7+i: nbDuJour;
-        switch (nbDuJour-i) {
+        nbDuJour - i <= 0 ? nbDuJour = 7 + i : nbDuJour;
+        switch (nbDuJour - i) {
           case 1: nomDuJour = "lundi"; break;
           case 2: nomDuJour = "mardi"; break;
           case 3: nomDuJour = "mercredi"; break;
@@ -195,15 +212,15 @@ export class AccueilDataComponent implements OnInit {
       }
     } else if (this.echelleTemps == "MENSUEL") {
       let date = new Date();
-      let nbDuMois = date.getMonth()+1;
+      let nbDuMois = date.getMonth() + 1;
       let nomDuMois;
       for (let i = 0; i < nombreValeur; i++) {
-        nbDuMois-i<=0 ? nbDuMois = 12+i: nbDuMois;
-        switch (nbDuMois-i) {
+        nbDuMois - i <= 0 ? nbDuMois = 12 + i : nbDuMois;
+        switch (nbDuMois - i) {
           case 1: nomDuMois = "janvier"; break;
           case 2: nomDuMois = "février"; break;
           case 3: nomDuMois = "mars"; break;
-          case 4: nomDuMois= "avril"; break;
+          case 4: nomDuMois = "avril"; break;
           case 5: nomDuMois = "mai"; break;
           case 6: nomDuMois = "juin"; break;
           case 7: nomDuMois = "juillet"; break;

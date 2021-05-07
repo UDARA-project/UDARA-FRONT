@@ -12,14 +12,14 @@
 
     <div class="cover-bg rounded" *ngIf="indicateurWithUnit && !loadingSearch">
 
-        <div class="row d-flex justify-content-between">
+        <div class="row d-flex justify-content-between p-3">
 
-            <div class="col-sm m-3">
-                <h1>{{infoRecensement.split('-')[0]}}</h1>
-                <p>{{infoRecensement.split('-')[1]}}</p>
+            <div class="col-sm">
+                <h1>{{infoRecensement.split('--')[0]}}</h1>
+                <p>{{infoRecensement.split('--')[1]}}</p>
             </div>
 
-            <div class="col-sm m-3 d-flex justify-content-end align-items-start">
+            <div class="col-sm d-flex justify-content-end align-items-start">
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                     <button type="button" class="btn btn-secondary"
                         [ngClass]="{'btn btn-info': echelleTemps === 'JOURNALIERE'}"
@@ -39,11 +39,11 @@
                         <div class="d-flex justify-content-center">
                             <div class="col d-flex flex-column align-items-center">
                                 <img [src]="meteoGlobale" alt="sentiment météo globale" width="100px">
-                                <h2>{{temperatureActuelle}}°C</h2>
+                                <h2 class="mb-0">{{temperatureActuelle}}°C</h2>
                             </div>
                             <div class="col d-flex flex-column align-items-center">
                                 <img [src]="indicateurGlobale" alt="sentiment polluant global" width="100px">
-                                <h2>{{evolutionPolluant}}%</h2>
+                                <h2 class="mb-0">{{evolutionPolluant}}%</h2>
                             </div>
                         </div>
         </div>

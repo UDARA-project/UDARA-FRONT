@@ -2,8 +2,9 @@
 
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title" id="exampleModalLabel">Enregistrer un favori</h1>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h1 *ngIf="!favori.id" class="modal-title" id="exampleModalLabel">Enregistrer un favori</h1>
+        <h1 *ngIf="favori.id" class="modal-title" id="exampleModalLabel">Mettre à jour un favori {{favori.id}}</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="dismiss()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -18,7 +19,7 @@
 
           <div class="form-group">
             <label for="commune">Choisir une commune :</label>
-            <select id="commune" ngModel name="commune" class="form-control">
+            <select id="commune" ngModel name="commune" class="form-control" [ngModel]="favori.commune" >
               <option *ngFor="let nomCommune of nomCommunes" [value]="nomCommune">{{nomCommune}}</option>
             </select>
           </div>
@@ -61,7 +62,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" routerLink="/accueil" (click)="dismiss()" data-dismiss="modal">Annuler</button>
+            <button type="button" class="btn btn-secondary" (click)="dismiss()" data-dismiss="modal">Annuler</button>
             <button type="submit" class="btn btn-success"(click)="confirm()">Valider</button>
           </div>
         </form>

@@ -21,7 +21,7 @@ export class CreationFavoriComponent implements OnInit {
   indicateurBoolean: boolean[];
   niveauBoolean: boolean[];
 
-  favori: any = {
+  @Input() favori: any = {
     id: null,
     nom: null,
     niveauMeteo: ["Température", "Nuage", "Vent", "Pluie"],
@@ -52,12 +52,12 @@ export class CreationFavoriComponent implements OnInit {
   }
 
   setEchelleTemps(echelleTemps: string) {
-    console.log(echelleTemps);
     this.favori.echelleTemps = echelleTemps;
   }
 
   saveFavori(form: NgForm) {
     this.favori = {
+      id: this.favori.id,
       nom: form.value.nom,
       niveauMeteo: this.niveauBoolean.map((item, i) => item ? this.touslesNiveaux[i] : null).filter(value => value != null),
       indicateurAir: this.indicateurBoolean.map((item, i) => item ? this.tousLesIndicateurs[i] : null).filter(value => value != null),
@@ -65,17 +65,23 @@ export class CreationFavoriComponent implements OnInit {
       commune: form.value.commune,
       compteUtilisateur: "nicolas.hornuel@gmail.com"
     }
-    this.favoriService.create(this.favori).subscribe();
-    //this.activateRoute.params.subscribe(res => console.log(res));
+    this.favori.id ? this.favoriService.update(this.favori).subscribe(res => this.toastUpdate()) : this.favoriService.create(this.favori).subscribe(res => this.toastSave());
   }
 
   dismiss() {
-    this.toastr.info("enregistrement annulé");
+    this.toastr.warning("annulé", "Création favori", {timeOut: 50});
     this.modale.dismiss();
   }
   confirm() {
-    this.toastr.success("enregistrement effectué");
     this.modale.close();
+  }
+
+  toastSave() {
+    this.toastr.success("enregistré", "Création favori", {timeOut: 50});
+  }
+
+  toastUpdate() {
+    this.toastr.info("enregistré", "Mise à jour favori", {timeOut: 50});
   }
 
 }

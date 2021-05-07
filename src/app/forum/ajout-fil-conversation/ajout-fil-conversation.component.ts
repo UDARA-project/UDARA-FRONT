@@ -13,7 +13,7 @@ import { FilConversationService } from 'src/app/services/fil-conversation.servic
 })
 export class AjoutFilConversationComponent implements OnInit {
   rubriques : Rubrique[] = []
-  filConversationVide : FilConversation = {id: null, nom: null, rubrique: null}
+  filConversationVide : FilConversation = {id: null, nom: null, rubrique_id: null}
 
   constructor( 
     public dialogRef: MatDialogRef<AjoutFilConversationComponent>,

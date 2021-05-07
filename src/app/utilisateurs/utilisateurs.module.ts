@@ -11,6 +11,7 @@ import { UtilisateursRoutingModule } from './utilisateurs-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { EditionUtilisateurComponent } from './edition-utilisateur/edition-utilisateur.component';
 
 
 @NgModule({
@@ -21,15 +22,16 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ListeUtilisateurComponent,
     FormulaireUtilisateurComponent,
     AuthentificationUtilisateurComponent,
-    InscriptionUtilisateurComponent
+    InscriptionUtilisateurComponent,
+    EditionUtilisateurComponent
   ],
   imports: [
     CommonModule,
-    UtilisateursRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     MatSlideToggleModule,
-    NgSelectModule
+    NgSelectModule,
+    UtilisateursRoutingModule,
   ]
 })
 export class UtilisateursModule { }

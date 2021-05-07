@@ -11,4 +11,30 @@
     justify-content: flex-end;
     padding: 10px;
 }
+
+/* card */
+
+.card {
+    max-width: 400px;
+    padding: 10px;
+}
+  
+.header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+hr {
+    margin-top: 0%;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.mat-card-content {
+    height: 100px;
+}
+
  

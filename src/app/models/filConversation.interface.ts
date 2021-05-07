@@ -3,5 +3,5 @@ import { Rubrique } from "./rubrique.interface";
 export interface FilConversation {
     id: number;
     nom: string;
-    rubrique: Rubrique;
+    rubrique_id: number;
 }

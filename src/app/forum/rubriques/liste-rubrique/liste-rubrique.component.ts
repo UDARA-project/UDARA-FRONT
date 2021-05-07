@@ -48,8 +48,11 @@ export class ListeRubriqueComponent implements OnInit {
     let dialogue = this.dialog.open(SuprimerRubriqueComponent);
     dialogue.componentInstance.rubrique = rubrique;
     dialogue.beforeClosed().subscribe(result => {
-      this.toastr.success('Supression réussi !');
-      this.rubriques.splice(i, 1)
+      console.log("result",result)
+      if (result) {
+        this.toastr.success('Suppression réussi !');
+        this.rubriques.splice(i, 1)
+      } 
     });
   }
 

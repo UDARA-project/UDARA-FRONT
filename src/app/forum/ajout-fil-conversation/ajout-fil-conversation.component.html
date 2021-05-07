@@ -7,14 +7,14 @@
         <form class="example-form">
             <mat-form-field class="example-full-width">
                 <mat-label>Message</mat-label>
-                <textarea name="nom" required matInput maxlength="256"></textarea>
+                <textarea ngModel name="nomMessage" #nomMessage='ngModel' required matInput maxlength="256"></textarea>
             </mat-form-field>
         </form>
     </div>
 
     <mat-chip-list class="button-container-rubrique">
         <div *ngFor="let rubrique of rubriques">
-            <mat-chip ngModel name="nom" #nom="ngModel" color="accent" selected></mat-chip>
+            <mat-chip ngModel name="nomRubrique" #nomRubrique="ngModel" color="accent" selected required >{{ rubrique.nom }}</mat-chip>
         </div>
     </mat-chip-list>
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CompteUtilisateur } from 'src/app/models/compteUtilisateur.interface';
 
 @Component({
   selector: 'app-edition-utilisateur',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditionUtilisateurComponent implements OnInit {
 
+  user : CompteUtilisateur = {     
+    id: 1,
+    nom: "tete",
+    prenom: "trtr",
+    nomUtilisateur: "trrrrr",
+    commune: "ttrrr",
+    email: "sfsfdg",
+    motDePasse: "sfgsdg",
+    codePostal: "sdsdvqs",
+    statutActif: true}
+
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.user)
   }
 
 }

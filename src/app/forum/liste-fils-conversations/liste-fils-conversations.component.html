@@ -2,7 +2,7 @@
     <!-- Liste Rubriques -->
     <mat-chip-list class="button-container-rubrique">
         <div *ngFor="let rubrique of rubriques">
-            <mat-chip color="primary" selected>{{ rubrique.nom }}</mat-chip>
+            <mat-chip color="primary" selected (click)="getFilConversationBy">{{ rubrique.nom }}</mat-chip>
         </div>
     
         <mat-chip color="primary" selected [routerLink]="['/forum/listeRubrique']">
@@ -18,7 +18,26 @@
             </button>
         </div>
         <!-- Cards : fils de conversations / boucle for -->
-        <app-carte-fil-conversation></app-carte-fil-conversation>
+        <!-- <app-carte-fil-conversation > -->
+
+            <mat-card class="card" *ngFor="let filConversation of filsConversations">
+                <mat-card-content>
+                    <p>
+                        {{ filConversation.nom }}
+                    </p>
+                </mat-card-content>
+                <mat-card-actions class="card-footer">
+                    <mat-chip-list class="footer-elements">
+                        <mat-chip color="accent" [disableRipple]="true" [selectable]="false" selected>rubrique</mat-chip>
+                    </mat-chip-list>
+
+                    <p class="icon-comment">
+                        <mat-icon matBadge="15" matBadgeSize="small" matBadgeColor="accent">chat</mat-icon>
+                    </p>
+                </mat-card-actions>
+            </mat-card>
+            
+        <!-- </app-carte-fil-conversation> -->
        
 
     </div>

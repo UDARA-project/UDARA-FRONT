@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CreationFavoriComponent } from '../../page-accueil/creation-favori/creation-favori.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CommuneService, FavoriService } from 'src/app/services';
+import { FavoriService } from 'src/app/services';
 import { Favori } from 'src/app/models/favori.interface';
+import { ListeFavoriComponent } from '../../page-accueil/liste-favori/liste-favori.component';
 
 interface MenuItem {
   titre: string,
@@ -17,8 +18,6 @@ interface MenuItem {
 })
 export class MenuComponent implements OnInit {
 
-  favoris: Favori[] = [];
-  nomCommunes: string[] = [];
   readonly menus: MenuItem[] = [
     {
       titre: 'Accueil',
@@ -47,27 +46,17 @@ export class MenuComponent implements OnInit {
     }
   ]
 
-  constructor(protected modalService: NgbModal,
-    private favoriService: FavoriService,
-    private communeService: CommuneService) { }
+  constructor(protected modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.initialiseFavori();
-    this.initializeCommunes();
   }
 
-  initializeCommunes() {
-    this.communeService.getEveryName().subscribe(array => this.nomCommunes = array.reverse());
+  openModalAdd() {
+    this.modalService.open(CreationFavoriComponent);
   }
 
-  initialiseFavori() {
-    this.favoriService.get().subscribe(res => this.favoris = res);
-    console.log(this.favoris);
+  openModalList() {
+    this.modalService.open(ListeFavoriComponent);
   }
-  openModal() {
-    let modal = this.modalService.open(CreationFavoriComponent);
-    modal.componentInstance.nomCommunes = this.nomCommunes;
-  }
-
 
 }

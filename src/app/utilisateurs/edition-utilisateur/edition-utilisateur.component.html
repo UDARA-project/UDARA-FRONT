@@ -1,56 +1,67 @@
 <h1 class="d-flex justify-content-center col-md-10 mb-4">Mon Compte</h1>
 <div class="d-flex col-12 justify-content-between mt-5">
-  <div class="col-5">
-    <h2 class="d-flex justify-content-start">Mot de passe</h2>
+
+  <div class="col-7">
+    <h2 class="d-flex justify-content-start">Informations Utilisateur</h2>
 
     <div class="form-group">
-      <label><i class="fa fa-lock"></i> Mot de passe actuel</label>
-      <input [(ngModel)]="user.motDePasse" name="motDePasse" type="text" class="form-control">
+      <label for="nom"><i class="fa fa-user"></i> Saisir votre nom</label>
+      <input [(ngModel)]="user.nom" name="nom" type="text" class="form-control" [ngClass]="{ 'is-invalid': missingNom }">
+      <small *ngIf="missingNom" class="text-danger">
+        Votre nom est nécessaire
+      </small>
     </div>
 
     <div class="form-group">
+      <label for="nom"><i class="fa fa-user"></i> Saisir votre prénom</label>
+      <input [(ngModel)]="user.prenom" name="prenom" type="text" class="form-control" [ngClass]="{ 'is-invalid': missingPrenom }">
+      <small *ngIf="missingPrenom" class="text-danger">
+        Votre prénom est nécessaire
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="nom"><i class="fa fa-user"></i> Saisir votre nom d'utilisateur</label>
+      <input [(ngModel)]="user.nomUtilisateur" name="nomUtilisateur" type="text" class="form-control" [ngClass]="{ 'is-invalid': missingNomUtilisateur }">
+      <small *ngIf="missingNomUtilisateur" class="text-danger">
+        Votre nom d'utilisateur est nécessaire
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="text"> <i class="fa fa-map-marker"></i> Saisir votre ville</label>
+      <input [(ngModel)]="user.commune" name="commune" type="text" class="form-control" [ngClass]="{ 'is-invalid': missingCommune }">
+      <small *ngIf="missingCommune" class="text-danger">
+        Votre ville est nécessaire
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="text"><i class="fa fa-flag"></i> Saisir votre code postal</label>
+      <input [(ngModel)]="user.codePostal" name="codePostal" type="text" class="form-control" [ngClass]="{ 'is-invalid': missingCodePostal }">
+      <small *ngIf="missingCommune" class="text-danger">
+        Votre code postal est nécessaire
+      </small>
+    </div>
+    
+    <button type="button" (click)="editInfosUser()" class="btn btn-success d-flex col-md-12 mb-5 justify-content-center">Modifier mes informations</button>
+  </div>
+
+  <form class="col-5" (ngSubmit)='editMotDePasse(form)' #form=ngForm>
+    <h2 class="d-flex justify-content-start">Mot de passe</h2>
+
+    <div class="form-group">
       <label><i class="fa fa-lock"></i> Nouveau mot de passe</label>
-      <input type="password" name="mot de passe" class="form-control" aria-describedby="passwordHelpBlock"
+      <input type="password" name="mdp" class="form-control" aria-describedby="passwordHelpBlock"
         placeholder="Mot de passe">
     </div>
 
     <div class="form-group">
       <label><i class="fa fa-lock"></i> Confirmez votre nouveau mot de passe</label>
-      <input type="password" name="confirmer mot de passe" class="form-control" aria-describedby="passwordHelpBlock"
+      <input type="password" name="mdpConfirme" class="form-control" aria-describedby="passwordHelpBlock"
         placeholder="Mot de passe">
     </div>
 
-    <button type="button" class="btn btn-success d-flex col-md-12 justify-content-center mb-5">Modifier mon mot de passe</button>
-  </div>
-
-  <div class="col-7">
-    <h2 class="d-flex justify-content-start">Information Utilisateur</h2>
-
-    <div class="form-group">
-      <label for="nom"><i class="fa fa-user"></i> Entrez votre nom</label>
-      <input [(ngModel)]="user.nom" name="nom" type="text" class="form-control">
-    </div>
-
-    <div class="form-group">
-      <label for="nom"><i class="fa fa-user"></i> Entrez votre prénom</label>
-      <input [(ngModel)]="user.prenom" name="prenom" type="text" class="form-control">
-    </div>
-
-    <div class="form-group">
-      <label for="nom"><i class="fa fa-user"></i> Entrez votre nom d'utilisateur</label>
-      <input [(ngModel)]="user.nomUtilisateur" name="nomUtilisateur" type="text" class="form-control">
-    </div>
-
-    <div class="form-group">
-      <label for="text"> <i class="fa fa-map-marker"></i> Entrez une ville</label>
-      <input [(ngModel)]="user.commune" name="commune" type="text" class="form-control">
-    </div>
-
-    <div class="form-group">
-      <label for="text"><i class="fa fa-flag"></i> Entrez Code postal</label>
-      <input [(ngModel)]="user.codePostal" name="codePostal" type="text" class="form-control">
-    </div>
-    
-    <button type="button" class="btn btn-success d-flex col-md-12 mb-5 justify-content-center">Modifier mes informations</button>
-  </div>
+    <button type="submit" class="btn btn-success d-flex col-md-12 justify-content-center mb-5">Modifier mon mot de passe</button>
+  </form>
 </div>

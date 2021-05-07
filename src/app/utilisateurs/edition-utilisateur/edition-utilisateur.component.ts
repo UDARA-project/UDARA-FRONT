@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CompteUtilisateur } from 'src/app/models/compteUtilisateur.interface';
+import { CompteUtilisateurService } from 'src/app/services';
 
 @Component({
   selector: 'app-edition-utilisateur',
@@ -8,9 +12,17 @@ import { CompteUtilisateur } from 'src/app/models/compteUtilisateur.interface';
 })
 export class EditionUtilisateurComponent implements OnInit {
 
+  missingNom: boolean;
+  missingPrenom: boolean;
+  missingNomUtilisateur: boolean;
+  missingCommune: boolean;
+  missingCodePostal: boolean;
+  informationsValides: boolean;
+  motDePasseConfirme: boolean;
+
   user : CompteUtilisateur = {     
     id: 1,
-    nom: "Flamel",
+    nom: "FLAMEL",
     prenom: "Nicolas",
     nomUtilisateur: "NicoFlamel",
     commune: "Monteux",
@@ -20,10 +32,59 @@ export class EditionUtilisateurComponent implements OnInit {
     statutActif: true
   }
 
-  constructor() { }
+  constructor(private userService : CompteUtilisateurService, private toastr: ToastrService, 
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(this.user)
+    console.log(this.user);
+    this.chargerUtilisateur();
+  }
+
+  chargerUtilisateur() {
+    this.userService.getByEmail(localStorage.getItem('token')).subscribe(user => {
+        console.log('utilisateur', user);
+        this.user = user;
+    });
+  }
+
+  editMotDePasse(form: NgForm){
+    if (form.valid) {
+      if (!form.value.isActive) {
+        form.value.isActive = false;
+      }
+      this.motDePasseConfirme = form.value.mdp === form.value.mdpConfirme;
+      if (this.motDePasseConfirme) {
+        this.user.motDePasse = form.value.mdpConfirme;
+        this.userService.update(this.user).subscribe(res => {
+          console.log('res', res);
+          this.toastr.success('de votre mot de passe', 'Confirmation de la modification');
+          this.chargerUtilisateur();
+        }) 
+      } else {
+        this.toastr.error('recommencer en saisissant 2 fois le même mot de passe', "Erreur mot de passe ! ")        
+      }
+    } else {
+      this.toastr.error('recommencer en saisissant les deux champs nécessaires', "Echec d'actualisation du mot de passe'")
+    }
+  }
+
+  editInfosUser(){
+    this.missingNom = !this.user.nom || !this.user.nom.trim().length;
+    this.missingPrenom = !this.user.prenom || !this.user.prenom.trim().length;
+    this.missingNomUtilisateur = !this.user.nomUtilisateur || !this.user.nomUtilisateur.trim().length;
+    this.missingCommune = !this.user.commune || !this.user.commune.trim().length;
+    this.missingCodePostal = !this.user.codePostal || !this.user.codePostal.trim().length;
+
+    this.informationsValides = !this.missingNom && !this.missingPrenom && !this.missingNomUtilisateur && !this.missingCodePostal && !this.missingCommune; 
+    if (this.informationsValides) {
+      this.userService.update(this.user).subscribe(res => {
+        console.log('res', res);
+        this.toastr.success('de vos informations personnelles', 'Enregistrement réussi');
+        this.chargerUtilisateur();
+      });
+    } else {
+      this.toastr.error("Saisie invalide", "Attention");
+    }
   }
 
 }

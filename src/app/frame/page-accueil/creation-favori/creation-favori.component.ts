@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CreationFavoriComponent implements OnInit {
 
-  @Input() nomCommunes: string[];
+  nomCommunes: string[];
   echelleTemps: string = 'JOURNALIERE';
   tousLesIndicateurs: string[] = ["co", "no", "no2", "o3", "so2", "pm2_5", "pm10", "nh3"];
   touslesNiveaux: string[] = ["Température", "Nuage", "Vent", "Pluie"]
@@ -38,7 +38,7 @@ export class CreationFavoriComponent implements OnInit {
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    //this.initializeCommunes();
+    this.initializeCommunes();
     this.initializeBoolean();
   }
 

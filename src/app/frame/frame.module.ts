@@ -10,6 +10,7 @@ import { BarreRechercheComponent } from './page-accueil/barre-recherche/barre-re
 import { AccueilDataComponent } from './page-accueil/accueil-data/accueil-data.component';
 import { FrameRoutingModule } from './frame-routing.module';
 import { FormsModule } from '@angular/forms';
+import { ListeFavoriComponent } from './page-accueil/liste-favori/liste-favori.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     ExtractionDataComponent,
     BarreRechercheComponent,
     AccueilDataComponent,
+    ListeFavoriComponent,
   ],
   imports: [
     CommonModule,

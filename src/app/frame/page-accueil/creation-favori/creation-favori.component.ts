@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { CommuneService } from 'src/app/services';
+import { Component, Input, OnInit } from '@angular/core';
+import { CommuneService, FavoriService } from 'src/app/services';
 import { NgForm } from '@angular/forms';
 import { Favori } from 'src/app/models/favori.interface';
 import { ActivatedRoute } from '@angular/router';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -12,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CreationFavoriComponent implements OnInit {
 
-  nomCommunes: string[];
+  @Input() nomCommunes: string[];
   echelleTemps: string = 'JOURNALIERE';
   tousLesIndicateurs: string[] = ["co", "no", "no2", "o3", "so2", "pm2_5", "pm10", "nh3"];
   touslesNiveaux: string[] = ["Température", "Nuage", "Vent", "Pluie"]
@@ -30,10 +32,13 @@ export class CreationFavoriComponent implements OnInit {
 
   constructor(
     private communeService: CommuneService,
-    private activateRoute: ActivatedRoute) { }
+    private favoriService: FavoriService,
+    private activateRoute: ActivatedRoute,
+    private modale: NgbActiveModal,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.initializeCommunes();
+    //this.initializeCommunes();
     this.initializeBoolean();
   }
 
@@ -42,8 +47,8 @@ export class CreationFavoriComponent implements OnInit {
   }
 
   initializeBoolean() {
-    this.indicateurBoolean = this.tousLesIndicateurs.map(item => this.favori.indicateurAir.indexOf(item)!= -1 ? true : false );
-    this.niveauBoolean = this.touslesNiveaux.map(item => this.favori.niveauMeteo.indexOf(item)!= -1 ? true : false );
+    this.indicateurBoolean = this.tousLesIndicateurs.map(item => this.favori.indicateurAir.indexOf(item) != -1 ? true : false);
+    this.niveauBoolean = this.touslesNiveaux.map(item => this.favori.niveauMeteo.indexOf(item) != -1 ? true : false);
   }
 
   setEchelleTemps(echelleTemps: string) {
@@ -52,16 +57,25 @@ export class CreationFavoriComponent implements OnInit {
   }
 
   saveFavori(form: NgForm) {
-this.favori = {
-  nom: form.value.nom,
-  niveauMeteo: this.niveauBoolean,
-  indicateurAir: this.indicateurBoolean.map(item => this.favori.indicateurAir.indexOf(item)!= -1 ? true : false ),
-  echelleTemps: this.echelleTemps,
-  commune: form.value.commune
-}
-console.log(this.favori);
+    this.favori = {
+      nom: form.value.nom,
+      niveauMeteo: this.niveauBoolean.map((item, i) => item ? this.touslesNiveaux[i] : null).filter(value => value != null),
+      indicateurAir: this.indicateurBoolean.map((item, i) => item ? this.tousLesIndicateurs[i] : null).filter(value => value != null),
+      echelleTemps: this.echelleTemps,
+      commune: form.value.commune,
+      compteUtilisateur: "nicolas.hornuel@gmail.com"
+    }
+    this.favoriService.create(this.favori).subscribe();
+    //this.activateRoute.params.subscribe(res => console.log(res));
+  }
 
-//this.activateRoute.params.subscribe(res => console.log(res));
+  dismiss() {
+    this.toastr.info("enregistrement annulé");
+    this.modale.dismiss();
+  }
+  confirm() {
+    this.toastr.success("enregistrement effectué");
+    this.modale.close();
   }
 
 }

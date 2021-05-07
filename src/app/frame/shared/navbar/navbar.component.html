@@ -18,10 +18,40 @@
             <li>
                 <button class="btn alert-secondary" [routerLink]="['/utilisateurs/authentification']">Connexion</button>
             </li>
-            <li class="m-0">
+            <!-- <li class="m-0">
                 <a style="font-size:1.5em">
                     <i class="fa fa-bell"></i>
                 </a>
+            </li> -->
+
+             <!-- Nav Item - Alerts -->
+             <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="alertsDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:1.5em">
+                    <i class="fa fa-bell fa-fw text-warning"></i>
+                    <!-- Counter - Alerts -->
+                    <span class="badge badge-danger badge-counter">2+</span>
+                </a>
+                <!-- Dropdown - Alerts -->
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                    aria-labelledby="alertsDropdown">
+                    <h3 class="dropdown-header text-warning justify-content-center d-flex">
+                        Notifications
+                    </h3>
+                    <a  *ngFor="let notif of notifs" class="dropdown-item align-items-center p-0" href="#">
+                        <div class="mr-3">
+                            <div class="icon-circle bg-primary">
+                                <i class="fas fa-file-alt text-white"></i>
+                            </div>
+                        </div>
+                        <div class="w-100">
+                            <p class="small text-gray-500 ml-3"><small>{{ notif.heure }}</small></p>
+                            <h4 class="ml-3"> {{ notif.texte}} </h4>
+                            <hr class="w-100">
+                        </div>
+                    </a>
+                    <a class="dropdown-item text-center small text-gray-500 text-info" href="#">Voir toutes les notifications</a>
+                </div>
             </li>
             <li>
                 <div class="d-flex-column m-0">

@@ -7,15 +7,10 @@
               </button>
         </div>
 
-        <div class="modal-body">
+        <form class="modal-body" >
             <div class="form-group">
-                <label for="departement">Saisir une notification :</label>
-                <input name="titre" ngModel #titre='ngModel' required  type="text" class="form-control" placeholder="Saisir un titre de notification">
-              </div>
-
-              <div class="form-group">
-                <label for="departement">Saisir une description :</label>
-                <input name="description" ngModel #description='ngModel' required  type="text" class="form-control" placeholder="Saisir une description">
+                <label for="departement">Titre :</label>
+                <input name="texte" ngModel #texte='ngModel' required  type="text" class="form-control" placeholder="Saisir un titre de notification">
               </div>
 
               <div class="form-group">
@@ -31,10 +26,10 @@
                   <option *ngFor="let nomVille of nomVilles" [value]="nomVille">{{nomVille}}</option>
                 </select>
               </div>
-        </div>
+        </form>
 
         <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn btn-secondary mr-2" (click)='close()'>Annuler</button>
+                <button type="submit" class="btn btn-secondary mr-2" (click)='close()'>Annuler</button>
                 <button type="button" class="btn btn-success" (click)="confirm()">Valider</button>
         </div>
     </div>

@@ -14,12 +14,12 @@
                     
                     <div class="form-group">
                       <label for="password"><i class="fa fa-envelope"></i> Identifiant</label>
-                      <input [(ngModel)]="email" type="email" class="form-control" name="email" placeholder="Email ou nom d utilisateur">
+                      <input ngModel name="email" #email="ngModel" type="email" class="form-control"  placeholder="Email ou nom d utilisateur">
                     </div>
    
                     <div class="form-group">
                        <label for="email"><i class="fa fa-lock"></i> Saisissez votre mot de passe</label>
-                       <input type="password" name="mot de passe" class="form-control" aria-describedby="passwordHelpBlock" placeholder="Mot de passe">
+                       <input ngModel name="motDePasse" #motDePasse="ngModel" type="password"  class="form-control" aria-describedby="passwordHelpBlock" placeholder="Mot de passe">
                      </div>
                   </fieldset>
             

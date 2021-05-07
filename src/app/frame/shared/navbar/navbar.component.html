@@ -10,7 +10,7 @@
                 <p>Infos météos et qualité de l'air</p>
             </li>
             <li>
-                <button class="btn alert-secondary" [routerLink]="['/formNotif']">Créer une notification</button>
+                <button class="btn alert-secondary" [routerLink]="['/formNotif']" (click)="openModal()">Créer une notification</button>
             </li>
             <li>
                 <button class="btn alert-secondary" [routerLink]="['/utilisateurs/inscriptionUtilisateur']">Inscription</button>

@@ -15,6 +15,7 @@
                                 </li>
                                 <li>
                                     <a class="dropdown-item">Gérer mes favoris</a>
+                                    <button *ngFor="let favori of favoris">{{favori.nom}}</button>
                                 </li>
                             </ul>
                         </div>

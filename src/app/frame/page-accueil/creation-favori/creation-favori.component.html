@@ -61,8 +61,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" routerLink="/accueil" data-dismiss="modal">Annuler</button>
-            <button type="submit" class="btn btn-success">Valider</button>
+            <button type="button" class="btn btn-secondary" routerLink="/accueil" (click)="dismiss()" data-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-success"(click)="confirm()">Valider</button>
           </div>
         </form>
       </div>

@@ -4,4 +4,6 @@ export interface Favori {
     niveauMeteo: string[];
     indicateurAir: string[];
     echelleTemps: string;
+    commune: string;
+    compteUtilisateur: string; //un email
 }

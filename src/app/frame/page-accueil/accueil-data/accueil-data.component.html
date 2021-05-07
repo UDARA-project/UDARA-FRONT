@@ -1,6 +1,6 @@
 <div class="container">
 
-    <app-barre-recherche (searchChild)="renderSearchInsideParent($event)"></app-barre-recherche>
+    <app-barre-recherche (searchChild)="searchByCommune($event)"></app-barre-recherche>
 
 
     <div *ngIf="loadingSearch" class="d-flex justify-content-center mt-5">

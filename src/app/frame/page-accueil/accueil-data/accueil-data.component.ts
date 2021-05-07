@@ -52,29 +52,14 @@ export class AccueilDataComponent implements OnInit {
   }
 
   checkNavigation() {
-    if (history.state.id) {
-      this.nomCommune = history.state.commune;
-      this.nomIndicateurs = history.state.indicateurAir;
-      this.nomNiveaux = history.state.niveauMeteo;
-      this.echelleTemps = history.state.echelleTemps;
-      this.infoRecensement = `Données sur Favori : ${history.state.nom}`;
-      this.searchByCommune();
-    } else {
-      this.infoRecensement = "";
-      this.echelleTemps = 'JOURNALIERE';
-      this.search();
-    }
-  }
-
-  setEchelleTemps(echelleTemps: string) {
-    this.echelleTemps = echelleTemps;
-    this.nomCommune == undefined ? this.search() : this.searchByCommune();
+    this.echelleTemps = 'JOURNALIERE';
+    history.state.id ? this.searchByFavori() : this.search();
   }
 
   search() {
     this.loadingSearch = true;
-    this.indicateurAirs = [];
-    this.niveauMeteos = [];
+    this.nomIndicateurs = ["co", "no", "no2", "o3", "so2", "pm2_5", "pm10", "nh3"];
+    this.nomNiveaux = ["Température", "Nuage", "Vent", "Pluie"]
     this.indicateurAirService.search(this.nomIndicateurs, this.echelleTemps).subscribe(res => {
       this.renderIndicateur(res);
       this.niveauMeteoService.search(this.nomNiveaux, this.echelleTemps).subscribe(res => {
@@ -83,16 +68,13 @@ export class AccueilDataComponent implements OnInit {
     })
   }
 
-  renderSearchInsideParent(nomCommune: string) {
-    this.infoRecensement = "";
-    this.nomCommune = nomCommune;
-    this.searchByCommune();
-  }
-
-  searchByCommune() {
+  searchByFavori() {
     this.loadingSearch = true;
-    this.indicateurAirs = [];
-    this.niveauMeteos = [];
+    this.nomCommune = history.state.commune;
+    this.nomIndicateurs = history.state.indicateurAir;
+    this.nomNiveaux = history.state.niveauMeteo;
+    this.echelleTemps = history.state.echelleTemps;
+    this.infoRecensement = `Données sur Favori : ${history.state.nom} - `;
     this.indicateurAirService.searchByCommune(this.nomCommune, this.nomIndicateurs, this.echelleTemps).subscribe(res => {
       this.renderIndicateur(res);
       this.niveauMeteoService.searchByCommune(this.nomCommune, this.nomNiveaux, this.echelleTemps).subscribe(res => {
@@ -101,8 +83,27 @@ export class AccueilDataComponent implements OnInit {
     })
   }
 
+  searchByCommune(nomCommune: string) {
+    this.loadingSearch = true;
+    this.nomCommune = nomCommune;
+    this.nomIndicateurs = ["co", "no", "no2", "o3", "so2", "pm2_5", "pm10", "nh3"];
+    this.nomNiveaux = ["Température", "Nuage", "Vent", "Pluie"]
+    this.indicateurAirService.searchByCommune(this.nomCommune, this.nomIndicateurs, this.echelleTemps).subscribe(res => {
+      this.renderIndicateur(res);
+      this.niveauMeteoService.searchByCommune(this.nomCommune, this.nomNiveaux, this.echelleTemps).subscribe(res => {
+        this.renderNiveau(res);
+      })
+    })
+  }
+
+  setEchelleTemps(echelleTemps: string) {
+    this.echelleTemps = echelleTemps;
+    this.nomCommune == undefined ? this.search() : this.searchByCommune(this.nomCommune);
+  }
+
   renderIndicateur(res) {
     this.indicateurWithUnit = [];
+    this.indicateurAirs = [];
     this.indicateurAirs = res;
     res.forEach(elt => {
       let newValue = elt.valeurs.map(r => r + "μg/m3");
@@ -113,6 +114,7 @@ export class AccueilDataComponent implements OnInit {
 
   renderNiveau(res) {
     this.meteoWithUnit = [];
+    this.niveauMeteos = [];
     this.niveauMeteos = res;
     res.forEach(elt => {
       let newValue = [];
@@ -136,13 +138,14 @@ export class AccueilDataComponent implements OnInit {
       this.infoRecensement = "Données Globales Françaises"
     } else {
       this.communeService.findByName(this.nomCommune).subscribe(r => {
-        this.infoRecensement += `Commune : ${r.name}, ${r.population} Habitants -- Région:${r.region}, Code département${r.departement}`;
-        this.infoGPS = `Coordonnées GPS de la station (latitude, longitude): ${r.lat}, ${r.lon}`;
+        this.infoRecensement += `Commune : ${r.name}, ${r.population} Habitants -- Région : ${r.region}, Code département : ${r.departement}`;
+        this.infoGPS = `Coordonnées GPS de la station (latitude, longitude) : ${r.lat} - ${r.lon}`;
       })
     }
   }
 
   generateMeteoGlobale() {
+    this.niveauMeteoService.search(["Température", "Nuage", "Vent", "Pluie"], this.echelleTemps).subscribe(res => this.niveauMeteos = res);
     let nombreValeur = this.niveauMeteos[0].valeurs.length;
     this.temperatureActuelle = Math.round(this.niveauMeteos[0].valeurs[nombreValeur - 1]);
     let nuageValeur = this.niveauMeteos[1] ? this.niveauMeteos[1].valeurs[nombreValeur - 1] : 0;

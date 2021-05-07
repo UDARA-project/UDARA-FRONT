@@ -10,14 +10,15 @@ export class EditionUtilisateurComponent implements OnInit {
 
   user : CompteUtilisateur = {     
     id: 1,
-    nom: "tete",
-    prenom: "trtr",
-    nomUtilisateur: "trrrrr",
-    commune: "ttrrr",
-    email: "sfsfdg",
-    motDePasse: "sfgsdg",
-    codePostal: "sdsdvqs",
-    statutActif: true}
+    nom: "Flamel",
+    prenom: "Nicolas",
+    nomUtilisateur: "NicoFlamel",
+    commune: "Monteux",
+    email: "nicolas.flamel@email.fr",
+    motDePasse: "mdp",
+    codePostal: "84170",
+    statutActif: true
+  }
 
   constructor() { }
 

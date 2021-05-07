@@ -1,64 +1,56 @@
-<div class="container col-4 justify-content-center">
-  <div class="justify-content-center">
+<h1 class="d-flex justify-content-center col-md-10 mb-4">Mon Compte</h1>
+<div class="d-flex col-12 justify-content-between mt-5">
+  <div class="col-5">
+    <h2 class="d-flex justify-content-start">Mot de passe</h2>
 
-    <h1 class="d-flex justify-content-center col-md-12">Mon Compte</h1>
-    <form>
-      <fieldset>
-        <h2 class="d-flex justify-content-start"><u>Modification du mot de passe</u></h2>
+    <div class="form-group">
+      <label><i class="fa fa-lock"></i> Mot de passe actuel</label>
+      <input [(ngModel)]="user.motDePasse" name="motDePasse" type="text" class="form-control">
+    </div>
 
-        <div class="form-group">
-          <label><i class="fa fa-lock"></i> Mot de passe actuel</label>
-          <input [(ngModel)]="user.nom" name="nom">
-        </div>
+    <div class="form-group">
+      <label><i class="fa fa-lock"></i> Nouveau mot de passe</label>
+      <input type="password" name="mot de passe" class="form-control" aria-describedby="passwordHelpBlock"
+        placeholder="Mot de passe">
+    </div>
 
-        <div class="form-group">
-          <label><i class="fa fa-lock"></i> Nouveau mot de passe</label>
-          <input type="password" name="mot de passe" class="form-control" aria-describedby="passwordHelpBlock"
-            placeholder="Mot de passe">
-        </div>
+    <div class="form-group">
+      <label><i class="fa fa-lock"></i> Confirmez votre nouveau mot de passe</label>
+      <input type="password" name="confirmer mot de passe" class="form-control" aria-describedby="passwordHelpBlock"
+        placeholder="Mot de passe">
+    </div>
 
-        <div class="form-group">
-          <label><i class="fa fa-lock"></i> Confirmez votre nouveau mot de passe</label>
-          <input type="password" name="confirmer mot de passe" class="form-control" aria-describedby="passwordHelpBlock"
-            placeholder="Mot de passe">
-        </div>
-      </fieldset>
+    <button type="button" class="btn btn-success d-flex col-md-12 justify-content-center mb-5">Modifier mon mot de passe</button>
+  </div>
 
-      <button type="button" class="btn btn-success d-flex col-md-12 mb-1 justify-content-center mb-5">Modifier le mot de
-        passe</button>
+  <div class="col-7">
+    <h2 class="d-flex justify-content-start">Information Utilisateur</h2>
 
-      <fieldset>
-        <h2 class="d-flex justify-content-start"><u>Information Utilisateur</u></h2>
+    <div class="form-group">
+      <label for="nom"><i class="fa fa-user"></i> Entrez votre nom</label>
+      <input [(ngModel)]="user.nom" name="nom" type="text" class="form-control">
+    </div>
 
-        <div class="form-group">
-          <label for="nom"><i class="fa fa-user"></i> Entrez votre nom</label>
-          <input type="text" class="form-control" name="nom" placeholder="Nom">
-        </div>
+    <div class="form-group">
+      <label for="nom"><i class="fa fa-user"></i> Entrez votre prénom</label>
+      <input [(ngModel)]="user.prenom" name="prenom" type="text" class="form-control">
+    </div>
 
-        <div class="form-group">
-          <label for="nom"><i class="fa fa-user"></i> Entrez votre prénom</label>
-          <input type="text" class="form-control" name="prenom" placeholder="Prénom">
-        </div>
+    <div class="form-group">
+      <label for="nom"><i class="fa fa-user"></i> Entrez votre nom d'utilisateur</label>
+      <input [(ngModel)]="user.nomUtilisateur" name="nomUtilisateur" type="text" class="form-control">
+    </div>
 
-        <div class="form-group">
-          <label for="nom"><i class="fa fa-user"></i> Entrez votre nom d'utilisateur</label>
-          <input type="text" class="form-control" name="pseudonyme" placeholder="Nom d'utilisateur (pseudonyme)">
-        </div>
+    <div class="form-group">
+      <label for="text"> <i class="fa fa-map-marker"></i> Entrez une ville</label>
+      <input [(ngModel)]="user.commune" name="commune" type="text" class="form-control">
+    </div>
 
-        <div class="form-group">
-          <label for="text"> <i class="fa fa-map-marker"></i> Entrez une ville</label>
-          <input type="text" class="form-control" name="ville" placeholder="Ville">
-        </div>
-
-        <div class="form-group">
-          <label for="text"><i class="fa fa-flag"></i> Entrez Code postal</label>
-          <input type="number" class="form-control" name="code postal" placeholder="Code postal">
-        </div>
-      </fieldset>
-
-      <button type="button" class="btn btn-success d-flex col-md-12 mb-5 justify-content-center">Modifier les
-        informations</button>
-
-    </form>
+    <div class="form-group">
+      <label for="text"><i class="fa fa-flag"></i> Entrez Code postal</label>
+      <input [(ngModel)]="user.codePostal" name="codePostal" type="text" class="form-control">
+    </div>
+    
+    <button type="button" class="btn btn-success d-flex col-md-12 mb-5 justify-content-center">Modifier mes informations</button>
   </div>
 </div>

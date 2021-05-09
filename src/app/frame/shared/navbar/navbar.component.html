@@ -56,7 +56,7 @@
             <li>
                 <div class="d-flex-column m-0">
                     <h4 class="m-0">Nom Prénom</h4>
-                    <a class="m-0" [routerLink]="['/accueil']">Déconnexion</a>
+                    <a class="m-0" (click)="logout()">Déconnexion</a>
                 </div>
             </li>
             <li class="m-0" [routerLink]="['/utilisateurs/editionUtilisateur']">

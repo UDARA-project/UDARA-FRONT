@@ -3,6 +3,7 @@ import { FormulaireNotificationComponent } from '../../notifications/formulaire-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialog } from '@angular/material/dialog';
 import { Notif } from 'src/app/models/notif.interface';
+import { Routes, RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -28,7 +29,8 @@ export class NavbarComponent implements OnInit {
   logo_path : string = "./assets/images/logoUdara.png";
 
   constructor(
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    private router : Router
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +41,12 @@ export class NavbarComponent implements OnInit {
   openModal(){
     this.modalService.open(FormulaireNotificationComponent);
   }
-
-
+  
+  logout(){
+ 
+    localStorage.removeItem('token');
+    this.router.navigate(['utilisateurs/authentification']);
+    console.log(localStorage);
+    
+  }
 }

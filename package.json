@@ -29,6 +29,7 @@
     "bootstrap-modal": "^2.2.4",
     "font-awesome": "^4.7.0",
     "ngx-toastr": "^13.2.1",
+    "node-auth-guard": "^2.4.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

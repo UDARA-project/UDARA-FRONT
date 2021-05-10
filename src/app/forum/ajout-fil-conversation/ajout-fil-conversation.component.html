@@ -4,17 +4,16 @@
     </div>
     <hr>
     <div mat-dialog-content>
-        <form class="example-form">
             <mat-form-field class="example-full-width">
                 <mat-label>Message</mat-label>
-                <textarea ngModel name="nomMessage" #nomMessage='ngModel' required matInput maxlength="256"></textarea>
+                <textarea #message ngModel name="nom" #nom='ngModel' maxlength="255" required matInput maxlength="256"></textarea>
+                <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
             </mat-form-field>
-        </form>
     </div>
 
     <mat-chip-list class="button-container-rubrique">
         <div *ngFor="let rubrique of rubriques">
-            <mat-chip ngModel name="nomRubrique" #nomRubrique="ngModel" color="accent" selected required >{{ rubrique.nom }}</mat-chip>
+            <mat-chip (click)="selectrubrique(rubrique)" [selectable]="true" color="accent" selected required >{{ rubrique.nom }}</mat-chip>
         </div>
     </mat-chip-list>
 

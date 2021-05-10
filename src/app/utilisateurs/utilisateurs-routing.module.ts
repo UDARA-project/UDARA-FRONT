@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'; // CLI imports router
+import { AuthGuard } from '../guards/auth.guard';
 import { AuthentificationUtilisateurComponent } from './authentification-utilisateur/authentification-utilisateur.component';
 import { EditionUtilisateurComponent } from './edition-utilisateur/edition-utilisateur.component';
 import { InscriptionUtilisateurComponent } from './inscription-utilisateur/inscription-utilisateur.component';
@@ -14,7 +15,7 @@ const routes: Routes = [
 
     //Utilisateurs
     { path: 'authentification', component: AuthentificationUtilisateurComponent},
-    { path: 'editionUtilisateur', component: EditionUtilisateurComponent},
+    { path: 'editionUtilisateur', component: EditionUtilisateurComponent, canActivate: [AuthGuard]},
     { path: 'inscriptionUtilisateur', component: InscriptionUtilisateurComponent},
     { path: 'listeUtilisateur', component: ListeUtilisateurComponent},
     { path: 'reactivationUtilisateur', component: ReactivationUtilisateurComponent},

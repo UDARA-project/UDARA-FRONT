@@ -45,7 +45,34 @@
 
         <!-- Cartes de la meme rubrique -->
         <div class="col-5">
-            Column
+
+            <div>
+                <h3>fil de conversation pour la meme rubrique :</h3>
+            </div>
+
+            <mat-card class="card mr-3 mt-2"  *ngFor="let filConversation of filsConversations">
+                <mat-card-header class="button-delete-card">
+                    <button mat-icon-button color="warn" (click)="deleteFilConversation(filConversation)" *ngIf="utilisateur?.role == 'ROLE_ADMINISTRATEUR'">
+                        <mat-icon>remove_circle</mat-icon>
+                    </button>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                        {{ filConversation.nom }}
+                    </p>
+                </mat-card-content>
+                <mat-card-actions class="card-footer">
+
+                    <mat-chip-list class="footer-elements">
+                        <mat-chip color="primary" selected [routerLink]="['/forum/contenuFilDConversation', filConversation.id]">Acceder au contenue</mat-chip>
+                    </mat-chip-list>
+
+                    <mat-chip-list class="footer-elements">
+                        <mat-chip color="accent" [disableRipple]="true" [selectable]="false" selected>{{ filConversation.rubrique.nom }}</mat-chip>
+                    </mat-chip-list>
+
+                </mat-card-actions>
+            </mat-card>
         </div>
 
     </div>

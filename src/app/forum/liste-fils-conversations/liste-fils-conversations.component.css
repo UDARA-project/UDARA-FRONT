@@ -11,6 +11,10 @@
     justify-content: flex-end;
     padding: 10px;
 }
+.button-delete-card {
+    display: flex;
+    justify-content: flex-end;
+}
 
 /* card */
 

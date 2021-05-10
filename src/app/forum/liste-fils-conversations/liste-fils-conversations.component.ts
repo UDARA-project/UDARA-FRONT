@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AjoutFilConversationComponent } from '../ajout-fil-conversation/ajout-fil-conversation.component';
-import { FilConversationService, RubriqueService } from '../../services';
+import { CompteUtilisateurService, FilConversationService, RubriqueService } from '../../services';
 import { Rubrique } from 'src/app/models/rubrique.interface';
 import { FilConversation } from 'src/app/models/filConversation.interface';
+import { Router } from '@angular/router';
+import _ from 'underscore';
+import { CompteUtilisateur } from 'src/app/models/compteUtilisateur.interface';
 
 @Component({
   selector: 'app-liste-fils-conversations',
@@ -13,19 +16,22 @@ import { FilConversation } from 'src/app/models/filConversation.interface';
 export class ListeFilsConversationsComponent implements OnInit {
   rubriques : Rubrique[] = []
   filsConversations : FilConversation[] = []
+  ustilisateur : CompteUtilisateur
 
   constructor(
     public dialog: MatDialog,
     private rubriqueService : RubriqueService,
-    private filConversationService : FilConversationService
+    private filConversationService : FilConversationService,
+    private userService : CompteUtilisateurService,
     ) { }
 
   ngOnInit(): void {
-    this.getRubriquesList(),
+    this.getRubriquesList()
     this.getFilsConversations()
+    this.chargerUtilisateur();
   }
 
-  OpenAjoutFilConversion(){
+  openAjoutFilConversion(){
     this.dialog.open(AjoutFilConversationComponent);
   }
 
@@ -40,10 +46,30 @@ export class ListeFilsConversationsComponent implements OnInit {
   getFilsConversations(){
     this.filConversationService.get().subscribe(res => {
       this.filsConversations = res
-      console.log('filsConversation', this.filsConversations)
+      console.log('filsConversations', this.filsConversations)
     })
   }
 
-  
+  filterByRubrique(rubrique : Rubrique){
+    console.log("filterByRubrique rubrique :", rubrique);
+    this.filConversationService.findByRubrique(rubrique.id).subscribe(res => {
+      console.log("res filsConversation rubrique",res)
+      this.filsConversations = res
+    })
+  }
+
+  chargerUtilisateur() {
+    this.userService.getByEmail(localStorage.getItem('token')).subscribe(user => {
+        console.log('utilisateur', user);
+        this.ustilisateur = user;
+    });
+  }
+
+  deleteFilConversation(filConversation : FilConversation){
+    console.log("delete", filConversation)
+    this.filConversationService.delete(filConversation.id).subscribe(res => {
+      console.log("res", res)
+    })
+  }
 
 }

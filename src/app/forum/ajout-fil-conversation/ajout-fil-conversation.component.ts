@@ -13,7 +13,7 @@ import { FilConversationService } from 'src/app/services/fil-conversation.servic
 })
 export class AjoutFilConversationComponent implements OnInit {
   rubriques : Rubrique[] = []
-  filConversationVide : FilConversation = {id: null, nom: null, rubrique_id: null}
+  rubriqueform : Rubrique
 
   constructor( 
     public dialogRef: MatDialogRef<AjoutFilConversationComponent>,
@@ -29,20 +29,27 @@ export class AjoutFilConversationComponent implements OnInit {
   getRubriquesList(){
     this.rubriqueService.get().subscribe(res => {
       this.rubriques = res
-      console.log('rubriques', this.rubriques);
+      console.log('rubriques add', this.rubriques);
       
     })
   }
 
   AjoutFilConversation(form : NgForm){
-    console.log('form', form.value);
+    form.value.rubrique = this.rubriqueform
+    console.log('form value',form.value)
     if (form.valid) {
+      console.log("coucou");
      this.serviceFilConversation.create(form.value).subscribe(res => {
       if (res) {
         console.log('res', res);
       }
     })
     }
+  }
+
+  selectrubrique(rubrique : Rubrique){
+    this.rubriqueform = rubrique
+    console.log("rubriqueSelected",rubrique)
   }
 
 

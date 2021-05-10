@@ -13,22 +13,25 @@ export class FilConversationService extends AbstractHttpService {
    }
 
   get() {
-    return this.http.get<FilConversation[]>(this.url);
+    return this.http.get<FilConversation[]>(`${this.url}`);
   }
 
   findById(id : number) {
     return this.http.get<FilConversation>(`${this.url}/${id}`);
   }
 
+  findByRubrique(id : number) {
+    return this.http.get<FilConversation[]>(`${this.url}/rubrique/${id}`);
+  }
+
   create(filConversation : FilConversation) {
+    filConversation.id = null;
+    console.log("serviceFil create", filConversation)
     return this.http.post(this.url, filConversation);
   }
-
-  update(filConversation : FilConversation) {
-    return this.http.put(`${this.url}/${filConversation.id}`, filConversation);
-  }
-
+  
   delete(id : number) {
+    console.log("id",id)
     return this.http.delete(`${this.url}/${id}`)
   }
 

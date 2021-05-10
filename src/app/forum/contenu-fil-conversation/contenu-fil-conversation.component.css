@@ -1,0 +1,13 @@
+hr {
+    margin-top: 0%;
+}
+.form-message{
+    display: flex;
+    justify-content: start;
+}
+.example-full-width {
+    width: 100%;
+}
+.pseudoUser{
+    margin: 0px;
+}

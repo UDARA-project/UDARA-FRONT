@@ -11,7 +11,7 @@ const routes: Routes = [
 
     // Forum 
     { path: 'ajoutFilsDConversation', component: AjoutFilConversationComponent},
-    { path: 'contenuFilDConversation', component: ContenuFilConversationComponent},
+    { path: 'contenuFilDConversation/:id', component: ContenuFilConversationComponent},
     { path: 'listeFilsConversations', component: ListeFilsConversationsComponent},
     { path: 'listeRubrique', component: ListeRubriqueComponent},
  

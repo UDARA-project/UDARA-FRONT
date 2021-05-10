@@ -1,1 +1,48 @@
-<p>contenu-fil-conversation works!</p>
+<div class="container">
+    <div class="row justify-content-between">
+
+        <!-- Visu d'un fil de discussion -->
+        <div class="col-7 mat-card">
+            <h3>{{ fil.nom }}</h3>
+            <hr>
+            <form class="form-message">
+                <div class="d-flex align-items-center mr-3">
+                    <mat-icon>account_circle</mat-icon>
+                </div>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Message</mat-label>
+                    <input matInput #message maxlength="256" placeholder="Ex. I need help with...">
+                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                </mat-form-field>
+            </form>
+
+            <div class="container">
+                <div class="row">
+                    <div class="d-flex align-items-center mr-3">
+                        <mat-icon>account_circle</mat-icon>
+                    </div>
+                    <div>
+                        <h5 class="pseudoUser">pseudo User</h5>
+                        <figcaption class="blockquote-footer">
+                            date publication
+                        </figcaption>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <p class="text-start">ytqsgvf akbfkhaisugcksj biuqciajbkzdgi qgxkjcbakjgsc iugqbxkj bcqadfc qugefjh
+                        qkgckqbjsd ;qjshkqbskqjhskcjbq qjgksj kqihfkajbf kiugfkajebfk jqzdfuuzgeif</p>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- Cartes de la meme rubrique -->
+        <div class="col-5">
+            Column
+        </div>
+
+    </div>
+</div>

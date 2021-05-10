@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommuneService, FavoriService } from 'src/app/services';
 import { NgForm } from '@angular/forms';
-import { Favori } from 'src/app/models/favori.interface';
 import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
@@ -14,6 +13,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CreationFavoriComponent implements OnInit {
 
+  loading: boolean;
+  nomRegions: string[];
+  nomDepartements: string[];
   nomCommunes: string[];
   echelleTemps: string = 'JOURNALIERE';
   tousLesIndicateurs: string[] = ["co", "no", "no2", "o3", "so2", "pm2_5", "pm10", "nh3"];
@@ -38,12 +40,25 @@ export class CreationFavoriComponent implements OnInit {
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.initializeCommunes();
+    this.loading = true;
+    this.initializeRegions();
     this.initializeBoolean();
   }
 
-  initializeCommunes() {
-    this.communeService.getEveryName().subscribe(array => this.nomCommunes = array.reverse());
+  ngAfterViewInit() {
+    setTimeout(() => { this.loading = false }, 1000);
+  }
+
+  initializeRegions() {
+    this.communeService.getEveryRegion().subscribe(array => this.nomRegions = array)
+  }
+
+  keyupRegion(nomRegion: string) {
+    this.communeService.getEveryDepartementByRegion(nomRegion).subscribe(array => this.nomDepartements = array);
+  }
+
+  keyupDepartement(nomDepartement: string) {
+    this.communeService.getEveryCommuneByDepartement(nomDepartement).subscribe(array => this.nomCommunes = array);
   }
 
   initializeBoolean() {
@@ -63,25 +78,27 @@ export class CreationFavoriComponent implements OnInit {
       indicateurAir: this.indicateurBoolean.map((item, i) => item ? this.tousLesIndicateurs[i] : null).filter(value => value != null),
       echelleTemps: this.echelleTemps,
       commune: form.value.commune,
-      compteUtilisateur: "nicolas.hornuel@gmail.com"
+      compteUtilisateur: localStorage.getItem('token'),
     }
     this.favori.id ? this.favoriService.update(this.favori).subscribe(res => this.toastUpdate()) : this.favoriService.create(this.favori).subscribe(res => this.toastSave());
-  }
-
-  dismiss() {
-    this.toastr.warning("annulé", "Création favori", {timeOut: 50});
-    this.modale.dismiss();
-  }
-  confirm() {
     this.modale.close();
   }
 
+  dismiss() {
+    this.toastr.warning("annulé", "Enregistrement favori", {timeOut: 2000});
+    this.modale.dismiss();
+
+    window.location.reload();
+  }
+
   toastSave() {
-    this.toastr.success("enregistré", "Création favori", {timeOut: 50});
+    this.toastr.success("enregistré", "Création favori", {timeOut: 2000});
+    window.location.reload();
   }
 
   toastUpdate() {
-    this.toastr.info("enregistré", "Mise à jour favori", {timeOut: 50});
+    this.toastr.info("enregistré", "Mise à jour favori", {timeOut: 2000});
+    window.location.reload();
   }
 
 }

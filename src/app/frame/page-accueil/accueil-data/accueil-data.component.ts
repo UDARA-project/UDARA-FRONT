@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Commune } from 'src/app/models/commune.interface';
 import { IndicateurAir } from 'src/app/models/indicateurAir.interface';
 import { NiveauMeteo } from 'src/app/models/niveauMeteo.interface';
 import { CommuneService } from 'src/app/services/commune.service';
@@ -59,7 +58,8 @@ export class AccueilDataComponent implements OnInit {
   search() {
     this.loadingSearch = true;
     this.nomIndicateurs = ["co", "no", "no2", "o3", "so2", "pm2_5", "pm10", "nh3"];
-    this.nomNiveaux = ["Température", "Nuage", "Vent", "Pluie"]
+    this.nomNiveaux = ["Température", "Nuage", "Vent", "Pluie"];
+    this.infoRecensement = "";
     this.indicateurAirService.search(this.nomIndicateurs, this.echelleTemps).subscribe(res => {
       this.renderIndicateur(res);
       this.niveauMeteoService.search(this.nomNiveaux, this.echelleTemps).subscribe(res => {
@@ -87,7 +87,8 @@ export class AccueilDataComponent implements OnInit {
     this.loadingSearch = true;
     this.nomCommune = nomCommune;
     this.nomIndicateurs = ["co", "no", "no2", "o3", "so2", "pm2_5", "pm10", "nh3"];
-    this.nomNiveaux = ["Température", "Nuage", "Vent", "Pluie"]
+    this.nomNiveaux = ["Température", "Nuage", "Vent", "Pluie"];
+    this.infoRecensement = "";
     this.indicateurAirService.searchByCommune(this.nomCommune, this.nomIndicateurs, this.echelleTemps).subscribe(res => {
       this.renderIndicateur(res);
       this.niveauMeteoService.searchByCommune(this.nomCommune, this.nomNiveaux, this.echelleTemps).subscribe(res => {

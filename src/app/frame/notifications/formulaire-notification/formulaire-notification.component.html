@@ -1,5 +1,6 @@
-<body>
-    <div id="modal">
+
+    <div class="modal-content" id="modale">
+      
         <div class="modal-header">
             <h2><u>Création d'une notification</u></h2>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)='close()'>
@@ -7,31 +8,32 @@
               </button>
         </div>
 
-        <form class="modal-body" >
+        <div class="modal-body">
+        <form>
             <div class="form-group">
-                <label for="departement">Titre :</label>
+                <label>Titre :</label>
                 <input name="texte" ngModel #texte='ngModel' required  type="text" class="form-control" placeholder="Saisir un titre de notification">
               </div>
 
-              <div class="form-group">
+              <div *ngIf="nomDepartements" class="form-group">
                 <label for="departement">Choisir un code postale :</label>
                 <select id="departement" class="form-control" #codePostal [(ngModel)]="nomDepartements[0]" name="codePostal" (change)="keyupDepartement(codePostal.value)">
                   <option *ngFor="let nomDepartement of nomDepartements" [value]="nomDepartement">{{nomDepartement}}</option>
                 </select>
               </div>
         
-              <div class="form-group">
+              <div *ngIf="nomVilles" class="form-group">
                 <label for="commune">Choisir une commune :</label>
                 <select id="commune" class="form-control" #commune [(ngModel)]="nomVilles[0]" name="commune">
                   <option *ngFor="let nomVille of nomVilles" [value]="nomVille">{{nomVille}}</option>
                 </select>
               </div>
         </form>
-
+      </div>
         <div class="modal-footer d-flex justify-content-center">
                 <button type="submit" class="btn btn-secondary mr-2" (click)='close()'>Annuler</button>
                 <button type="button" class="btn btn-success" (click)="confirm()">Valider</button>
         </div>
     </div>
-</body>
+
 

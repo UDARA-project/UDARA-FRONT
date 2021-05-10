@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommuneService } from 'src/app/services';
 
+
 @Component({
   selector: 'app-formulaire-notification',
   templateUrl: './formulaire-notification.component.html',
@@ -14,27 +15,19 @@ export class FormulaireNotificationComponent implements OnInit {
   nomDepartements: string[];
 
   constructor(
-    protected modalService: NgbActiveModal, 
+    private modale: NgbActiveModal,
     private communeService: CommuneService) { }
 
   ngOnInit(): void {
-    this.initializeVilles();
     this.initializeDepartements();
   }
 
   close(){
-    this.modalService.dismiss()
+    this.modale.dismiss()
   }
 
   confirm(){
-    this.modalService.close()
-  }
-
-  initializeVilles() {
-    this.communeService.getEveryName().subscribe(array => { 
-      this.nomVilles = array; 
-      //console.log('nomVilles', this.nomVilles);     
-    });
+    this.modale.close()
   }
 
   initializeDepartements() {
@@ -42,7 +35,7 @@ export class FormulaireNotificationComponent implements OnInit {
   }
 
   keyupDepartement(nomDepartement: string) {
-    this.communeService.getNameCommuneByDepartement(nomDepartement).subscribe(array => this.nomVilles = array);
+    this.communeService.getEveryCommuneByDepartement(nomDepartement).subscribe(array => this.nomVilles = array);
   }
 
 }

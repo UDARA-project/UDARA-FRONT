@@ -1,1 +1,20 @@
-<p>extraction-data works!</p>
+
+      <h1>Télécharger les données au format CSV</h1>
+<h2>Données DTO des différentes tables/entitées existantes en base de données </h2>
+      <form>
+        <div class="form-group input-group">
+            <select class="custom-select" id="inputGroupSelect04" [ngModel]="tables[0]" (ngModelChange)="onChange($event)" name="sel3">
+                <option [ngValue]="table" *ngFor="let table of tables;index as i">{{table}}</option>
+            </select>
+
+        </div>
+
+        <div class="row justify-content-center">
+          <button type="button" class="btn btn-success" (click)="factory()">Télécharger</button>
+        </div>
+    
+      </form>
+
+
+
+

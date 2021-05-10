@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CreationFavoriComponent } from '../../page-accueil/creation-favori/creation-favori.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FavoriService } from 'src/app/services';
-import { Favori } from 'src/app/models/favori.interface';
 import { ListeFavoriComponent } from '../../page-accueil/liste-favori/liste-favori.component';
+import { ExtractionDataComponent } from '../../page-accueil/extraction-data/extraction-data.component';
 
 interface MenuItem {
   titre: string,
@@ -57,6 +56,10 @@ export class MenuComponent implements OnInit {
 
   openModalList() {
     this.modalService.open(ListeFavoriComponent);
+  }
+
+  openModalExtractData() {
+    this.modalService.open(ExtractionDataComponent);
   }
 
 }

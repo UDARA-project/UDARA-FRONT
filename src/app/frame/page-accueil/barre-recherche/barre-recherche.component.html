@@ -1,27 +1,42 @@
 
 
-    <div *ngIf="!loadingCommune" class="row">
+    <div *ngIf="!loading" class="row">
         <div class="col-1"></div>
         <div class="col-10">
 
-            <div class="input-group mb-3">
-                <input #input type="text" class="form-control" placeholder="Nom d'une commune, Ex. Montpellier"
-                    list="nomCommunes" (keyup.enter)="onEnter(input.value)">
-                <datalist id="nomCommunes">
-                    <option *ngFor="let nomCommune of nomCommunes" [value]="nomCommune"></option>
-                </datalist>
-                <div class="input-group-append">
-                    <button class="btn btn-dark" type="button" id="button-addon2"
-                        (click)="search()">Recherche</button>
+            <div class="form-group">
+                <label for="region">Choisir une région :</label>
+                <select id="region" class="form-control" #region [(ngModel)]="nomRegions[0]" name="region" (change)="keyupRegion(region.value)">
+                  <option *ngFor="let nomRegion of nomRegions" [value]="nomRegion">{{nomRegion}}</option>
+                </select>
+              </div>
+        
+              <div *ngIf="nomDepartements" class="form-group">
+                <label for="departement">Choisir un code postale :</label>
+                <select id="departement" class="form-control" #codePostal ngModel name="codePostal" (change)="keyupDepartement(codePostal.value)">
+                  <option *ngFor="let nomDepartement of nomDepartements" [value]="nomDepartement">{{nomDepartement}}</option>
+                </select>
+              </div>
+        
+              <div  *ngIf="nomCommunes" class="form-group">
+                <label for="commune">Choisir une commune :</label>
+                <div class="input-group">
+                    <select id="commune" class="form-control" #commune='ngModel' ngModel name="commune" required (change)="onEnter(commune.value)">
+                        <option *ngFor="let nomCommune of nomCommunes" [value]="nomCommune">{{nomCommune}}</option>
+                      </select>
+                      <div class="input-group-append">
+                          <button class="btn btn-dark" type="button" id="button-addon2"
+                              (click)="search()">Recherche</button>
+                      </div>
                 </div>
-            </div>
 
+              </div>
 
         </div>
         <div class="col-1"></div>
     </div>
 
-        <div *ngIf="loadingCommune" class="d-flex justify-content-center">
+        <div *ngIf="loading" class="d-flex justify-content-center">
             <div class="spinner-border" role="status">
                 <span class="sr-only">Loading...</span>
             </div>

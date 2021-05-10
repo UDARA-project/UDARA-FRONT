@@ -24,9 +24,16 @@ export class CommuneService extends AbstractHttpService {
     return this.http.get<string[]>(`${this.url}/liste-departement`);
   }
 
-  getNameCommuneByDepartement(codeDepartement: string) {
+  getEveryRegion() {
+    return this.http.get<string[]>(`${this.url}/liste-region`);
+  }
+  getEveryDepartementByRegion(region: string) {
+    const params = { region: region};
+    return this.http.get<string[]>(`${this.url}/liste-departement-by-region`, { params });
+  }
+  getEveryCommuneByDepartement(codeDepartement: string) {
     const params = { departement: codeDepartement};
-    return this.http.get<string[]>(`${this.url}/searchByDepartement`, { params });
+    return this.http.get<string[]>(`${this.url}/liste-commune-by-departement`, { params });
   }
 
   findById(id : number) {

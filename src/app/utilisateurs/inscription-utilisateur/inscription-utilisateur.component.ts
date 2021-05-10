@@ -14,10 +14,11 @@ import { CommuneService } from 'src/app/services';
 })
 export class InscriptionUtilisateurComponent implements OnInit, AfterViewInit {
 
-  villeSelectionnee: string;
-  nomVilles: string[];
-  nomDepartements: string[];
   loading: boolean;
+  nomRegions: string[];
+  nomDepartements: string[];
+  nomCommunes: string[];
+  villeSelectionnee: string;
   validPassword: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
@@ -28,27 +29,23 @@ export class InscriptionUtilisateurComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.initializeVilles();
-    this.initializeDepartements();
+    this.initializeRegions();
   }
 
   ngAfterViewInit() {
     setTimeout(() => { this.loading = false }, 1000);
   }
 
-  initializeVilles() {
-    this.communeService.getEveryName().subscribe(array => { 
-      this.nomVilles = array; 
-      //console.log('nomVilles', this.nomVilles);     
-    });
+  initializeRegions() {
+    this.communeService.getEveryRegion().subscribe(array => this.nomRegions = array)
   }
 
-  initializeDepartements() {
-    this.communeService.getEveryNameOfDepartement().subscribe(array => this.nomDepartements = array)
+  keyupRegion(nomRegion: string) {
+    this.communeService.getEveryDepartementByRegion(nomRegion).subscribe(array => this.nomDepartements = array);
   }
 
   keyupDepartement(nomDepartement: string) {
-    this.communeService.getNameCommuneByDepartement(nomDepartement).subscribe(array => this.nomVilles = array);
+    this.communeService.getEveryCommuneByDepartement(nomDepartement).subscribe(array => this.nomCommunes = array);
   }
 
   saveUser(form: NgForm) {    

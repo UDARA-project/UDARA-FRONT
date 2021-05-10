@@ -58,48 +58,28 @@
       </div>
 
       <div class="form-group">
+        <label for="region">Choisir une région :</label>
+        <select id="region" class="form-control" #region [(ngModel)]="nomRegions[0]" name="region" (change)="keyupRegion(region.value)">
+          <option *ngFor="let nomRegion of nomRegions" [value]="nomRegion">{{nomRegion}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
         <label for="departement">Choisir un code postale :</label>
-        <select id="departement" class="form-control" #codePostal [(ngModel)]="nomDepartements[0]" name="codePostal" (change)="keyupDepartement(codePostal.value)">
+        <select id="departement" class="form-control" #codePostal ngModel name="codePostal" (change)="keyupDepartement(codePostal.value)">
           <option *ngFor="let nomDepartement of nomDepartements" [value]="nomDepartement">{{nomDepartement}}</option>
         </select>
       </div>
 
       <div class="form-group">
         <label for="commune">Choisir une commune :</label>
-        <select id="commune" class="form-control" #commune [(ngModel)]="nomVilles[0]" name="commune">
-          <option *ngFor="let nomVille of nomVilles" [value]="nomVille">{{nomVille}}</option>
+        <select id="commune" class="form-control" #commune='ngModel' ngModel name="commune" required>
+          <option *ngFor="let nomCommune of nomCommunes" [value]="nomCommune">{{nomCommune}}</option>
         </select>
+        <small *ngIf="form.submitted && commune.errors?.required" class="text-danger">
+          Le choix d'une commune est nécessaire (la sélection est disponible si région puis département sont renseignés).
+        </small>
       </div>
-
-<!--       
-  ngModel #commune='ngModel'
-  
-  <div class="form-group">
-        <label for="text"><i class="fa fa-flag"></i> Entrez Code postal</label>
-        <input #input name="codePostal" ngModel #codePostal='ngModel' required  type="number" class="form-control" placeholder="Par ex. 69007" list="departements" (change)="keyupDepartement(input.value)">
-        <datalist id="departements">
-          <option *ngFor="let nomDepartement of nomDepartements" [value]="nomDepartement"></option>
-        </datalist>
-        <small *ngIf="form.submitted && codePostal.errors?.required" class="text-danger">
-          Votre code postal doit être renseigné au format numérique. Par ex. '69007'
-        </small>
-      </div> -->
-
-<!--       <div class="form-group">
-        <label for="villeSelection"> <i class="fa fa-map-marker"></i> Selectionnez une ville </label>
-        <ng-select [items]="nomVilles | async"
-          bindLabel="name"
-          autofocus
-          bindValue="lat"
-          [(ngModel)]="villeSelectionnee">
-        </ng-select>
-        <ng-select [(ngModel)]="villeSelectionnee" name="villeSelectionnee">
-          <ng-option *ngFor="let ville of nomVilles" [value]="ville">{{ville}}</ng-option>
-        </ng-select>
-        <small *ngIf="form.submitted && villeSelection.errors?.required" class="text-danger">
-          Votre ville doit être renseignée
-        </small>
-      </div> -->
 
     </fieldset>
 

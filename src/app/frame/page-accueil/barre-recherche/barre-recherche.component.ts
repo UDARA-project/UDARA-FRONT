@@ -1,5 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommuneService } from 'src/app/services/commune.service';
 
 @Component({
@@ -9,10 +8,11 @@ import { CommuneService } from 'src/app/services/commune.service';
 })
 export class BarreRechercheComponent implements OnInit {
 
-  loadingCommune: boolean;
+  loading: boolean;
+  nomRegions: string[];
+  nomDepartements: string[];
   nomCommunes: string[];
   nomCommuneSelected: string;
-  @ViewChild('input') inputElement: ElementRef;
   @Output() searchChild = new EventEmitter();
 
   constructor(
@@ -20,15 +20,24 @@ export class BarreRechercheComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.initializeCommunes();
+    this.loading = true;
+    this.initializeRegions();
   }
 
-  initializeCommunes() {
-    this.loadingCommune = true;
-    this.communeService.getEveryName().subscribe(array => {
-      this.nomCommunes = array;
-      this.loadingCommune = false;
-    });
+  ngAfterViewInit() {
+    setTimeout(() => { this.loading = false }, 1000);
+  }
+
+  initializeRegions() {
+    this.communeService.getEveryRegion().subscribe(array => this.nomRegions = array)
+  }
+
+  keyupRegion(nomRegion: string) {
+    this.communeService.getEveryDepartementByRegion(nomRegion).subscribe(array => this.nomDepartements = array);
+  }
+
+  keyupDepartement(nomDepartement: string) {
+    this.communeService.getEveryCommuneByDepartement(nomDepartement).subscribe(array => this.nomCommunes = array);
   }
 
   onEnter(nomCommune: string) {
@@ -37,7 +46,6 @@ export class BarreRechercheComponent implements OnInit {
   }
 
   search() {
-    this.nomCommuneSelected = this.inputElement.nativeElement.value
     this.searchChild.emit(this.nomCommuneSelected);
   }
 

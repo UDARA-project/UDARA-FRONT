@@ -7,4 +7,5 @@ export * from "./message.service";
 export * from "./niveau-meteo.service";
 export * from "./notif.service";
 export * from "./rubrique.service";
+export * from "./extraction-data.service";
 

@@ -45,17 +45,13 @@ export class ListeFavoriComponent implements OnInit {
 
   supprimer() {
     this.favoriService.delete(this.favoriSelected.id).subscribe(result => {
-      console.log("result", result)
-      if (result) {
-        this.toastr.success('Suppression réussi !');
+        this.toastr.success("Réussi", "Suppression favori", {timeOut: 2000});
         const index = this.favoris.indexOf(this.favoriSelected);
         this.favoris.splice(index, 1)
-      }
     });
   }
 
   dismiss() {
-    this.toastr.info("enregistrement annulé");
     this.modale.dismiss();
   }
 

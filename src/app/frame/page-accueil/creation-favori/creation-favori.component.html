@@ -1,6 +1,6 @@
 
-
     <div class="modal-content">
+
       <div class="modal-header">
         <h1 *ngIf="!favori.id" class="modal-title" id="exampleModalLabel">Enregistrer un favori</h1>
         <h1 *ngIf="favori.id" class="modal-title" id="exampleModalLabel">Mettre à jour un favori {{favori.id}}</h1>
@@ -8,20 +8,45 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class="modal-body">
+
         <form (ngSubmit)='saveFavori(form)' #form=ngForm ngNativeValidate>
 
+          <div *ngIf="loading" class="d-flex justify-content-center mb-3">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+
+          <div *ngIf="!loading" >
           <div class="form-group">
             <label for="nom" class="col-form-label">Saisir un intitulé :</label>
             <input id="nom" required [(ngModel)]="favori.nom" name="nom" type="text" class="form-control" placeholder="Ex.: montpellier.meteo.journalier">
           </div>
 
-
+          <div class="form-group">
+            <label for="region">Choisir une région :</label>
+            <select id="region" class="form-control" #region ngModel name="region" (change)="keyupRegion(region.value)" required>
+              <option *ngFor="let nomRegion of nomRegions" [value]="nomRegion">{{nomRegion}}</option>
+            </select>
+          </div>
+    
+          <div class="form-group">
+            <label for="departement">Choisir un code postale :</label>
+            <select id="departement" class="form-control" #codePostal ngModel name="codePostal" (change)="keyupDepartement(codePostal.value)" required>
+              <option *ngFor="let nomDepartement of nomDepartements" [value]="nomDepartement">{{nomDepartement}}</option>
+            </select>
+          </div>
+    
           <div class="form-group">
             <label for="commune">Choisir une commune :</label>
-            <select id="commune" ngModel name="commune" class="form-control" [ngModel]="favori.commune" >
+            <select id="commune" class="form-control" #commune='ngModel' [ngModel]="favori.commune" name="commune" required>
               <option *ngFor="let nomCommune of nomCommunes" [value]="nomCommune">{{nomCommune}}</option>
             </select>
+            <small *ngIf="form.submitted && commune.errors?.required" class="text-danger">
+              Le choix d'une commune est nécessaire (la sélection est disponible si région puis département sont renseignés).
+            </small>
           </div>
 
           <div class="form-group">
@@ -61,26 +86,14 @@
 
             </div>
           </div>
+        </div>
+
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="dismiss()" data-dismiss="modal">Annuler</button>
-            <button type="submit" class="btn btn-success"(click)="confirm()">Valider</button>
+            <button type="submit" class="btn btn-success">Valider</button>
           </div>
         </form>
       </div>
     
     </div>
-
-
-
-
-
-<!--       <div class="form-group col-md-6">
-        <label for="inputNatID"> Choisir des indicateurs météorologiques </label>
-        <input name='indicateursMeteo' ngModel #indicateursMeteo='ngModel' required type="number" class="form-control"
-          [ngClass]="{'is-invalid': form.submitted && indicateursMeteo.errors?.required}">
-        <small *ngIf="form.submitted && indicateursMeteo.errors?.required" class="text-danger">
-          Sélectionner un ou plusieurs indicateurs
-        </small>
-      </div> -->
-
 

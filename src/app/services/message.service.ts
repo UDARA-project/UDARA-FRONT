@@ -20,6 +20,10 @@ export class MessageService extends AbstractHttpService {
     return this.http.get<Message>(`${this.url}/${id}`);
   }
 
+  searchByFilConversation(id: number) {
+    return this.http.get<Message[]>(`${this.url}/searchByFilConversationId/${id}`);
+  }
+
   create(message : Message) {
     return this.http.post(this.url, message);
   }

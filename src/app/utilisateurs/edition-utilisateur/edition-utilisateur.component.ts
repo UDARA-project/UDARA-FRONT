@@ -18,22 +18,14 @@ export class EditionUtilisateurComponent implements OnInit {
   missingCommune: boolean;
   missingCodePostal: boolean;
   informationsValides: boolean;
+
+  missingNouveauMdp: boolean;
+  missingMdpConfirme: boolean;
   motDePasseConfirme: boolean;
 
-  user : CompteUtilisateur = {     
-    id: 1,
-    nom: "FLAMEL",
-    prenom: "Nicolas",
-    nomUtilisateur: "NicoFlamel",
-    commune: "Monteux",
-    email: "nicolas.flamel@email.fr",
-    motDePasse: "mdp",
-    codePostal: "84170",
-    statutActif: true
-  }
+  user: CompteUtilisateur;
 
-  constructor(private userService : CompteUtilisateurService, private toastr: ToastrService, 
-    private activatedRoute: ActivatedRoute) { }
+  constructor(private userService : CompteUtilisateurService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     console.log(this.user);
@@ -48,6 +40,10 @@ export class EditionUtilisateurComponent implements OnInit {
   }
 
   editMotDePasse(form: NgForm){
+    this.missingNouveauMdp = form.value.mdp.trim().length;
+    console.log(this.missingNouveauMdp);
+    
+
     if (form.valid) {
       if (!form.value.isActive) {
         form.value.isActive = false;
@@ -59,7 +55,7 @@ export class EditionUtilisateurComponent implements OnInit {
           console.log('res', res);
           this.toastr.success('de votre mot de passe', 'Confirmation de la modification');
           this.chargerUtilisateur();
-        }) 
+        })
       } else {
         this.toastr.error('recommencer en saisissant 2 fois le même mot de passe', "Erreur mot de passe ! ")        
       }
@@ -74,8 +70,8 @@ export class EditionUtilisateurComponent implements OnInit {
     this.missingNomUtilisateur = !this.user.nomUtilisateur || !this.user.nomUtilisateur.trim().length;
     this.missingCommune = !this.user.commune || !this.user.commune.trim().length;
     this.missingCodePostal = !this.user.codePostal || !this.user.codePostal.trim().length;
-
     this.informationsValides = !this.missingNom && !this.missingPrenom && !this.missingNomUtilisateur && !this.missingCodePostal && !this.missingCommune; 
+    
     if (this.informationsValides) {
       this.userService.update(this.user).subscribe(res => {
         console.log('res', res);

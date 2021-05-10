@@ -9,13 +9,13 @@
             <li>
                 <p>Infos météos et qualité de l'air</p>
             </li>
-            <li>
+            <li *ngIf="utilisateur?.role == 'ROLE_ADMINISTRATEUR'">
                 <button class="btn alert-secondary" [routerLink]="['/formNotif']" (click)="openModal()">Créer une notification</button>
             </li>
-            <li>
+            <li *ngIf="utilisateur?.statutActif == null">
                 <button class="btn alert-secondary" [routerLink]="['/utilisateurs/inscriptionUtilisateur']">Inscription</button>
             </li>
-            <li>
+            <li *ngIf="utilisateur?.statutActif == null">
                 <button class="btn alert-secondary" [routerLink]="['/utilisateurs/authentification']">Connexion</button>
             </li>
             <!-- <li class="m-0">
@@ -53,13 +53,13 @@
                     <a class="dropdown-item text-center small text-gray-500 text-info" href="#">Voir toutes les notifications</a>
                 </div>
             </li>
-            <li>
+            <li *ngIf="utilisateur?.statutActif == 1">
                 <div class="d-flex-column m-0">
-                    <h4 class="m-0">Nom Prénom</h4>
+                    <h4 class="m-0">{{utilisateur.nom}} {{ utilisateur.prenom}} </h4>
                     <a class="m-0" (click)="logout()">Déconnexion</a>
                 </div>
             </li>
-            <li class="m-0" [routerLink]="['/utilisateurs/editionUtilisateur']">
+            <li class="m-0" *ngIf="utilisateur?.statutActif == 1" [routerLink]="['/utilisateurs/editionUtilisateur']" >
                 <a style="font-size:2.4em">
                     <i class="fa fa-user-circle"></i>
                 </a>

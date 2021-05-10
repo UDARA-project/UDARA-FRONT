@@ -4,6 +4,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialog } from '@angular/material/dialog';
 import { Notif } from 'src/app/models/notif.interface';
 import { Routes, RouterModule, Router } from '@angular/router';
+import { CompteUtilisateurService } from 'src/app/services';
+import { CompteUtilisateur } from 'src/app/models/compteUtilisateur.interface';
 
 @Component({
   selector: 'app-navbar',
@@ -26,15 +28,19 @@ export class NavbarComponent implements OnInit {
     lu: false
   }]
 
+  utilisateur : CompteUtilisateur
+
   logo_path : string = "./assets/images/logoUdara.png";
 
   constructor(
     protected modalService: NgbModal,
-    private router : Router
+    private router : Router,
+    private userService : CompteUtilisateurService
   ) { }
 
   ngOnInit(): void {
     console.log("notif", this.notifs);
+    this.chargerUtilisateur()
     
   }
 
@@ -45,8 +51,16 @@ export class NavbarComponent implements OnInit {
   logout(){
  
     localStorage.removeItem('token');
-    this.router.navigate(['utilisateurs/authentification']);
+    this.router.navigate(['accueil']);
+    document.location.reload();
     console.log(localStorage);
     
+  }
+
+  chargerUtilisateur() {
+    this.userService.getByEmail(localStorage.getItem('token')).subscribe(user => {
+        console.log('utilisateur', user);
+        this.utilisateur = user;
+    });
   }
 }

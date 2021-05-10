@@ -5,16 +5,20 @@
         <div class="col-7 mat-card">
             <h3>{{ fil.nom }}</h3>
             <hr>
-            <form class="form-message">
+            <form class="form-message" *ngIf="utilisateur?.statutActif == 1" #f="ngForm" (ngSubmit)="ajoutMessage(f)">
                 <div class="d-flex align-items-center mr-3">
                     <mat-icon>account_circle</mat-icon>
                 </div>
 
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="example-full-width" >
                     <mat-label>Message</mat-label>
-                    <input matInput #message maxlength="256" placeholder="Ex. I need help with...">
+                    <input name="nom" ngModel required #nom="ngModel" matInput #message maxlength="256" placeholder="Ex. I need help with...">
                     <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
                 </mat-form-field>
+
+                <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" type="submit">
+                    <mat-icon>check_circle</mat-icon>
+                </button>
             </form>
 
             <div class="container">

@@ -16,7 +16,7 @@ import { CompteUtilisateur } from 'src/app/models/compteUtilisateur.interface';
 export class ListeFilsConversationsComponent implements OnInit {
   rubriques : Rubrique[] = []
   filsConversations : FilConversation[] = []
-  ustilisateur : CompteUtilisateur
+  utilisateur : CompteUtilisateur
 
   constructor(
     public dialog: MatDialog,
@@ -61,7 +61,7 @@ export class ListeFilsConversationsComponent implements OnInit {
   chargerUtilisateur() {
     this.userService.getByEmail(localStorage.getItem('token')).subscribe(user => {
         console.log('utilisateur', user);
-        this.ustilisateur = user;
+        this.utilisateur = user;
     });
   }
 

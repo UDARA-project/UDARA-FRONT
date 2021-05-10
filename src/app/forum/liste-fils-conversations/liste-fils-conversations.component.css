@@ -19,7 +19,7 @@
 /* card */
 
 .card {
-    max-width: 400px;
+    width: 300px;
     padding: 10px;
     flex-direction: unset;
 }
@@ -40,6 +40,10 @@ hr {
 }
 .mat-card-content {
     height: 100px;
+}
+.contain {
+    margin: 15px;
+    padding: 15px;
 }
 
  

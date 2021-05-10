@@ -14,7 +14,6 @@ import { ContenuFilConversationComponent } from './contenu-fil-conversation/cont
 import { ForumRoutingModule } from './forum-routing.module';
 import { ListeFilsConversationsComponent } from './liste-fils-conversations/liste-fils-conversations.component';
 import { ListeRubriqueComponent } from './rubriques/liste-rubrique/liste-rubrique.component';
-import { CarteFilConversationComponent } from './carte-fil-conversation/carte-fil-conversation.component';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { SuprimerRubriqueComponent } from './rubriques/suprimer-rubrique/suprimer-rubrique.component';
@@ -26,7 +25,6 @@ import { SuprimerRubriqueComponent } from './rubriques/suprimer-rubrique/suprime
     ListeFilsConversationsComponent,
     ContenuFilConversationComponent,
     AjoutFilConversationComponent,
-    CarteFilConversationComponent,
     SuprimerRubriqueComponent,
   ],
   imports: [
